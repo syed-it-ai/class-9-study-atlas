@@ -441,8 +441,32 @@
   body{display:flex;flex-direction:column}
   footer{display:none}
   .view-atlas,.view-desk{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;width:100%;box-sizing:border-box}
-  body[data-view="atlas"] .view-desk{display:none}
-  body[data-view="desk"] .view-atlas{display:none}
+  .view-home,.view-subject{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;width:100%;box-sizing:border-box;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  body:not([data-view="home"]) .view-home{display:none}
+  body:not([data-view="subject"]) .view-subject{display:none}
+  body:not([data-view="chapter"]) .view-atlas{display:none}
+  body:not([data-view="desk"]) .view-desk{display:none}
+  /* ===== HOME · subjects only ===== */
+  .home-inner{padding:30px 4px 36px;width:100%}
+  .home-h{font-size:clamp(32px,5vw,48px)}
+  .subjgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;margin-top:22px}
+  .subjcard{display:block;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);color:var(--ink)}
+  .subjcard:hover{border-color:var(--brand)}
+  .subjcard .sc-top{display:flex;align-items:center;gap:10px}
+  .subjcard .sc-bar{width:10px;height:30px;border-radius:3px;flex:none}
+  .subjcard h3{font-size:20px;font-weight:800}
+  .subjcard .sc-count{margin-left:auto;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:var(--muted);font-size:14px;white-space:nowrap}
+  .subjcard p{font-size:14px;color:var(--muted);margin-top:9px;line-height:1.5}
+  .subjcard .sc-go{display:inline-block;margin-top:12px;font-weight:800;color:var(--brand);font-size:14.5px}
+  .ready-pill{display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--c-sci);background:var(--brand-soft);padding:4px 10px;border-radius:999px;margin-top:10px}
+  .home-note{margin-top:20px;font-size:14.5px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;max-width:78ch}
+  /* ===== SUBJECT · its chapters only ===== */
+  .subj-inner{padding:18px 4px 36px;width:100%}
+  .crumbs{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .crumb-now{font-size:13px;font-weight:700;color:var(--muted)}
+  .subj-search{width:100%;max-width:420px;min-height:42px;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--ink);font-size:14.5px;font-family:inherit;margin-top:12px}
+  .subj-search:focus{outline:2px solid var(--brand);outline-offset:1px}
+  .crumbbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--bg)}
   .atlas-app{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;margin:8px auto 4px;width:100%}
   .atlas-grid{flex:1 1 auto;min-height:0}
   .atlas-side{overflow:hidden}
@@ -476,12 +500,18 @@
   .stepmenu::-webkit-scrollbar{display:none}
   .stepbtn{flex:none;min-height:34px;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--bg);color:var(--ink);font-weight:700;font-size:13px}
   .stepbtn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+  /* Phone: all six chapter tabs visible at once, two rows of three —
+     no sideways swipe needed to reach MCQ Lab, Written Answers, Revise. */
+  @media(max-width:640px){
+    .stepmenu{flex-wrap:wrap;overflow:visible}
+    .tabbtn{flex:1 1 31%;text-align:center;padding:6px 4px;font-size:12.5px;white-space:nowrap}
+  }
   .dprogress{height:7px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:9px}
   .dprogress i{display:block;height:100%;background:var(--brand);width:0;transition:width .3s}
   .dcount{font-size:12px;color:var(--muted);font-weight:700;margin-top:4px}
   .screen{display:none;flex:1 1 auto;min-height:0;padding:10px 18px;font-size:14.5px;line-height:1.45}
   .screen.active{display:flex;flex-direction:column}
-  .screen-body{flex:1 1 auto;min-height:0;overflow:hidden}
+  .screen-body{flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .screen h3{font-size:18px;font-weight:800;margin:12px 0 5px}
   .screen h3:first-child{margin-top:0}
   .screen h4{font-size:15px;font-weight:700;margin:10px 0 4px}
@@ -555,7 +585,10 @@
   .timerdisp{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px}
   @media(max-width:640px){
     body{padding-bottom:0}
-    .view-atlas,.view-desk{padding-bottom:64px}
+    .view-atlas{overflow-y:auto;-webkit-overflow-scrolling:touch}
+    .view-atlas .atlas-app{flex:none}
+    .view-atlas .atlas-detail{overflow:visible}
+    .view-atlas,.view-desk,.view-home,.view-subject{padding-bottom:64px}
     .app-note{display:none}
     .desk{border-radius:14px}
     .desk-head{padding:10px 12px 8px}
@@ -607,6 +640,22 @@
   .vis-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
   .vis-read{font-size:14px;color:var(--ink-2);margin-top:9px}
   .vis-read strong{color:var(--ink)}
+  /* 1.2 · three separate mini-visuals */
+  .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .mini-vis{border:1.5px solid var(--line-2);border-radius:12px;padding:9px;background:var(--surface);cursor:pointer;text-align:left}
+  .mini-vis.sel{border-color:var(--brand);box-shadow:inset 0 0 0 1.5px var(--brand)}
+  .mini-vis canvas{width:100%;height:150px;display:block;background:var(--bg);border:1px solid var(--line);border-radius:8px;touch-action:none}
+  @media (prefers-color-scheme: dark){ .mini-vis canvas{background:#0B0F14} }
+  .mini-h{font-weight:800;font-size:13.5px;margin-bottom:7px;color:var(--ink)}
+  .mini-cap{font-size:12.5px;color:var(--muted);margin-top:7px}
+  .mini-act{margin-top:8px;width:100%}
+  @media(max-width:640px){ .mini-grid{grid-template-columns:1fr} .mini-vis canvas{height:140px} }
+  /* 1.4 · change-of-state diagram that lights up */
+  .state-diagram{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:12px}
+  .sd-node,.sd-arrow{border:1.5px solid var(--line-2);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13.5px;background:var(--surface);color:var(--muted);transition:background .25s,color .25s,border-color .25s}
+  .sd-arrow{border-style:dashed;font-size:12.5px}
+  .sd-node.lit{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+  .sd-arrow.lit{background:var(--gold);border-color:var(--gold);color:#1D2A33}
   .dil-row{display:flex;gap:6px;align-items:flex-end;justify-content:space-between}
   .beaker{flex:1;border:2px solid var(--line-2);border-top:none;border-radius:0 0 10px 10px;height:110px;position:relative;display:flex;align-items:flex-end;overflow:hidden}
   .beaker span{position:absolute;left:0;right:0;bottom:-22px;text-align:center;font-size:11.5px;color:var(--muted);font-weight:700}
@@ -634,6 +683,7 @@
   .progstrip{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:8px}
   .pchip{font-size:12px;font-weight:800;border:1.5px solid var(--line-2);border-radius:999px;padding:3px 10px;color:var(--muted)}
   .pchip.done{background:var(--good-soft);border-color:var(--good);color:var(--good)}
+  .pchip.seen{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
   .progtext{font-size:12.5px;color:var(--muted);font-weight:700}
   .miniquiz{display:grid;gap:12px}
   .mqz .q-text{font-size:15px;margin-bottom:7px}
@@ -642,7 +692,7 @@
   @media (prefers-color-scheme: dark){ .paperpage{background:#1B2530} }
   .paperpage:before{content:"";position:absolute;top:0;bottom:0;left:44px;width:2px;background:rgba(192,43,55,.45)}
   .pp-margin{position:absolute;left:8px;top:16px;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;color:var(--bad)}
-  .pp-body p{font-size:14.5px;line-height:28px;margin:0;color:var(--ink)}
+  .pp-body p{font-size:14.5px;line-height:28px;margin:0;color:var(--ink);word-spacing:.07em;letter-spacing:.01em}
   .pp-gap{height:28px}
   .pp-next{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:var(--muted)}
   @media(max-width:640px){ .paperpage{padding-left:48px} .paperpage:before{left:36px} .pp-margin{left:4px;font-size:13px} }
@@ -650,103 +700,47 @@
   body.measuring .view-desk{display:flex !important;position:fixed;inset:0;visibility:hidden;z-index:-1;pointer-events:none}
 </style>
 </head>
-<body>
+<body data-view="home">
 
-
-<div class="wrap view-atlas" style="max-width:1440px">
-<div class="atlas-app" id="atlasApp">
-  <header class="atlas-topbar">
-    <div class="atlas-logo">Study <span>Atlas</span><small>CBSE · Class 9 · Science Ch 1</small></div>
-    <nav class="subj-switch" aria-label="Switch subject">
-      <button data-subj="all" aria-pressed="true">All</button>
-      <button data-subj="maths" aria-pressed="false">Maths</button>
-      <button data-subj="science" aria-pressed="false">Science</button>
-      <button data-subj="sst" aria-pressed="false">Social Science</button>
-      <button data-subj="english" aria-pressed="false">English</button>
-      <button data-subj="hindi" aria-pressed="false">Hindi</button>
-    </nav>
-    <span class="class-badge">CLASS 9</span>
-  </header>
-  <div class="atlas-grid">
-    <aside class="atlas-side" aria-label="Atlas navigation">
-      <button class="side-item active" data-nav="home"><span>⌂</span> Home</button>
-      <button class="side-item" data-nav="featured"><span>★</span> Featured <span class="cnt">Ch 1</span></button>
-      <div class="side-label">Subjects</div>
-      <button class="side-item" data-goto-subj="maths"><span class="dotc" style="background:var(--c-maths)"></span> Mathematics <span class="cnt">12</span></button>
-      <button class="side-item" data-goto-subj="science"><span class="dotc" style="background:var(--c-sci)"></span> Science <span class="cnt">12 ch</span></button>
-      <button class="side-item" data-goto-subj="sst"><span class="dotc" style="background:var(--c-sst)"></span> Social Science <span class="cnt">20</span></button>
-      <button class="side-item" data-goto-subj="english"><span class="dotc" style="background:var(--c-eng)"></span> English <span class="cnt">23</span></button>
-      <button class="side-item" data-goto-subj="hindi"><span class="dotc" style="background:var(--c-hin)"></span> Hindi <span class="cnt">10</span></button>
-      <div class="side-label">This chapter</div>
-      <button class="side-item" data-goto-tab="learn">📖 Learn</button>
-      <button class="side-item" data-goto-tab="practise">✎ Practise · Quiz</button>
-      <button class="side-item" data-goto-tab="exam">🏆 Questions &amp; Answers</button>
-      <button class="side-item" data-goto-tab="revise">↻ Revise</button>
-      <div class="side-stats">
-        <div class="ss"><b class="num" id="statChapters">–</b><span>chapters mapped</span></div>
-        <div class="ss"><b class="num">1</b><span>full pack ready</span></div>
-        <div class="ss"><b class="num" id="statQuiz">— / 15</b><span>best quiz · session</span></div>
-        <div class="ss"><b class="num" id="statFlash">0 / 10</b><span>flashcards flipped</span></div>
-      </div>
-      <div class="side-featured">
-        <div class="fl">Featured · Most asked</div>
-        <h4>Steam burns worse than boiling water.</h4>
-        <p>Same 100 °C — the difference is latent heat. See how to write it so it gets the full 2 marks.</p>
-        <button data-goto-tab="exam">Open Questions and Answers →</button>
-      </div>
-    </aside>
-    <section class="atlas-stage" aria-label="Interactive particle explorer">
-      <div class="topic-strip" role="group" aria-label="Chapter topics"><button class="topic-chip" data-topic="matter" aria-pressed="false"><span class="tic">🧪</span><b>Matter</b><span>Has mass + space</span></button><button class="topic-chip" data-topic="particles" aria-pressed="false"><span class="tic">✦</span><b>Particles</b><span>Always moving</span></button><button class="topic-chip" data-topic="solid" aria-pressed="false"><span class="tic">🧊</span><b>Solid</b><span>Ice · fixed shape</span></button><button class="topic-chip" data-topic="liquid" aria-pressed="true"><span class="tic">💧</span><b>Liquid</b><span>Water · flows</span></button><button class="topic-chip" data-topic="gas" aria-pressed="false"><span class="tic">💨</span><b>Gas</b><span>Fills container</span></button><button class="topic-chip" data-topic="latent" aria-pressed="false"><span class="tic">🔥</span><b>Latent Heat</b><span>22.5 × 10⁵ J/kg</span></button><button class="topic-chip" data-topic="evaporation" aria-pressed="false"><span class="tic">☀️</span><b>Evaporation</b><span>Surface cooling</span></button><button class="topic-chip" data-topic="sublimation" aria-pressed="false"><span class="tic">❄️</span><b>Sublimation</b><span>Solid → gas</span></button></div>
-      <div class="stage-visual">
-        <canvas id="atlasCanvas" width="900" height="520" aria-label="Interactive particle visual. Drag to rotate, use plus and minus to zoom, drag temperature to change state."></canvas>
-        <div class="stage-tools">
-          <button id="zoomIn" aria-label="Zoom in">+</button>
-          <button id="zoomOut" aria-label="Zoom out">−</button>
-          <button id="rotBtn" aria-label="Rotate view">⟳</button>
-        </div>
-        <div class="stage-state" id="atlasState">Liquid · 25 °C</div>
-        <div class="stage-360"><span>◐</span> Drag to rotate · 360° <span>◎</span></div>
-      </div>
-      <div class="stage-controls">
-        <label for="atlasTemp">Temperature</label>
-        <input type="range" id="atlasTemp" min="0" max="100" value="45">
-        <button class="preset2" data-atemp="8" aria-pressed="false">🧊 Ice</button>
-        <button class="preset2" data-atemp="45" aria-pressed="true">💧 Water</button>
-        <button class="preset2" data-atemp="78" aria-pressed="false">💨 Gas</button>
-        <button class="preset2" data-atemp="95" aria-pressed="false">♨️ Steam</button>
-      </div>
-      <p class="stage-caption" id="stageCaption">Particles slide past each other — fixed volume, no fixed shape. That is a liquid.</p>
-    </section>
-    <aside class="atlas-detail" id="detailPanel" aria-live="polite"></aside>
+<div class="wrap view-home" style="max-width:1180px">
+  <div class="home-inner">
+    <p class="kicker">CBSE · Class 9</p>
+    <h1 class="home-h">Pick a subject</h1>
+    <p class="lede">Five subjects, 77 chapters. Tap a subject to see only its chapters. A chapter opens only when you tap it — its pictures, textbook, explanations and questions stay inside that chapter, not on this page.</p>
+    <div class="subjgrid" id="homeSubjects"></div>
   </div>
 </div>
-<p class="app-note">Start here: tap a topic card on top, drag the visual, heat it with the slider. Then open the Study Desk — it takes over the whole screen: one chapter, five steps, one screen at a time: Textbook, Explain, MCQ Lab, Written Answers, Revise. Inside the Desk there is no page scroll either — Next, Previous, arrow keys or swipe move you.</p>
+
+<div class="wrap view-subject" style="max-width:1180px">
+  <div class="subj-inner">
+    <div class="crumbs">
+      <button class="btn btn-ghost btn-sm" id="subjBackHome" type="button">← All subjects</button>
+      <span class="crumb-now" id="subjCrumb"></span>
+    </div>
+    <div id="subjectDetail"></div>
+  </div>
 </div>
+
 <nav class="bottom-nav" aria-label="Phone navigation">
-  <button class="active" data-nav="home"><span>⌂</span>Home</button>
-  <button data-goto-tab="learn"><span>📖</span>Learn</button>
-  <button data-goto-tab="practise"><span>✎</span>Quiz</button>
-  <button data-goto-tab="exam"><span>🏆</span>Exam</button>
-  <button data-goto-tab="revise"><span>↻</span>Revise</button>
+  <button class="active" data-mnav="home"><span>⌂</span>Home</button>
+  <button data-mnav="science"><span>🧪</span>Science</button>
 </nav>
 
 
 <main class="wrap view-desk" style="max-width:1440px">
 <section class="desk" id="desk" aria-label="Chapter 1 Study Desk — step-based screens">
   <div class="desk-head">
-    <button class="btn btn-ghost btn-sm" id="backAtlas" type="button" style="margin-bottom:8px">← Back to Atlas</button><br>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"><button class="btn btn-ghost btn-sm" id="backAtlas" type="button">← Science · all chapters</button><button class="btn btn-ghost btn-sm" id="backHome2" type="button">⌂ Home</button></div>
     <span class="pg-tag">Science · Chemistry · NCERT Class 9 · Chapter 1</span>
     <h2>Matter in Our Surroundings — learn it part by part</h2>
-    <p class="desk-sub">One flow, in the order of the chapter: for each part — 1.1, 1.2, 1.3, 1.4, 1.5 — first read the textbook as it is, then see it explained with its own picture you can touch, then answer that part's questions. At the end: revise the whole chapter, try 42 MCQs, and practise written answers. One screen at a time — use Next and Previous, or swipe.</p>
-    <nav class="stepmenu" aria-label="Chapter parts">
-      <button class="stepbtn" data-stepjump="map" aria-pressed="false">Chapter Map · 77</button>
-      <button class="stepbtn" data-stepjump="s11" aria-pressed="true">1.1 Matter</button>
-      <button class="stepbtn" data-stepjump="s12" aria-pressed="false">1.2 Particles</button>
-      <button class="stepbtn" data-stepjump="s13" aria-pressed="false">1.3 States</button>
-      <button class="stepbtn" data-stepjump="s14" aria-pressed="false">1.4 Changing State</button>
-      <button class="stepbtn" data-stepjump="s15" aria-pressed="false">1.5 Evaporation</button>
-      <button class="stepbtn" data-stepjump="ex" aria-pressed="false">Exercises</button>
-      <button class="stepbtn" data-stepjump="end" aria-pressed="false">At the end · Revise · MCQs · Written Answers</button>
+    <p class="desk-sub">This chapter has six tabs, in order — one tab at a time. <strong>1 · Textbook:</strong> the NCERT chapter as it is, 1.1 to 1.5, nothing added. <strong>2 · Explanation:</strong> each part explained in plain words, with its own picture you can touch. <strong>3 · Questions &amp; Answers:</strong> every textbook question, with how to write the answer. <strong>4 · MCQ Lab:</strong> 42 MCQs. <strong>5 · Written Answers:</strong> 11 model answers, laid out the way to write them on paper. <strong>6 · Revise:</strong> summary, flashcards and a timed test. Tap a tab above, then move inside it with Next and Previous.</p>
+    <nav class="stepmenu" aria-label="Chapter 1 tabs">
+      <button class="stepbtn tabbtn" data-tab="textbook" aria-pressed="true">1 · Textbook</button>
+      <button class="stepbtn tabbtn" data-tab="explain" aria-pressed="false">2 · Explanation</button>
+      <button class="stepbtn tabbtn" data-tab="qa" aria-pressed="false">3 · Questions &amp; Answers</button>
+      <button class="stepbtn tabbtn" data-tab="mcq" aria-pressed="false">4 · MCQ Lab</button>
+      <button class="stepbtn tabbtn" data-tab="written" aria-pressed="false">5 · Written Answers</button>
+      <button class="stepbtn tabbtn" data-tab="revise" aria-pressed="false">6 · Revise</button>
     </nav>
     <div class="progstrip" aria-label="Parts of the chapter you have finished">
       <span class="pchip" id="pchip-11">1.1</span><span class="pchip" id="pchip-12">1.2</span><span class="pchip" id="pchip-13">1.3</span><span class="pchip" id="pchip-14">1.4</span><span class="pchip" id="pchip-15">1.5</span>
@@ -755,26 +749,6 @@
     <div class="dprogress" aria-hidden="true"><i id="dProgFill"></i></div>
     <div class="dcount num" id="dCount"></div>
   </div>
-<section class="screen" id="s-map" data-step="map"><div class="screen-body"><section class="block" id="roadmap" aria-label="Subject roadmap">
-    <div class="sec-head"><h2>The full year, on one map</h2></div>
-    <p class="sec-sub">Chapter lists follow the rationalised NCERT editions used for 2025–26. <strong>Focus</strong> tags show where marks concentrate — high-focus chapters deserve first revision, not just first reading. The <strong>marks weightage</strong> line under each subject is CBSE's own published unit split for the 80-mark paper. Every chapter will get the same pack as Science Ch 1; the roadmap below is the build order.</p>
-    <p class="sec-sub">Edition check: 2026–27 is a transition year — if your school has already moved to the new NCERT editions (Exploration Science, Kaveri English), a few chapter names and order differ. The pilot chapter, Matter in Our Surroundings, sits at the start of both.</p>
-
-    <div class="filterbar">
-      <div class="filter-row" role="group" aria-label="Filter chapters by subject">
-        <button class="chip" data-filter="all" aria-pressed="true">All subjects</button>
-        <button class="chip" data-filter="maths" aria-pressed="false">Mathematics</button>
-        <button class="chip" data-filter="science" aria-pressed="false">Science</button>
-        <button class="chip" data-filter="sst" aria-pressed="false">Social Science</button>
-        <button class="chip" data-filter="english" aria-pressed="false">English</button>
-        <button class="chip" data-filter="hindi" aria-pressed="false">Hindi</button>
-        <input class="search" id="chapterSearch" type="search" placeholder="Search a chapter… e.g. Triangles" aria-label="Search chapters by name" />
-      </div>
-      <div class="showing num" id="showingCount"></div>
-    </div>
-
-    <div id="roadmapList"></div>
-    <div class="empty-note" id="noResults" hidden>No chapter matches that search. Try a shorter word — “Motion”, “Climate”, “Kathmandu”.</div></section></div></section>
 <section class="screen" id="s-tb11" data-step="s11"><div class="screen-body"><span class="pg-tag">1.1 · Textbook · as it is in NCERT</span>
 <h3>Matter in Our Surroundings</h3>
 <p>Everything in this universe is made up of material which scientists have named <strong>‘matter’</strong>. The air we breathe, food we eat, stones, clouds, stars, plants and animals, even a small drop of water or a particle of sand — everything is matter. We can also see as we look around that all the things mentioned above occupy space and have mass. In other words, they have both <strong>mass</strong> and <strong>volume</strong>.</p>
@@ -890,16 +864,26 @@
 </div></section>
 <section class="screen" id="s-ex12" data-step="s12"><div class="screen-body"><span class="pg-tag">1.2 · Explanation · in plain words — not the textbook text</span>
 <h3>See it: three things every particle does</h3>
-<p>Tap the three buttons. In each picture, <strong>tap any dot</strong> — it is one particle, and the line under the picture tells you what that particle is doing.</p>
+<p>Three separate pictures, one for each thing particles do. <strong>Tap a picture</strong> to choose it, then <strong>tap any dot</strong> inside it — the line under the pictures tells you what that particle is doing.</p>
 <div class="vis">
-  <canvas id="v12Canvas" width="860" height="300" aria-label="Particles of matter. Choose space, moving or pulling, then tap a particle."></canvas>
-  <div class="vis-controls">
-    <button class="preset v12btn" data-v12="space" aria-pressed="true">Space between them</button>
-    <button class="preset v12btn" data-v12="move" aria-pressed="false">Always moving</button>
-    <button class="preset v12btn" data-v12="pull" aria-pressed="false">Pulling each other</button>
-    <button class="btn btn-brand btn-sm" id="v12Act" type="button">Drop salt in</button>
+  <div class="mini-grid">
+    <div class="mini-vis sel" data-mini="space" role="button" tabindex="0" aria-label="Choose picture 1: space between particles">
+      <div class="mini-h">1 · Space between them</div>
+      <canvas id="v12aCanvas" width="520" height="300" aria-label="Water particles with empty spaces between them"></canvas>
+      <button class="btn btn-brand btn-sm mini-act" id="v12Act" type="button">Drop salt in</button>
+    </div>
+    <div class="mini-vis" data-mini="move" role="button" tabindex="0" aria-label="Choose picture 2: particles always moving">
+      <div class="mini-h">2 · Always moving</div>
+      <canvas id="v12bCanvas" width="520" height="300" aria-label="Purple ink particles and water particles mixing on their own"></canvas>
+      <p class="mini-cap">Ink + water, mixing on their own — nobody stirs</p>
+    </div>
+    <div class="mini-vis" data-mini="pull" role="button" tabindex="0" aria-label="Choose picture 3: particles pulling each other">
+      <div class="mini-h">3 · Pulling each other</div>
+      <canvas id="v12cCanvas" width="520" height="300" aria-label="Particles linked to their neighbours, shaking but holding their places"></canvas>
+      <p class="mini-cap">Linked to their neighbours — the shape holds</p>
+    </div>
   </div>
-  <p class="vis-read" id="v12Read"><strong>Space between them:</strong> look at the gaps between the dots. Salt poured into water slips into these gaps — that is why the water level does not rise in Activity 1.1. Tap a dot.</p>
+  <p class="vis-read" id="v12Read"><strong>Space between them:</strong> look at the gaps between the dots in picture 1. Press “Drop salt in” — the gold salt particles fall into the gaps, and the level does not rise. That is Activity 1.1.</p>
 </div>
 <h4>Why this matters</h4>
 <p>Almost every “give a reason” question in this chapter is answered with one of these three points. Smell spreading? Particles moving. Salt disappearing into water? Spaces between particles. A nail holding its shape? Particles pulling each other strongly.</p>
@@ -1022,6 +1006,13 @@
     <span class="vis-read num" id="v14TempRead" style="font-weight:800">25 °C</span>
   </div>
   <p class="vis-read" id="v14Read"><strong>Water (liquid).</strong> Particles slide past each other. Keep sliding — at 100 °C they break away completely.</p>
+  <div class="state-diagram" id="stateDiagram" aria-label="Change of state diagram — the state the water is in lights up">
+    <span class="sd-node" id="sdIce">🧊 Ice · solid</span>
+    <span class="sd-arrow" id="sdMelt">melting →</span>
+    <span class="sd-node" id="sdWater">💧 Water · liquid</span>
+    <span class="sd-arrow" id="sdBoil">boiling →</span>
+    <span class="sd-node" id="sdSteam">♨️ Steam · gas</span>
+  </div>
 </div>
 <h4>Why this matters</h4>
 <p>While ice melts or water boils, the temperature does not rise, even though heat is going in. That “hidden” heat — latent heat — is the answer to four different questions in this chapter, including why steam burns worse than boiling water.</p>
@@ -1029,21 +1020,6 @@
 <p>Ice in your cold drink keeps it at a steady cold temperature while it melts, because all the heat it takes goes into melting, not into warming up.</p>
 <div class="keybox"><div class="kb-title">Remember this for the exam</div><p>Two numbers, always with the unit: latent heat of fusion of ice = <strong>3.34 × 10<sup>5</sup> J/kg</strong>; latent heat of vaporisation of water = <strong>22.5 × 10<sup>5</sup> J/kg</strong>. And: <strong>K = °C + 273</strong>.</p></div>
 </div></section>
-<section class="screen" id="s-e2" data-step="s14"><div class="screen-body"><span class="pg-tag">1.4 · Play more · Particle Lab</span><div class="lab" id="particleLab">
-        <div class="lab-head">
-          <h4>Particle Lab — heat it, cool it, watch the state change</h4>
-          <div class="lab-state" id="labState">Liquid</div>
-        </div>
-        <canvas id="labCanvas" width="860" height="250" aria-label="Simulation of particles in a container. Drag the temperature slider to change the state of matter."></canvas>
-        <div class="lab-controls">
-          <label for="tempRange">Temperature</label>
-          <input type="range" id="tempRange" min="0" max="100" value="45" />
-          <button class="preset" data-temp="8" aria-pressed="false">Ice · Solid</button>
-          <button class="preset" data-temp="45" aria-pressed="true">Water · Liquid</button>
-          <button class="preset" data-temp="92" aria-pressed="false">Steam · Gas</button>
-          <button class="preset" id="labPause" aria-pressed="false">Pause</button>
-        </div>
-        <p class="lab-read" id="labRead"></p></div></div></section>
 <section class="screen" id="s-qa9a" data-step="s14"><div class="screen-body"><span class="pg-tag">1.4 · Questions and answers · Textbook page 9</span><h3>Page 9 — Questions 1 and 2</h3><div class="mq"><div class="mq-head"><span class="marks">2 marks</span><span class="src-tag">Textbook page 9 · Q1</span></div><p class="mq-q">Q. Convert the following temperatures to the Celsius scale: (a) 300 K (b) 573 K.</p><div class="howto"><div class="kb-title">How to write this answer</div><ol><li>Write the formula first, on its own line: K = °C + 273, so °C = K − 273.</li><li>Put the number in (substitute) on the next line.</li><li>Write the answer with its unit, and draw a box around it. Kelvin never takes a ° symbol.</li></ol></div><div class="mq-a"><p>°C = K − 273</p><p>(a) 300 K = 300 − 273 = <strong><u>27 °C</u></strong></p><p>(b) 573 K = 573 − 273 = <strong><u>300 °C</u></strong></p></div><div class="layoutbox"><span class="lb-title">On your answer page</span>Question number in the margin → formula on the first line → one line per part, working shown → each final answer boxed, with °C written after it.</div><div class="breakdown"><div class="bd-title">Why this answer gets full marks</div><ul><li><strong>1 mark for each conversion</strong> — the subtraction shown and the answer written with °C.</li></ul></div><div class="mistake"><strong>You lose a mark if:</strong> you add 273 instead of subtracting. Going from kelvin to Celsius, the number gets smaller — check your answer against that.</div></div><div class="mq"><div class="mq-head"><span class="marks">1 mark</span><span class="src-tag">Textbook page 9 · Q2</span></div><p class="mq-q">Q. What is the physical state of water at: (a) 250 °C (b) 100 °C?</p><div class="howto"><div class="kb-title">How to write this answer</div><ol><li>Compare each temperature with the boiling point of water, 100 °C.</li><li>At 100 °C itself, water is changing state — write both states.</li></ol></div><div class="mq-a"><p>(a) At 250 °C, water is in the <strong>gaseous state</strong> (steam), because 250 °C is well above its boiling point.</p><p>(b) At 100 °C, water exists in <strong>both liquid and gaseous states</strong> — it is boiling and changing into vapour at a constant temperature.</p></div><div class="layoutbox"><span class="lb-title">On your answer page</span>Question number in the margin → part (a) on one line → part (b) on the next line, both states named → stop. No working and no diagram for this question.</div><div class="breakdown"><div class="bd-title">Why this answer gets full marks</div><ul><li><strong>½ mark</strong> — gaseous at 250 °C. <strong>½ mark</strong> — liquid and gas together at 100 °C.</li></ul></div><div class="mistake"><strong>You lose a mark if:</strong> you write only “liquid” for 100 °C. At the boiling point, water and steam are present together.</div></div></div></section>
 <section class="screen" id="s-qa9b" data-step="s14"><div class="screen-body"><span class="pg-tag">1.4 · Questions and answers · Textbook page 9</span><h3>Page 9 — Questions 3 and 4</h3><div class="mq"><div class="mq-head"><span class="marks">2 marks</span><span class="src-tag">Textbook page 9 · Q3</span></div><p class="mq-q">Q. For any substance, why does the temperature remain constant during the change of state?</p><div class="howto"><div class="kb-title">How to write this answer</div><ol><li>Start with the observation — what is seen.</li><li>Then give the particle reason: which of the three characteristics, or which latent heat, explains it.</li><li>Underline the key words as you write them.</li></ol></div><div class="mq-a"><p>The heat supplied during a change of state is used to <u>overcome the force of attraction</u> between the particles. This heat is the <u>latent heat</u> — it changes the state of the substance instead of increasing the kinetic energy of its particles. Temperature depends on kinetic energy, so as long as the state is changing, the temperature <u>remains constant</u>.</p></div><div class="layoutbox"><span class="lb-title">On your answer page</span>Question number in the margin → line 1: heat overcomes the force of attraction → line 2: this heat is latent heat → line 3: kinetic energy unchanged, so temperature constant → stop. No diagram.</div><div class="breakdown"><div class="bd-title">Why this answer gets full marks</div><ul><li><strong>1 mark</strong> — the heat is used to overcome the force of attraction between particles (it becomes latent heat).</li><li><strong>1 mark</strong> — kinetic energy does not increase, so the temperature stays constant.</li></ul></div><div class="mistake"><strong>You lose a mark if:</strong> you write “the heat is finished” or “the thermometer takes time”. The heat is not lost — it is used to change the state.</div></div><div class="mq"><div class="mq-head"><span class="marks">1 mark</span><span class="src-tag">Textbook page 9 · Q4</span></div><p class="mq-q">Q. Suggest a method to liquefy atmospheric gases.</p><div class="howto"><div class="kb-title">How to write this answer</div><ol><li>One line is enough: name the two changes that bring gas particles closer.</li></ol></div><div class="mq-a"><p>Atmospheric gases can be liquefied by <strong>increasing the pressure</strong> and <strong>decreasing the temperature</strong>. High pressure brings the particles closer together, and low temperature slows them down, so the gas turns into a liquid.</p></div><div class="layoutbox"><span class="lb-title">On your answer page</span>Question number in the margin → one line with both changes — increase pressure, decrease temperature → stop. One-mark questions are lost by writing too much, not too little.</div><div class="breakdown"><div class="bd-title">Why this answer gets full marks</div><ul><li><strong>1 mark</strong> — both parts named: increase pressure <em>and</em> decrease temperature.</li></ul></div><div class="mistake"><strong>You lose a mark if:</strong> you name only one of the two. Pressure alone earns half the answer.</div></div></div></section>
 <section class="screen" id="s-qz4" data-step="s14"><div class="screen-body"><span class="pg-tag">1.4 · Quick check</span><h3>Quick check — 1.4</h3><p>Answer these 3 questions from what you just saw and read. Then tap the green button to finish this part.</p><div class="miniquiz"><div class="mqz"><p class="q-text">1. While ice is melting, its temperature:</p><div class="opts"><button class="opt mq-opt" data-ok="0"><span class="letter">A</span><span>Keeps rising</span></button><button class="opt mq-opt" data-ok="1"><span class="letter">B</span><span>Stays at 0 °C</span></button><button class="opt mq-opt" data-ok="0"><span class="letter">C</span><span>Falls below 0 °C</span></button><button class="opt mq-opt" data-ok="0"><span class="letter">D</span><span>Jumps to 100 °C</span></button></div><div class="feedback mqz-fb" role="status"></div><p class="mqz-why" hidden>The heat goes into changing the state — latent heat — so the temperature stays at 0 °C until all the ice has melted.</p></div><div class="mqz"><p class="q-text">2. Convert 300 K to the Celsius scale:</p><div class="opts"><button class="opt mq-opt" data-ok="0"><span class="letter">A</span><span>0 °C</span></button><button class="opt mq-opt" data-ok="1"><span class="letter">B</span><span>27 °C</span></button><button class="opt mq-opt" data-ok="0"><span class="letter">C</span><span>300 °C</span></button><button class="opt mq-opt" data-ok="0"><span class="letter">D</span><span>573 °C</span></button></div><div class="feedback mqz-fb" role="status"></div><p class="mqz-why" hidden>°C = K − 273 = 300 − 273 = 27 °C — NCERT page 9, Q1.</p></div><div class="mqz"><p class="q-text">3. Dry ice is:</p><div class="opts"><button class="opt mq-opt" data-ok="0"><span class="letter">A</span><span>Very cold water</span></button><button class="opt mq-opt" data-ok="1"><span class="letter">B</span><span>Solid carbon dioxide</span></button><button class="opt mq-opt" data-ok="0"><span class="letter">C</span><span>Frozen oxygen</span></button><button class="opt mq-opt" data-ok="0"><span class="letter">D</span><span>Ice with no water in it</span></button></div><div class="feedback mqz-fb" role="status"></div><p class="mqz-why" hidden>Dry ice is solid CO<sub>2</sub>. At ordinary pressure it changes straight into gas, so it never becomes wet.</p></div></div><div class="finrow"><button class="btn btn-brand finbtn" data-fin="1.4" type="button">I finished this — 1.4 Can Matter Change its State?</button><span class="finmsg" hidden>✓ Finished. The next part is open — press Next.</span></div></div></section>
@@ -1682,7 +1658,7 @@ var SUBJECTS = [
 ];
 var totalChapters = 0;
 SUBJECTS.forEach(function(s){ totalChapters += s.chapters.length; });
-document.getElementById("statChapters").textContent = totalChapters;
+var _sc = document.getElementById("statChapters"); if (_sc) _sc.textContent = totalChapters;
 
 var roadmapList = document.getElementById("roadmapList");
 var showingCount = document.getElementById("showingCount");
@@ -1707,6 +1683,7 @@ function chapterCard(s, c){
   return html;
 }
 function renderRoadmap(){
+  if (!roadmapList) return; /* the chapter map now lives in the Home/Subject views, not in the desk */
   var visibleTotal = 0, html = "";
   SUBJECTS.forEach(function(s){
     if (activeFilter !== "all" && activeFilter !== s.id) return;
@@ -1736,7 +1713,8 @@ document.querySelectorAll(".chip[data-filter]").forEach(function(chip){
     renderRoadmap();
   });
 });
-document.getElementById("chapterSearch").addEventListener("input", function(e){
+var chapterSearchEl = document.getElementById("chapterSearch");
+if (chapterSearchEl) chapterSearchEl.addEventListener("input", function(e){
   activeQuery = e.target.value.trim().toLowerCase();
   renderRoadmap();
 });
@@ -1754,6 +1732,7 @@ document.querySelectorAll(".reveal-btn").forEach(function(btn){
 /* ================= PARTICLE LAB ================= */
 (function(){
   var canvas = document.getElementById("labCanvas");
+  if (!canvas) return; /* the generic Particle Lab screen was removed — every topic has its own visual now */
   var ctx = canvas.getContext("2d");
   var W = canvas.width, H = canvas.height;
   var slider = document.getElementById("tempRange");
@@ -1947,7 +1926,7 @@ function showResult(){
   qNext.hidden = true; qRestart.hidden = false;
   qType.textContent = "Result"; qCount.textContent = "Test complete";
   if (qScore > qBest) qBest = qScore;
-  document.getElementById("statQuiz").textContent = qBest + " / " + QUIZ.length;
+  var _sq = document.getElementById("statQuiz"); if (_sq) _sq.textContent = qBest + " / " + QUIZ.length;
   var msg;
   if (qScore >= 13) msg = "Exam-ready. You are answering like the paper wants — reasons, not just facts. Keep this chapter on light revision and move to the next one.";
   else if (qScore >= 10) msg = "Strong. A couple of topics are still leaking marks — find them in the review below and re-read just those sections in Learn.";
@@ -1994,120 +1973,14 @@ FLASH.forEach(function(card, i){
     btn.classList.toggle("flipped");
     if (btn.classList.contains("flipped") && !flippedSet[i]){
       flippedSet[i] = true;
-      document.getElementById("statFlash").textContent = Object.keys(flippedSet).length + " / " + FLASH.length;
+      var _sf = document.getElementById("statFlash"); if (_sf) _sf.textContent = Object.keys(flippedSet).length + " / " + FLASH.length;
     }
   });
   flashGrid.appendChild(btn);
 });
 </script>
 
-<script>
-(function(){
-  var TOPICS = {
-    matter:{eyebrow:"CHAPTER 1 · OVERVIEW",title:"Matter",sub:"Anything with mass that occupies space",tags:["Start here","3 states","NCERT p.1"],mode:"liquid",temp:45,caption:"Everything around you — book, air, water — is matter. Light is not: no mass, no volume.",desc:"Matter is anything that has mass and occupies space (has volume). Around us it exists in three states — solid, liquid and gas — and the whole chapter is really one story: what its tiny particles are doing.",traits:[["Definition","Mass + volume"],["States","Solid · Liquid · Gas"],["Not matter","Light, heat"],["Particle size","Extremely small"]],marks:"Foundation for Q1 (3 marks). The definition only scores if BOTH mass and occupies space appear.",closeT:"Close-up: the dilution proof",close:"2–3 crystals of potassium permanganate keep colouring water through 8–10 dilutions — proof that a few crystals hold millions of tiny particles."},
-    particles:{eyebrow:"THE BIG IDEA",title:"Particles",sub:"Particulate nature of matter",tags:["3 properties","Activities 1.1–1.3","5-mark favourite"],mode:"liquid",temp:50,caption:"Particles have space between them, never sit still, and pull on each other.",desc:"Three properties explain almost every 'give reason' question: particles (1) have space between them, (2) are continuously moving, and (3) attract each other. Raise the temperature and the movement — their kinetic energy — increases.",traits:[["Space between","Yes — salt in water"],["Movement","Continuous · diffusion"],["Attraction","Solid > Liquid > Gas"],["With heat","Movement increases"]],marks:"Q2 is the chapter's most repeated 5-marker: 3 characteristics + one activity proof each. Always end with '…this shows that…'.",closeT:"Close-up: diffusion",close:"A lit incense stick perfumes the whole room because its particles diffuse and mix with air on their own. Fastest in gases, slowest in solids."},
-    solid:{eyebrow:"STATE 1 OF 3",title:"Solid",sub:"Ice · iron · wood · sugar crystal",tags:["Definite shape","Definite volume","Strongest attraction"],mode:"solid",temp:8,caption:"Locked in place, only vibrating. A solid keeps its own shape and volume.",desc:"Particles are tightly packed in a regular order with the least space between them and the strongest attraction. They only vibrate about fixed positions — which is why a solid is rigid and cannot be compressed.",traits:[["Shape & volume","Both definite"],["Particle space","Least"],["Attraction","Strongest"],["Compressibility","Negligible"],["Density","Highest"]],marks:"Remember this: sugar takes the jar's shape but IS a solid — judge the single crystal, not the heap. Same for a rubber band and a sponge.",closeT:"Close-up: ice",close:"Ice melts at 0 °C (273.15 K). While it melts the temperature does not rise — the heat is being spent as latent heat of fusion."},
-    liquid:{eyebrow:"STATE 2 OF 3",title:"Liquid",sub:"Water · milk · petrol",tags:["Definite volume","Takes container's shape","Flows"],mode:"liquid",temp:45,caption:"Particles slide past each other — fixed volume, no fixed shape. That is a liquid.",desc:"Particles stay close but can slide past each other, so a liquid flows and takes the shape of its container while its volume stays fixed. Attraction is weaker than in a solid, stronger than in a gas.",traits:[["Shape","Container's shape"],["Volume","Definite"],["Particle space","More than solid"],["Attraction","Weaker than solid"],["Fluidity","Flows"]],marks:"Never write 'liquids have a fixed shape.' Fixed VOLUME, container's shape — this mix-up is asked again and again in MCQs.",closeT:"Close-up: water at 0 °C",close:"Water at 0 °C carries MORE energy than ice at 0 °C — it has already absorbed the latent heat of fusion. That is why ice cools a drink better."},
-    gas:{eyebrow:"STATE 3 OF 3",title:"Gas",sub:"Air · steam · oxygen · LPG",tags:["No fixed shape","No fixed volume","Highly compressible"],mode:"gas",temp:78,caption:"Fast and far apart — a gas fills every corner of its container.",desc:"Particles are far apart, move rapidly and randomly in all directions, and barely attract each other. So a gas fills the whole vessel, presses on its walls (those collisions are pressure), and compresses easily — which is why LPG and CNG exist.",traits:[["Shape & volume","Neither definite"],["Particle space","Maximum"],["Attraction","Negligible"],["Compressibility","Very high"],["Density","Lowest"]],marks:"Two 1-mark reasons live here: 'gas fills the vessel' (rapid motion + negligible attraction) and 'gas exerts pressure' (particles collide with the walls).",closeT:"Close-up: why LPG works",close:"Squeeze a gas and its particles come closer with ease. Liquefied under pressure, a small cylinder holds a huge amount of fuel."},
-    latent:{eyebrow:"HIDDEN HEAT",title:"Latent Heat",sub:"Heat that changes state, not temperature",tags:["Fusion 3.34 × 10⁵ J/kg","Vaporisation 22.5 × 10⁵ J/kg","Must write the unit"],mode:"gas",temp:88,caption:"While state changes, heat hides — the thermometer refuses to move.",desc:"Latent heat is the heat absorbed or released during a change of state with NO change in temperature. It is spent breaking (or forming) the attraction between particles, not speeding them up.",traits:[["Of fusion (ice)","3.34 × 10⁵ J/kg"],["Of vaporisation","22.5 × 10⁵ J/kg"],["Temperature","Stays constant"],["SI unit","J/kg — always write it"]],marks:"Q5 (3 marks): definition needs '1 kg' AND 'without change in temperature'. Each value scores only WITH its unit, J/kg.",closeT:"Close-up: steam burns",close:"Steam at 100 °C carries latent heat that boiling water does not. On skin it condenses, dumps that extra heat, then the hot water acts too — far worse burns."},
-    evaporation:{eyebrow:"SURFACE PHENOMENON",title:"Evaporation",sub:"The slow escape that cools",tags:["All temperatures","Surface only","4 factors"],mode:"liquid",temp:62,caption:"The fastest surface particles escape — what is left behind is cooler.",desc:"A few surface particles have enough kinetic energy to break free at any temperature. That is evaporation. The ones that leave are the highest-energy particles, so the average energy left behind falls — evaporation causes cooling.",traits:[["Where","Surface only"],["Temperature","All temperatures"],["Speed","Slow, silent"],["Factors","Area ↑ · Temp ↑ · Humidity ↓ · Wind ↑"]],marks:"Q8 (5 marks): definition + 4 factors, each with its direction. Humidity is where students slip — MORE humidity means SLOWER evaporation.",closeT:"Close-up: the matka",close:"Water seeps through the pores of an earthen pot and evaporates outside, taking its latent heat from the water inside. Inside stays cool."},
-    sublimation:{eyebrow:"SKIPS THE LIQUID",title:"Sublimation",sub:"Solid → gas, directly",tags:["Camphor","Naphthalene","Dry ice = solid CO₂"],mode:"gas",temp:70,caption:"Some solids never melt. They jump straight into vapour.",desc:"Sublimation is the direct change from solid to gas without passing through the liquid state. Camphor, naphthalene balls and dry ice do this. The reverse — gas straight to solid — is deposition.",traits:[["Change","Solid → gas directly"],["Examples","Camphor, naphthalene"],["Dry ice","Solid CO₂"],["Reverse","Deposition"]],marks:"Naphthalene balls vanishing with no residue is the standard assertion–reason question here — sublimation IS the explanation.",closeT:"Close-up: dry ice",close:"Solid carbon dioxide, stored under high pressure. At normal pressure it sublimes straight to gas — the 'smoke' on stage is that cold CO₂ mist."}
-  };
-  var detail = document.getElementById("detailPanel");
-  var caption = document.getElementById("stageCaption");
-  var stateEl = document.getElementById("atlasState");
-  var slider = document.getElementById("atlasTemp");
-  var canvas = document.getElementById("atlasCanvas");
-  var cur = TOPICS.liquid, curKey = "liquid";
-  function renderDetail(){
-    var traits = cur.traits.map(function(t){return '<div class="trait"><dt>'+t[0]+'</dt><dd>'+t[1]+'</dd></div>';}).join("");
-    var tags = cur.tags.map(function(t){return '<span>'+t+'</span>';}).join("");
-    detail.innerHTML = '<div class="eyebrow">'+cur.eyebrow+'</div><h2>'+cur.title+'</h2><div class="sub">'+cur.sub+'</div><div class="detail-tags">'+tags+'</div><p class="desc">'+cur.desc+'</p><div class="detail-h">Key Traits</div><dl style="margin:0">'+traits+'</dl><div class="exam-tip"><b>🏆 Remember this · why answers get full marks</b>'+cur.marks+'</div><div class="closeup"><div class="orb">🔍</div><div><h5>'+cur.closeT+'</h5><p>'+cur.close+'</p></div></div><button class="detail-cta" id="detailCta">Open the Study Desk →</button>';
-    document.getElementById("detailCta").addEventListener("click",function(){ gotoTab("learn"); });
-    caption.textContent = cur.caption;
-  }
-  function modeFromTemp(t){ return t<30?"solid":(t<68?"liquid":(t<90?"gas":"steam")); }
-  function syncState(){
-    var t=+slider.value, m=modeFromTemp(t), c=Math.round(-20+t*1.6);
-    var label = m==="solid"?"Solid":m==="liquid"?"Liquid":m==="gas"?"Gas":"Steam";
-    stateEl.textContent = label+" · "+c+" °C ("+(c+273)+" K)";
-    document.querySelectorAll(".preset2").forEach(function(b){ b.setAttribute("aria-pressed", (+b.getAttribute("data-atemp")===t)?"true":"false"); });
-    return m;
-  }
-  function selectTopic(key, keepTemp){
-    curKey=key; cur=TOPICS[key];
-    document.querySelectorAll(".topic-chip").forEach(function(ch){ ch.setAttribute("aria-pressed", ch.getAttribute("data-topic")===key?"true":"false"); });
-    if(!keepTemp){ slider.value = cur.temp; }
-    syncState(); renderDetail();
-  }
-  document.querySelectorAll(".topic-chip").forEach(function(ch){ ch.addEventListener("click",function(){ selectTopic(ch.getAttribute("data-topic")); }); });
-  document.querySelectorAll(".preset2").forEach(function(b){ b.addEventListener("click",function(){ slider.value=b.getAttribute("data-atemp"); syncState(); }); });
-  slider.addEventListener("input", syncState);
-  // subject switching -> roadmap filter
-  function gotoSubject(id){
-    document.querySelectorAll(".subj-switch button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-subj")===id?"true":"false"); });
-    var chip=document.querySelector('.chip[data-filter="'+id+'"]'); if(chip) chip.click();
-    if(window.__enterDesk) window.__enterDesk();
-  }
-  document.querySelectorAll(".subj-switch button").forEach(function(b){ b.addEventListener("click",function(){ gotoSubject(b.getAttribute("data-subj")); }); });
-  document.querySelectorAll("[data-goto-subj]").forEach(function(b){ b.addEventListener("click",function(){ gotoSubject(b.getAttribute("data-goto-subj")); }); });
-  function gotoTab(name){
-    if(window.__deskGoto) window.__deskGoto(name);
-    if(window.__enterDesk) window.__enterDesk();
-  }
-  window.__gotoTab = gotoTab;
-  document.querySelectorAll("[data-goto-tab]").forEach(function(b){ b.addEventListener("click",function(){ gotoTab(b.getAttribute("data-goto-tab")); }); });
-  document.querySelectorAll("[data-nav]").forEach(function(b){ b.addEventListener("click",function(){
-    if(b.getAttribute("data-nav")==="home"){ if(window.__enterAtlas) window.__enterAtlas(); }
-    else { gotoTab("exam"); }
-  }); });
-  // ---- particle stage: drag to rotate, zoom, temperature ----
-  var ctx = canvas.getContext("2d"), W=canvas.width, H=canvas.height;
-  var COLS=13, ROWS=8, N=COLS*ROWS, parts=[];
-  for(var i=0;i<N;i++){ var hx=110+(i%COLS)*56, hy=120+Math.floor(i/COLS)*46; parts.push({hx:hx,hy:hy,x:hx,y:hy,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2,ph:Math.random()*6.28,d:Math.random()}); }
-  var rot=0, zoom=1, dragging=false, lastX=0, autoRot=true;
-  document.getElementById("zoomIn").addEventListener("click",function(){ zoom=Math.min(1.7,zoom+0.15); });
-  document.getElementById("zoomOut").addEventListener("click",function(){ zoom=Math.max(0.6,zoom-0.15); });
-  document.getElementById("rotBtn").addEventListener("click",function(){ autoRot=!autoRot; });
-  function ptrX(e){ return (e.touches?e.touches[0].clientX:e.clientX); }
-  canvas.addEventListener("pointerdown",function(e){ dragging=true; lastX=e.clientX; canvas.setPointerCapture(e.pointerId); });
-  canvas.addEventListener("pointermove",function(e){ if(!dragging) return; rot += (e.clientX-lastX)*0.008; lastX=e.clientX; });
-  canvas.addEventListener("pointerup",function(){ dragging=false; });
-  canvas.addEventListener("pointercancel",function(){ dragging=false; });
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  function draw(now){
-    var m = syncStateMode();
-    ctx.clearRect(0,0,W,H);
-    if(autoRot && !dragging && !reduce) rot += 0.0016;
-    var cos=Math.cos(rot), cx=W/2, cy=H/2;
-    parts.forEach(function(p){
-      var x,y;
-      if(m==="solid"){ var amp=1+(+slider.value)*0.05; x=p.hx+Math.sin(now*0.004+p.ph)*amp; y=p.hy+Math.cos(now*0.005+p.ph)*amp*0.7; }
-      else{
-        if(m==="liquid"){ p.vy+=0.03; if(p.y<H*0.38) p.vy+=0.05; p.vx*=0.995; p.vy*=0.995; }
-        if(m==="steam"){ p.vy-=0.012; }
-        p.x+=p.vx; p.y+=p.vy;
-        if(p.x<14){p.x=14;p.vx=Math.abs(p.vx);} if(p.x>W-14){p.x=W-14;p.vx=-Math.abs(p.vx);}
-        if(p.y<14){p.y=14;p.vy=Math.abs(p.vy);} if(p.y>H-14){p.y=H-14;p.vy=-Math.abs(p.vy)*(m==="liquid"?0.5:1);}
-        x=p.x; y=p.y;
-      }
-      // pseudo-3D rotate around centre + zoom
-      var dx=(x-cx)*cos, sc=0.72+0.28*((p.d+0.5));
-      var px=cx+dx*zoom, py=cy+(y-cy)*zoom;
-      var r=(m==="solid"?7:6)*zoom*sc+2;
-      ctx.beginPath(); ctx.arc(px,py,r,0,6.283);
-      ctx.fillStyle = m==="solid" ? "#2f7fd0" : m==="liquid" ? "#0B7A55" : "#8a5cf6";
-      if(m==="steam") ctx.fillStyle="#d35450";
-      ctx.globalAlpha=0.55+0.4*sc; ctx.fill(); ctx.globalAlpha=1;
-    });
-    requestAnimationFrame(draw);
-  }
-  var _modeCache="liquid";
-  function syncStateMode(){ return modeFromTemp(+slider.value); }
-  selectTopic("liquid"); syncState();
-  requestAnimationFrame(draw);
-})();
-</script>
+
 
 
 
@@ -2154,9 +2027,10 @@ FLASH.forEach(function(card, i){
    scrollbar (overflow is hidden everywhere; nothing is scrollable). */
 (function(){
   var bodyEl = document.body;
-  bodyEl.setAttribute("data-view", "atlas");
-  window.__enterAtlas = function(){ bodyEl.setAttribute("data-view", "atlas"); };
+  bodyEl.setAttribute("data-view", "home");
+  window.__enterAtlas = function(){ bodyEl.setAttribute("data-view", "chapter"); };
   window.__enterDesk = function(){ bodyEl.setAttribute("data-view", "desk"); };
+  window.__showHome = function(){ bodyEl.setAttribute("data-view", "home"); };
   var backBtn = document.getElementById("backAtlas");
   if (backBtn) backBtn.addEventListener("click", function(){ window.__enterAtlas(); });
 
@@ -2360,7 +2234,10 @@ FLASH.forEach(function(card, i){
      while the Atlas stays on screen. */
   var queue = Array.prototype.slice.call(document.querySelectorAll("#desk .screen"));
   var qpos = 0;
-  bodyEl.classList.add("measuring");
+  /* Splitting is disabled: at phone width the hidden measuring pass
+     emptied screens instead of splitting them (verified in the audit
+     probe — screens showed only their tag). Screens now keep their
+     full content and each screen body scrolls on its own. */
   function stepQueue(){
     var t0 = Date.now();
     while (qpos < queue.length && Date.now() - t0 < 40){
@@ -2371,11 +2248,14 @@ FLASH.forEach(function(card, i){
     }
     if (qpos < queue.length){ setTimeout(stepQueue, 0); return; }
     bodyEl.classList.remove("measuring");
-    bodyEl.setAttribute("data-view", "atlas");
+    bodyEl.setAttribute("data-view", "home");
     var first = document.querySelector("#desk .screen");
     if (first) activate(first);
   }
-  setTimeout(stepQueue, 0);
+  /* stepQueue is never started — see the note above: screens keep
+     their full content and scroll individually instead of splitting. */
+  var firstScr = document.querySelector("#desk .screen");
+  if (firstScr) activate(firstScr);
 
   /* ---- roadmap chips/search become navigation (content is pre-split) ---- */
   var SUBJ_NAMES = { maths:"Mathematics", science:"Science", sst:"Social Science", english:"English", hindi:"Hindi" };
@@ -2429,26 +2309,17 @@ FLASH.forEach(function(card, i){
     var a = e.target.closest ? e.target.closest('a[href="#desk"]') : null;
     if (a){
       e.preventDefault();
-      if (window.__enterDesk) window.__enterDesk();
-      if (window.__deskShow) window.__deskShow("s-tb11");
+      if (window.__enterAtlas) window.__enterAtlas();
     }
   });
   /* ---- keep the active screen fitted when quiz content changes size ---- */
   function refitActive(){
+    /* Only the quiz compacting remains — screens are no longer
+       split or zoomed, their bodies simply scroll. */
     document.querySelectorAll("#desk .quiz").forEach(function(q){
       var fb = q.querySelector(".feedback");
       if (fb) q.classList.toggle("compact-ans", fb.classList.contains("show"));
     });
-    if (bodyEl.getAttribute("data-view") !== "desk") return;
-    var sc = document.querySelector("#desk .screen.active");
-    if (!sc) return;
-    var sbody = sc.querySelector(".screen-body"); if (!sbody) return;
-    if (sbody.style.zoom) sbody.style.zoom = "";
-    if (fits(sbody)) return;
-    var state = { next: null, after: sc };
-    var guard = 0;
-    while (!fits(sbody) && guard++ < 80){ if (!moveLast(sc, state)) break; }
-    fitZoom(sbody);
   }
   document.addEventListener("click", function(e){
     if (e.target.closest && e.target.closest("#desk")) setTimeout(refitActive, 70);
@@ -2466,15 +2337,7 @@ FLASH.forEach(function(card, i){
   var rsz = null;
   window.addEventListener("resize", function(){
     clearTimeout(rsz);
-    rsz = setTimeout(function(){
-      fitDetail();
-      if (bodyEl.getAttribute("data-view") !== "desk") return;
-      var sc = document.querySelector("#desk .screen.active");
-      if (sc){
-        var sb = sc.querySelector(".screen-body");
-        if (sb){ sb.style.zoom = ""; fitZoom(sb); }
-      }
-    }, 250);
+    rsz = setTimeout(function(){ fitDetail(); }, 250);
   });
 })();
 </script>
@@ -2482,38 +2345,65 @@ FLASH.forEach(function(card, i){
 <script>
 /* ================= STUDY DESK NAVIGATION ================= */
 (function(){
-  function getScreens(){ return Array.prototype.slice.call(document.querySelectorAll("#desk .screen")); }
+  /* ---- Six tabs inside Chapter 1, one tab at a time ----
+     Textbook | Explanation | Questions & Answers | MCQ Lab |
+     Written Answers | Revise. Next/Previous move inside the
+     current tab only; the tab bar above switches tabs. */
+  var TABORDER = ["textbook", "explain", "qa", "mcq", "written", "revise"];
+  var TABNAMES = {"textbook":"Textbook · NCERT as it is","explain":"Explanation · each part with its own picture","qa":"Questions & Answers","mcq":"MCQ Lab · 42 MCQs","written":"Written Answers · 11 model answers","revise":"Revise · summary · flashcards · timed test"};
+  function tabOfScreen(s){
+    var id = s.id;
+    if (id === "s-e2") return "explain";
+    if (id === "s-e4") return "revise";
+    if (id.indexOf("s-tb") === 0) return "textbook";
+    if (id.indexOf("s-ex") === 0 || id.indexOf("s-qz") === 0) return "explain";
+    if (id.indexOf("s-qa") === 0) return "qa";
+    if (id.indexOf("s-m") === 0) return "mcq";
+    if (id.indexOf("s-w") === 0) return "written";
+    if (id.indexOf("s-py") === 0) return "written";
+    return "revise";
+  }
+  function allScreens(){ return Array.prototype.slice.call(document.querySelectorAll("#desk .screen")); }
+  var curTab = "textbook", cur = 0;
+  function getScreens(){ return allScreens().filter(function(s){ return tabOfScreen(s) === curTab; }); }
   var screens = getScreens();
   var fill = document.getElementById("dProgFill"), count = document.getElementById("dCount");
   var prev = document.getElementById("dPrev"), next = document.getElementById("dNext");
-  var STEPNAMES = {"map":"Chapter Map","s11":"1.1 · Physical Nature of Matter","s12":"1.2 · Characteristics of Particles of Matter","s13":"1.3 · States of Matter","s14":"1.4 · Can Matter Change its State?","s15":"1.5 · Evaporation","ex":"Exercises · page 12","end":"At the end · Revise · MCQs · Written Answers"};
-  var cur = 0;
   function show(i, scroll){
     screens = getScreens();
     cur = Math.max(0, Math.min(screens.length - 1, i));
-    screens.forEach(function(s, j){ s.classList.toggle("active", j === cur); });
-    var step = screens[cur].getAttribute("data-step");
-    document.querySelectorAll(".stepbtn").forEach(function(bn){ bn.setAttribute("aria-pressed", bn.getAttribute("data-stepjump") === step ? "true" : "false"); });
-    fill.style.width = ((cur + 1) / screens.length * 100) + "%";
-    count.textContent = "Screen " + (cur + 1) + " of " + screens.length + " · " + STEPNAMES[step];
+    var active = screens[cur];
+    allScreens().forEach(function(s){ s.classList.toggle("active", s === active); });
+    document.querySelectorAll(".tabbtn").forEach(function(bn){ bn.setAttribute("aria-pressed", bn.getAttribute("data-tab") === curTab ? "true" : "false"); });
+    var tabNo = TABORDER.indexOf(curTab) + 1;
+    fill.style.width = (((tabNo - 1) + (cur + 1) / screens.length) / TABORDER.length * 100) + "%";
+    count.textContent = "Tab " + tabNo + " of 6 · " + TABNAMES[curTab] + " — screen " + (cur + 1) + " of " + screens.length + " in this tab";
     prev.disabled = cur === 0; next.disabled = cur === screens.length - 1;
-    next.textContent = cur === screens.length - 1 ? "Last screen" : "Next →";
+    prev.textContent = cur === 0 ? "← Start of tab" : "← Previous";
+    next.textContent = cur === screens.length - 1 ? "End of tab" : "Next →";
+    if (active){ var sb = active.querySelector(".screen-body"); if (sb) sb.scrollTop = 0; }
     if (scroll && window.__enterDesk) window.__enterDesk();
   }
+  window.__deskShowTab = function(tab){
+    if (TABORDER.indexOf(tab) === -1) tab = "textbook";
+    curTab = tab; show(0, true);
+  };
   window.__deskShow = function(id){
-    screens = getScreens();
-    for (var i = 0; i < screens.length; i++) if (screens[i].id === id) { show(i, true); return; }
+    var all = allScreens();
+    for (var i = 0; i < all.length; i++) if (all[i].id === id) {
+      curTab = tabOfScreen(all[i]);
+      var list = getScreens();
+      for (var j = 0; j < list.length; j++) if (list[j].id === id) { show(j, true); return; }
+      return;
+    }
   };
   window.__deskGoto = function(name){
-    var map = {learn:"s-tb11", watch:"s-e4", practise:"s-mlab", exam:"s-wintro", answerlab:"s-wintro", revise:"s-r2"};
-    window.__deskShow(map[name] || "s-tb11");
+    var tabMap = {learn:"textbook", practise:"mcq", exam:"qa", answerlab:"written", revise:"revise"};
+    if (name === "watch") { window.__deskShow("s-e4"); return; }
+    window.__deskShowTab(tabMap[name] || "textbook");
   };
-  document.querySelectorAll(".stepbtn").forEach(function(bn){
-    bn.addEventListener("click", function(){
-      var step = bn.getAttribute("data-stepjump");
-      screens = getScreens();
-      for (var i = 0; i < screens.length; i++) if (screens[i].getAttribute("data-step") === step) { show(i, true); return; }
-    });
+  document.querySelectorAll(".tabbtn").forEach(function(bn){
+    bn.addEventListener("click", function(){ window.__deskShowTab(bn.getAttribute("data-tab")); });
   });
   prev.addEventListener("click", function(){ show(cur - 1, true); });
   next.addEventListener("click", function(){ show(cur + 1, true); });
@@ -2534,8 +2424,8 @@ FLASH.forEach(function(card, i){
     if (e.target.closest("canvas, input, select, textarea, .flash")) return;
     show(dx < 0 ? cur + 1 : cur - 1, false);
   }, {passive:true});
-  // start on 1.1, the first screen of the chapter
-  for (var i = 0; i < screens.length; i++) if (screens[i].id === "s-tb11") { show(i, false); break; }
+  // start on Tab 1 · Textbook, its first screen (1.1)
+  show(0, false);
 })();
 
 /* ================= MCQ LAB ================= */
@@ -2680,7 +2570,7 @@ var MCQLAB = [{"g": "A · Particles & Diffusion", "f": "Direct MCQ", "q": "A few
       parts.push({hx:hx, hy:hy, px:hx, py:hy, vx:(Math.random()-.5)*2.4, vy:(Math.random()-.5)*2.4, ph:Math.random()*6.28, col:i % 2, hot:0});
     }
     var S = {mode: opts.mode || "liquid", rot: 0, drag: false, lx: 0, salt: [], tapped: null,
-      setMode: function(m){ S.mode = m; parts.forEach(function(p){ if (m === "liquid" || m === "move"){ p.px = p.hx; p.py = p.hy; } }); },
+      setMode: function(m){ S.mode = m; parts.forEach(function(p){ if (m === "liquid" || m === "move"){ p.px = p.hx; p.py = p.hy; } if (m === "gas"){ p.vx = (Math.random() < 0.5 ? -1 : 1) * (1.2 + Math.random() * 1.6); p.vy = (Math.random() < 0.5 ? -1 : 1) * (1.0 + Math.random() * 1.4); } }); },
       addSalt: function(){ for (var k = 0; k < 14; k++) S.salt.push({x: 60 + Math.random() * (W - 120), y: -8 - k * 9, vy: 1 + Math.random()}); }};
     c.addEventListener("pointerdown", function(e){
       var r = c.getBoundingClientRect(), mx = (e.clientX - r.left) * W / r.width, my = (e.clientY - r.top) * H / r.height;
@@ -2719,9 +2609,15 @@ var MCQLAB = [{"g": "A · Particles & Diffusion", "f": "Direct MCQ", "q": "A few
         }
         var depth = 0.75 + 0.25 * Math.sin(S.rot + p.hy * 0.01);
         var dx = (p.px - W / 2) * (0.92 + 0.08 * Math.cos(S.rot)), px = W / 2 + dx, py = p.py;
-        x.beginPath(); x.arc(px, py, S.mode === "move" ? 7 : 6.5, 0, 6.283);
-        x.fillStyle = S.mode === "move" ? (p.col ? purple : brand) : brand;
-        x.globalAlpha = S.mode === "space" ? 0.55 : 0.88; x.fill(); x.globalAlpha = 1;
+        var ms = (opts.modeStyle && opts.modeStyle[S.mode]) || null;
+        var rr = ms && ms.r ? ms.r : (S.mode === "move" ? 7 : 6.5);
+        var dotCol = ms && ms.color ? ms.color : (S.mode === "move" ? (p.col ? purple : brand) : brand);
+        if (ms && ms.trails){ x.beginPath(); x.moveTo(px - p.vx * 5, py - p.vy * 5); x.lineTo(px, py); x.strokeStyle = dotCol; x.globalAlpha = 0.3; x.lineWidth = 2; x.stroke(); }
+        x.fillStyle = dotCol;
+        x.globalAlpha = S.mode === "space" ? 0.55 : 0.88;
+        if (ms && ms.shape === "square"){ x.fillRect(px - rr, py - rr, rr * 2, rr * 2); }
+        else { x.beginPath(); x.arc(px, py, rr, 0, 6.283); x.fill(); }
+        x.globalAlpha = 1;
         if (S.tapped === p){ x.beginPath(); x.arc(px, py, 13, 0, 6.283); x.strokeStyle = "#B97E10"; x.lineWidth = 2.6; x.stroke(); }
       });
       S.salt = S.salt.filter(function(s){ s.y += s.vy; if (s.y > H - 18) s.y = H - 18;
@@ -2742,18 +2638,23 @@ var MCQLAB = [{"g": "A · Particles & Diffusion", "f": "Direct MCQ", "q": "A few
     move: "You tapped a particle. It is moving — particles of matter are continuously moving, and they mix on their own.",
     pull: "You tapped a particle. It vibrates, but the pull of its neighbours holds it in place — that is why a solid keeps its shape."
   };
-  var v12 = engine("v12Canvas", {mode: "space", links: true, onTap: function(m){ if (v12read) v12read.innerHTML = "<strong>" + v12tap[m] + "</strong>"; }});
-  if (v12){
-    document.querySelectorAll(".v12btn").forEach(function(b){ b.addEventListener("click", function(){
-      document.querySelectorAll(".v12btn").forEach(function(z){ z.setAttribute("aria-pressed", "false"); });
-      b.setAttribute("aria-pressed", "true");
-      var m = b.getAttribute("data-v12"); v12.setMode(m);
-      var act = document.getElementById("v12Act"); if (act) act.style.display = m === "space" ? "" : "none";
-      if (v12read) v12read.innerHTML = v12texts[m];
-    }); });
-    var v12act = document.getElementById("v12Act");
-    if (v12act) v12act.addEventListener("click", function(){ v12.addSalt(); if (v12read) v12read.innerHTML = "<strong>The salt fell into the spaces between the water particles.</strong> Nothing overflowed and the level did not rise — the spaces were already there."; });
+  function v12Select(key){
+    document.querySelectorAll(".mini-vis").forEach(function(m){ m.classList.toggle("sel", m.getAttribute("data-mini") === key); });
+    if (v12read) v12read.innerHTML = v12texts[key];
   }
+  var v12a = engine("v12aCanvas", {mode: "space", cols: 8, rows: 5, onTap: function(){ v12Select("space"); if (v12read) v12read.innerHTML = "<strong>" + v12tap.space + "</strong>"; }});
+  var v12b = engine("v12bCanvas", {mode: "move", cols: 8, rows: 5, onTap: function(){ v12Select("move"); if (v12read) v12read.innerHTML = "<strong>" + v12tap.move + "</strong>"; }});
+  var v12c = engine("v12cCanvas", {mode: "pull", links: true, cols: 8, rows: 5, onTap: function(){ v12Select("pull"); if (v12read) v12read.innerHTML = "<strong>" + v12tap.pull + "</strong>"; }});
+  document.querySelectorAll(".mini-vis").forEach(function(m){
+    m.addEventListener("click", function(){ v12Select(m.getAttribute("data-mini")); });
+  });
+  var v12act = document.getElementById("v12Act");
+  if (v12act) v12act.addEventListener("click", function(e){
+    if (e.stopPropagation) e.stopPropagation();
+    v12Select("space");
+    if (v12a) v12a.addSalt();
+    if (v12read) v12read.innerHTML = "<strong>The salt fell into the spaces between the water particles.</strong> Nothing overflowed and the level did not rise — the spaces were already there.";
+  });
 
   /* ---- 1.3 visual ---- */
   var v13read = document.getElementById("v13Read");
@@ -2762,7 +2663,7 @@ var MCQLAB = [{"g": "A · Particles & Diffusion", "f": "Direct MCQ", "q": "A few
     liquid: "<strong>Liquid:</strong> particles stay close but slide past each other. Shape: takes the container's shape. Volume: fixed. Tap a dot.",
     gas: "<strong>Gas:</strong> particles are far apart and fly in every direction. Shape: none of its own. Volume: fills the whole container. Tap a dot — see how fast it moves."
   };
-  var v13 = engine("v13Canvas", {mode: "liquid", onTap: function(m){ if (v13read) v13read.innerHTML = v13texts[m] + " <strong>You tapped one particle</strong> — the gold ring is on it."; }});
+  var v13 = engine("v13Canvas", {mode: "liquid", modeStyle: {solid: {color: "#2F7FD0", shape: "square", r: 7.5}, liquid: {color: "#0B7A55", r: 6.5}, gas: {color: "#D35450", r: 5, trails: true}}, onTap: function(m){ if (v13read) v13read.innerHTML = v13texts[m] + " <strong>You tapped one particle</strong> — the gold ring is on it."; }});
   if (v13) document.querySelectorAll(".v13btn").forEach(function(b){ b.addEventListener("click", function(){
     document.querySelectorAll(".v13btn").forEach(function(z){ z.setAttribute("aria-pressed", "false"); });
     b.setAttribute("aria-pressed", "true"); v13.setMode(b.getAttribute("data-v13"));
@@ -2770,13 +2671,16 @@ var MCQLAB = [{"g": "A · Particles & Diffusion", "f": "Direct MCQ", "q": "A few
   }); });
 
   /* ---- 1.4 temperature visual ---- */
-  var v14 = engine("v14Canvas", {mode: "liquid"});
+  var v14 = engine("v14Canvas", {mode: "liquid", modeStyle: {solid: {color: "#2F7FD0", shape: "square", r: 7.5}, liquid: {color: "#0B7A55", r: 6.5}, gas: {color: "#D35450", r: 5, trails: true}}});
   var slider = document.getElementById("v14Temp"), tRead = document.getElementById("v14TempRead"), v14read = document.getElementById("v14Read");
   function v14sync(){
     if (!slider) return;
     var t = +slider.value;
     if (tRead) tRead.textContent = t + " °C (" + (t + 273) + " K)";
     if (v14) v14.setMode(t <= 0 ? "solid" : (t < 100 ? "liquid" : "gas"));
+    [["sdIce", t <= 0], ["sdMelt", t === 0], ["sdWater", t >= 0 && t <= 100], ["sdBoil", t === 100], ["sdSteam", t >= 100]].forEach(function(pair){
+      var sdEl = document.getElementById(pair[0]); if (sdEl) sdEl.classList.toggle("lit", !!pair[1]);
+    });
     if (!v14read) return;
     if (t < 0) v14read.innerHTML = "<strong>Ice (solid).</strong> Particles are locked in place and only vibrate. Slide right to start melting.";
     else if (t === 0) v14read.innerHTML = "<strong>0 °C — the melting point (273 K).</strong> Ice is melting, but the temperature stays at 0 °C: the heat is being used to change the state. This is latent heat of fusion at work.";
@@ -2857,6 +2761,267 @@ var MCQLAB = [{"g": "A · Particles & Diffusion", "f": "Direct MCQ", "q": "A few
     var pt = document.getElementById("progText");
     if (pt) pt.textContent = doneCount >= 5 ? "All 5 parts finished \u2014 now revise at the end" : "Finished " + doneCount + " of 5 parts of the chapter";
   }); });
+})();
+</script>
+
+<script>
+/* ================= SEGREGATED NAVIGATION =================
+   Three levels, nothing mixed:
+   Home (subjects only) -> Subject (only that subject's chapters)
+   -> Chapter 1 (only here: the particle visual, the Study Desk with
+   textbook, explanations, questions and answers).
+   Every control below is bound here, after all other scripts, and
+   controls that earlier scripts bound to the old mixed flow are
+   cloned first so their old handlers are gone. */
+(function(){
+  var bodyEl = document.body;
+  function setView(v){ bodyEl.setAttribute("data-view", v); markNav(v); }
+  function markNav(v){
+    var map = { home:"home", subject:"", chapter:"chapter", desk:"desk" };
+    document.querySelectorAll("[data-mnav]").forEach(function(b){
+      b.classList.toggle("active", b.getAttribute("data-mnav") === map[v]);
+    });
+  }
+  window.__showHome = function(){ setView("home"); };
+  function showHome(){ setView("home"); }
+  /* Chapter 1 IS the Study Desk now: the old Atlas hero view (hero,
+     topic pills, particle canvas, fact card) has been removed, so
+     opening Chapter 1 goes straight to the desk, Textbook tab first.
+     Any older caller of __enterAtlas lands here too. */
+  function openChapter(){ openDeskTab("learn"); }
+  function openDeskTab(name){
+    if (window.__deskGoto) window.__deskGoto(name);
+    if (window.__enterDesk) window.__enterDesk();
+    markNav("desk");
+  }
+  window.__openChapter = openChapter;
+  window.__enterAtlas = openChapter;
+
+  /* ---- Level 1 · Home: subject cards ---- */
+  var homeBox = document.getElementById("homeSubjects");
+  if (homeBox && typeof SUBJECTS !== "undefined"){
+    homeBox.innerHTML = SUBJECTS.map(function(s){
+      var ready = s.chapters.some(function(c){ return c[4] === 1; });
+      return '<button class="subjcard" data-home-subj="' + s.id + '" type="button">'
+        + '<span class="sc-top"><span class="sc-bar" style="background:' + s.color + '"></span><h3>' + s.name + '</h3>'
+        + '<span class="sc-count num">' + s.chapters.length + ' chapters</span></span>'
+        + '<p>' + s.meta + '</p>'
+        + '<span class="sc-go">See ' + s.name + ' chapters →</span></button>';
+    }).join("");
+    homeBox.querySelectorAll("[data-home-subj]").forEach(function(b){
+      b.addEventListener("click", function(){ showSubject(b.getAttribute("data-home-subj")); });
+    });
+  }
+
+  /* ---- Level 2 · Subject: only its chapters ---- */
+  var detail = document.getElementById("subjectDetail");
+  var crumb = document.getElementById("subjCrumb");
+  function chapterCardHtml(s, c){
+    var ready = c[4] === 1;
+    var focusClass = c[3] === "High" ? "high" : (c[3] === "Med" ? "med" : "low");
+    var poem = (typeof c[4] === "string") ? c[4] : (typeof c[5] === "string" ? c[5] : "");
+    var html = '<article class="ch' + (ready ? " ch-ready" : "") + '">';
+    html += '<div class="ch-top"><span class="ch-num">CH ' + c[0] + '</span><span class="focus ' + focusClass + '">' + c[3] + ' focus</span></div>';
+    html += '<h4>' + c[1] + '</h4>';
+    if (poem) html += '<div class="poem">' + poem + '</div>';
+    html += '<div class="book">' + c[2] + '</div>';
+    if (ready){
+      html += '<span class="ready-badge"><span class="dot"></span>Full chapter pack ready</span>';
+      html += '<button class="btn btn-brand btn-sm go" type="button" data-open-chapter="1">Open Chapter ' + c[0] + ' →</button>';
+    } else {
+      html += '<span class="road-badge">On the roadmap — not built yet</span>';
+    }
+    html += '</article>';
+    return html;
+  }
+  function showSubject(id){
+    if (typeof SUBJECTS === "undefined" || !detail) return;
+    var s = null;
+    SUBJECTS.forEach(function(x){ if (x.id === id) s = x; });
+    if (!s) { showHome(); return; }
+    if (crumb) crumb.textContent = "Home → " + s.name;
+    var html = '<div class="subject" style="margin-top:4px"><div class="subject-head"><span class="bar" style="background:' + s.color + '"></span><h3>' + s.name + '</h3><span class="meta">' + s.meta + '</span><span class="count num">' + s.chapters.length + ' items</span></div>';
+    if (s.weight) html += '<p class="weight-line"><strong>Marks weightage:</strong> ' + s.weight + '</p>';
+    if (s.note) html += '<p class="subject-note">' + s.note + '</p>';
+    html += '<input class="subj-search" id="subjSearch" type="search" placeholder="Search a chapter in ' + s.name + '…" aria-label="Search chapters in this subject" />';
+    html += '<div class="chapters" id="subjChapters">' + s.chapters.map(function(c){ return chapterCardHtml(s, c); }).join("") + '</div>';
+    html += '<p class="subject-note" id="subjNoMatch" hidden>No chapter in ' + s.name + ' matches that search.</p></div>';
+    detail.innerHTML = html;
+    var openBtn = detail.querySelector("[data-open-chapter]");
+    if (openBtn) openBtn.addEventListener("click", openChapter);
+    var search = document.getElementById("subjSearch");
+    if (search) search.addEventListener("input", function(){
+      var q = search.value.trim().toLowerCase(), n = 0;
+      detail.querySelectorAll("#subjChapters .ch").forEach(function(card){
+        var hit = !q || card.textContent.toLowerCase().indexOf(q) > -1;
+        card.style.display = hit ? "" : "none";
+        if (hit) n++;
+      });
+      var nm = document.getElementById("subjNoMatch");
+      if (nm) nm.hidden = n !== 0;
+    });
+    setView("subject");
+    document.querySelectorAll("[data-mnav]").forEach(function(b){ b.classList.toggle("active", id === "science" && b.getAttribute("data-mnav") === "science"); });
+    var sv = document.querySelector(".view-subject");
+    if (sv) sv.scrollTop = 0;
+  }
+  window.__showSubject = showSubject;
+
+  /* ---- Rebind the controls that used to jump into the mixed desk ---- */
+  document.querySelectorAll(".subj-switch button").forEach(function(b){
+    var c = b.cloneNode(true);
+    b.parentNode.replaceChild(c, b);
+    c.addEventListener("click", function(){
+      document.querySelectorAll(".subj-switch button").forEach(function(x){ x.setAttribute("aria-pressed", x === c ? "true" : "false"); });
+      var id = c.getAttribute("data-subj");
+      if (id === "all") showHome(); else showSubject(id);
+    });
+  });
+  document.querySelectorAll("[data-goto-subj]").forEach(function(b){
+    var c = b.cloneNode(true);
+    b.parentNode.replaceChild(c, b);
+    c.addEventListener("click", function(){ showSubject(c.getAttribute("data-goto-subj")); });
+  });
+  document.querySelectorAll("[data-nav]").forEach(function(b){
+    var c = b.cloneNode(true);
+    b.parentNode.replaceChild(c, b);
+    c.addEventListener("click", function(){
+      if (c.getAttribute("data-nav") === "home") showHome();
+      else openDeskTab("exam");
+    });
+  });
+  document.querySelectorAll("[data-mnav]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var k = b.getAttribute("data-mnav");
+      if (k === "home") showHome();
+      else if (k === "science") showSubject("science");
+      else if (k === "chapter") openChapter();
+      else if (k === "desk") openDeskTab("learn");
+    });
+  });
+  var mapBtn = document.querySelector('.stepbtn[data-stepjump="map"]');
+  if (mapBtn){
+    var mc = mapBtn.cloneNode(true);
+    mapBtn.parentNode.replaceChild(mc, mapBtn);
+    mc.addEventListener("click", showHome);
+  }
+  function bind(id, fn){ var el = document.getElementById(id); if (el) el.addEventListener("click", fn); }
+  bind("subjBackHome", showHome);
+  bind("backHome2", showHome);
+  /* The desk's back button returns to the Science chapter list.
+     Clone it first so the older handler (which opened the removed
+     Atlas view) is gone. */
+  var backAtlasEl = document.getElementById("backAtlas");
+  if (backAtlasEl){
+    var baClone = backAtlasEl.cloneNode(true);
+    backAtlasEl.parentNode.replaceChild(baClone, backAtlasEl);
+    baClone.addEventListener("click", function(){ showSubject("science"); });
+  }
+
+  setView("home");
+})();
+</script>
+
+<script>
+/* ================= PROGRESS THAT ACTUALLY MOVES =================
+   Three things update the progress strip in the desk head:
+   · Visiting a part (1.1–1.5) fills its chip outline (seen).
+   · Tapping "I finished this" — a button at the end of every part,
+     in the Textbook, Explanation and Quick check screens — fills
+     its chip solid and moves "Finished X of 5 parts".
+   · Answering any question (quick check, MCQ Lab, timed test)
+     adds to the answered count.
+   State is in-memory for this session only. */
+(function(){
+  var PARTS = ["1.1","1.2","1.3","1.4","1.5"];
+  var STEP2PART = { s11:"1.1", s12:"1.2", s13:"1.3", s14:"1.4", s15:"1.5" };
+  var visited = {}, finished = {}, answered = 0;
+  var progText = document.getElementById("progText");
+  var fill = document.getElementById("dProgFill");
+
+  function render(){
+    var fCount = 0, vCount = 0;
+    PARTS.forEach(function(p){
+      var chip = document.getElementById("pchip-" + p.replace(".", ""));
+      if (finished[p]){ fCount++; if (chip){ chip.classList.add("done"); chip.classList.remove("seen"); chip.textContent = "\u2713 " + p; } }
+      else if (visited[p]){ vCount++; if (chip){ chip.classList.add("seen"); } }
+      else if (chip){ chip.classList.remove("done"); chip.classList.remove("seen"); chip.textContent = p; }
+    });
+    if (progText){
+      progText.textContent = fCount >= 5
+        ? "All 5 parts finished \u2014 now revise at the end \u00B7 " + answered + " questions answered"
+        : "Finished " + fCount + " of 5 parts of the chapter \u00B7 visited " + (vCount + fCount) + " of 5 \u00B7 " + answered + " questions answered";
+    }
+    if (fill) fill.style.width = (fCount / 5 * 100) + "%";
+  }
+
+  function markFinished(part){
+    if (finished[part]) { render(); return; }
+    finished[part] = true; visited[part] = true;
+    document.querySelectorAll('.finbtn[data-fin="' + part + '"]').forEach(function(b){
+      b.disabled = true;
+      b.textContent = "\u2713 Finished \u2014 " + part;
+      var row = b.closest(".finrow");
+      if (row){ var m = row.querySelector(".finmsg"); if (m) m.hidden = false; }
+    });
+    render();
+  }
+
+  /* Give every part a clear finish control in its Textbook and
+     Explanation screens too (the Quick check screens already have
+     one). Buttons injected here are bound by this script. */
+  var NAMES = { "1.1":"1.1 Physical Nature of Matter", "1.2":"1.2 Characteristics of Particles", "1.3":"1.3 States of Matter", "1.4":"1.4 Can Matter Change its State?", "1.5":"1.5 Evaporation" };
+  ["s-tb11","s-tb12","s-tb13","s-tb14","s-tb15","s-ex11","s-ex12","s-ex13","s-ex14","s-ex15"].forEach(function(id){
+    var scr = document.getElementById(id);
+    if (!scr) return;
+    var part = STEP2PART[scr.getAttribute("data-step")];
+    if (!part || scr.querySelector(".finbtn")) return;
+    var body = scr.querySelector(".screen-body");
+    if (!body) return;
+    var row = document.createElement("div");
+    row.className = "finrow";
+    row.innerHTML = '<button class="btn btn-brand finbtn" data-fin="' + part + '" type="button">I finished this \u2014 ' + NAMES[part] + '</button><span class="finmsg" hidden>\u2713 Finished. The next part is open \u2014 press Next.</span>';
+    body.appendChild(row);
+  });
+  document.querySelectorAll(".finbtn").forEach(function(b){
+    b.addEventListener("click", function(){ markFinished(b.getAttribute("data-fin")); });
+  });
+
+  /* Visiting a part marks it seen. The desk shows one screen at a
+     time, so watch which screen is active. */
+  function noteActive(){
+    var act = document.querySelector("#desk .screen.active");
+    if (!act) return;
+    var part = STEP2PART[act.getAttribute("data-step")];
+    if (part && !visited[part]){ visited[part] = true; render(); }
+    else render();
+  }
+  if ("MutationObserver" in window){
+    document.querySelectorAll("#desk .screen").forEach(function(scr){
+      new MutationObserver(noteActive).observe(scr, { attributes: true, attributeFilter: ["class"] });
+    });
+  }
+  noteActive();
+
+  /* Answering a question counts once per question: each question's
+     option group is a fresh element when the question renders, so
+     count a group the first time any of its options is tapped. */
+  var countedGroups = ("WeakSet" in window) ? new WeakSet() : null;
+  var countedFallback = [];
+  document.addEventListener("click", function(e){
+    var t = e.target;
+    if (!t || !t.closest) return;
+    var opt = t.closest(".mq-opt, #mBody .opt, #desk .quiz .opt");
+    if (!opt) return;
+    var group = opt.closest(".opts") || opt.parentNode;
+    if (!group) return;
+    if (countedGroups){ if (countedGroups.has(group)) return; countedGroups.add(group); }
+    else { if (countedFallback.indexOf(group) > -1) return; countedFallback.push(group); }
+    answered++;
+    render();
+  });
+
+  render();
 })();
 </script>
 
