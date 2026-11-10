@@ -1,0 +1,1732 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Class 9 Study Atlas — CBSE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#F5F1E8; --surface:#FFFDF7; --surface-2:#FFFFFF; --ink:#1D2A33; --ink-2:#33424E;
+    --muted:#5D6D77; --line:#E1DACA; --line-2:#CFC7B0;
+    --brand:#0B6B57; --brand-dark:#084F40; --brand-soft:#E2EFE8; --on-brand:#FFFFFF;
+    --gold:#B97E10; --gold-soft:#F7ECD2;
+    --good:#177245; --good-soft:#E1F2E6; --bad:#C02B37; --bad-soft:#FBE7E8;
+    --c-maths:#2B50C8; --c-sci:#0B7A55; --c-sst:#A85B00; --c-eng:#B03A5B; --c-hin:#C24914;
+    --shadow:0 1px 2px rgba(29,42,51,.06),0 8px 24px rgba(29,42,51,.07);
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0E1319; --surface:#161E27; --surface-2:#1B2530; --ink:#EDF2F5; --ink-2:#C9D6DE;
+      --muted:#9DB0BC; --line:#2A3642; --line-2:#3A4A59;
+      --brand:#35B493; --brand-dark:#35B493; --brand-soft:#17362C; --on-brand:#0B1512;
+      --gold:#E3AC2E; --gold-soft:#38300F;
+      --good:#4CC38A; --good-soft:#14342A; --bad:#FF8073; --bad-soft:#3D1D1F;
+      --c-maths:#8FA8FF; --c-sci:#3ECF9B; --c-sst:#E8A33D; --c-eng:#EE8CA6; --c-hin:#F08A4B;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  html{scroll-behavior:smooth}
+  [hidden]{display:none !important}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:"Bricolage Grotesque","Public Sans",sans-serif;line-height:1.12;margin:0;color:var(--ink)}
+  p{margin:0}
+  a{color:var(--brand)}
+  button{font-family:inherit;cursor:pointer}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ---------- header ---------- */
+  .top{padding:38px 0 8px}
+  .top-grid{display:grid;grid-template-columns:1.55fr 1fr;gap:28px;align-items:start}
+  .kicker{font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:12px}
+  h1{font-size:clamp(34px,5.2vw,54px);font-weight:800;letter-spacing:-.01em}
+  h1 .thin{font-weight:500;color:var(--muted)}
+  .lede{margin-top:14px;font-size:17px;color:var(--ink-2);max-width:56ch}
+  .lede strong{color:var(--ink)}
+  .pilot-card{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c-sci);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow)}
+  .pilot-card .tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c-sci);background:var(--brand-soft);padding:4px 10px;border-radius:999px;margin-bottom:10px}
+  .pilot-card h3{font-size:21px;font-weight:700;margin-bottom:6px}
+  .pilot-card p{font-size:14.5px;color:var(--muted);margin-bottom:14px}
+  .btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:10px;border:1px solid transparent;font-size:15px;font-weight:600;text-decoration:none;transition:background .15s,border-color .15s}
+  .btn-brand{background:var(--brand);color:var(--on-brand)}
+  .btn-brand:hover{background:var(--brand-dark)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+  .btn-ghost:hover{border-color:var(--ink)}
+  .btn-sm{min-height:38px;padding:7px 14px;font-size:14px}
+
+  /* ---------- session strip ---------- */
+  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0 6px}
+  .stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+  .stat .v{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;font-weight:800;line-height:1}
+  .stat .l{font-size:12.5px;color:var(--muted);margin-top:5px;font-weight:600;letter-spacing:.02em}
+  .stat .l em{font-style:normal;color:var(--gold);font-weight:700}
+
+  /* ---------- sections ---------- */
+  section.block{padding:30px 0 6px}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+  h2{font-size:clamp(24px,3.4vw,32px);font-weight:800}
+  .sec-sub{color:var(--muted);font-size:15px;max-width:70ch}
+  .sec-sub + .sec-sub{margin-top:4px}
+
+  /* ---------- filter bar ---------- */
+  .filterbar{position:sticky;top:0;z-index:30;background:var(--bg);padding:14px 0 10px;border-bottom:1px solid var(--line);margin-top:14px}
+  .filter-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .chip{min-height:40px;padding:8px 16px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--ink);font-size:14.5px;font-weight:600}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .search{margin-left:auto;flex:1 1 200px;max-width:320px;min-height:40px;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--ink);font-size:14.5px;font-family:inherit}
+  .search:focus{outline:2px solid var(--brand);outline-offset:1px}
+  .showing{font-size:13.5px;color:var(--muted);margin-top:8px;font-weight:600}
+
+  /* ---------- roadmap ---------- */
+  .subject{margin-top:26px}
+  .subject-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:10px;border-bottom:2px solid var(--line)}
+  .subject-head .bar{width:10px;height:34px;border-radius:3px;flex:none}
+  .subject-head h3{font-size:22px;font-weight:800}
+  .subject-head .meta{font-size:13.5px;color:var(--muted);font-weight:600}
+  .subject-head .count{margin-left:auto;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:15px;color:var(--muted)}
+  .subject-note{font-size:13.5px;color:var(--muted);margin-top:8px}
+  .weight-line{font-size:13.5px;font-weight:600;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:8px 12px;margin-top:10px}
+  .weight-line strong{color:var(--ink)}
+  .chapters{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:10px;margin-top:14px}
+  .ch{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:13px 15px;display:flex;flex-direction:column;gap:7px}
+  .ch-top{display:flex;align-items:center;gap:8px}
+  .ch-num{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:13px;color:var(--muted);letter-spacing:.03em}
+  .focus{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 8px;border-radius:999px;border:1px solid var(--line-2);color:var(--muted)}
+  .focus.high{color:var(--bad);border-color:var(--bad)}
+  .focus.med{color:var(--gold);border-color:var(--gold)}
+  .ch h4{font-size:16px;font-weight:700;line-height:1.3}
+  .ch .book{font-size:13px;color:var(--muted)}
+  .ch .poem{font-size:13px;color:var(--muted);font-style:italic}
+  .ch-ready{border:1.5px solid var(--c-sci);background:var(--brand-soft)}
+  .ch-ready .go{margin-top:4px;align-self:flex-start}
+  .ready-badge{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c-sci)}
+  .ready-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--c-sci)}
+  .road-badge{font-size:11.5px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+  .empty-note{padding:22px;border:1px dashed var(--line-2);border-radius:12px;color:var(--muted);font-size:15px;text-align:center;margin-top:14px}
+
+  /* ---------- workspace ---------- */
+  .workspace{margin-top:38px;background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+  .ws-head{padding:24px 26px 0}
+  .ws-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .ws-tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--brand-soft);color:var(--c-sci)}
+  .ws-tag.plain{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+  .ws-head h2{font-size:clamp(26px,4vw,38px)}
+  .ws-head .why{margin-top:8px;color:var(--ink-2);font-size:15.5px;max-width:75ch}
+  .tabs{display:flex;gap:4px;flex-wrap:wrap;padding:18px 26px 0;border-bottom:2px solid var(--line)}
+  .tab{min-height:46px;padding:10px 18px;border:none;background:transparent;color:var(--muted);font-size:15.5px;font-weight:700;border-bottom:3px solid transparent;margin-bottom:-2px}
+  .tab[aria-selected="true"]{color:var(--brand);border-bottom-color:var(--brand)}
+  .panel{padding:26px;display:none}
+  .panel.active{display:block}
+  .panel h3{font-size:21px;font-weight:800;margin:26px 0 8px}
+  .panel h3:first-child{margin-top:0}
+  .panel h4{font-size:16.5px;font-weight:700;margin:18px 0 6px}
+  .panel p{color:var(--ink-2);margin-bottom:10px;max-width:78ch}
+  .panel ul,.panel ol{margin:0 0 12px;padding-left:22px;color:var(--ink-2)}
+  .panel li{margin-bottom:5px}
+  .panel li::marker{color:var(--brand);font-weight:700}
+  .keybox{background:var(--brand-soft);border-radius:12px;padding:16px 18px;margin:14px 0}
+  .keybox p{color:var(--ink);margin:0}
+  .keybox .kb-title{font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+  .trapbox{background:var(--gold-soft);border-radius:12px;padding:16px 18px;margin:14px 0}
+  .trapbox p{color:var(--ink);margin:0 0 6px}
+  .trapbox p:last-child{margin:0}
+  .trapbox .kb-title{font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+  .formula{font-family:"Bricolage Grotesque",sans-serif;font-size:19px;font-weight:700;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 16px;display:inline-block;margin:6px 0 12px}
+  @media (prefers-color-scheme: dark){ .formula{background:var(--bg)} }
+
+  table{border-collapse:collapse;width:100%;margin:12px 0 18px;font-size:14.5px}
+  caption{text-align:left;font-weight:700;font-size:14px;color:var(--muted);padding-bottom:8px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:var(--bg);font-weight:700;color:var(--ink)}
+  td{color:var(--ink-2)}
+  td strong,th strong{color:var(--ink)}
+  .twrap{overflow-x:auto}
+
+  figure.diagram{margin:16px 0;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px}
+  @media (prefers-color-scheme: dark){ figure.diagram{background:var(--bg)} }
+  figure.diagram svg{width:100%;height:auto;display:block}
+  figcaption{font-size:13.5px;color:var(--muted);margin-top:10px}
+
+  /* particle lab */
+  .lab{border:1.5px solid var(--brand);border-radius:14px;padding:18px;margin:16px 0;background:var(--surface-2)}
+  @media (prefers-color-scheme: dark){ .lab{background:var(--bg)} }
+  .lab-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .lab-head h4{margin:0;font-size:18px}
+  .lab-state{margin-left:auto;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:17px;color:var(--brand)}
+  .lab canvas{width:100%;height:250px;display:block;background:var(--bg);border:1px solid var(--line);border-radius:10px}
+  @media (prefers-color-scheme: dark){ .lab canvas{background:#0B0F14} }
+  .lab-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+  .lab-controls label{font-size:13.5px;font-weight:700;color:var(--muted)}
+  .lab-controls input[type=range]{flex:1 1 180px;accent-color:var(--brand);height:32px}
+  .preset{min-height:38px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--ink);font-weight:600;font-size:14px}
+  .preset[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+  .lab-read{font-size:14px;color:var(--ink-2);margin-top:10px}
+  .lab-read strong{color:var(--ink)}
+
+  /* watch cards */
+  .watch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+  .vid{display:flex;flex-direction:column;gap:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:18px;text-decoration:none;color:var(--ink)}
+  @media (prefers-color-scheme: dark){ .vid{background:var(--bg)} }
+  .vid:hover{border-color:var(--brand)}
+  .vid .playrow{display:flex;align-items:center;gap:12px}
+  .play-ic{width:42px;height:42px;flex:none;border-radius:50%;background:var(--brand);display:flex;align-items:center;justify-content:center}
+  .play-ic svg{width:16px;height:16px;fill:var(--on-brand);margin-left:2px}
+  .vid .chan{font-size:12.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--brand)}
+  .vid h4{margin:0;font-size:16.5px;line-height:1.3}
+  .vid p{font-size:14px;color:var(--muted);margin:0}
+  .vid .stamps{font-size:13px;color:var(--ink-2);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 11px}
+  @media (prefers-color-scheme: dark){ .vid .stamps{background:var(--surface)} }
+  .vid .open{margin-top:auto;font-weight:700;font-size:14px;color:var(--brand)}
+
+  /* quiz */
+  .quiz{border:1.5px solid var(--line-2);border-radius:14px;padding:20px;background:var(--surface-2)}
+  @media (prefers-color-scheme: dark){ .quiz{background:var(--bg)} }
+  .quiz-top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+  .q-type{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:4px 10px;border-radius:999px}
+  .q-count{font-weight:700;color:var(--muted);font-size:14px}
+  .q-score{margin-left:auto;font-weight:800;font-family:"Bricolage Grotesque",sans-serif;font-size:16px}
+  .progress{height:9px;border-radius:99px;background:var(--line);overflow:hidden;margin:10px 0 18px}
+  .progress i{display:block;height:100%;background:var(--brand);width:0;transition:width .3s}
+  .passage{background:var(--gold-soft);border-radius:10px;padding:13px 15px;font-size:14.5px;color:var(--ink);margin-bottom:14px}
+  .passage .p-title{font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+  .q-text{font-size:17px;font-weight:600;color:var(--ink);margin-bottom:14px;line-height:1.45}
+  .opts{display:grid;gap:9px}
+  .opt{min-height:48px;text-align:left;padding:12px 15px;border-radius:10px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--ink);font-size:15.5px;font-weight:500;display:flex;gap:10px;align-items:flex-start}
+  .opt .letter{font-weight:800;font-family:"Bricolage Grotesque",sans-serif;color:var(--muted);flex:none}
+  .opt:hover:not(:disabled){border-color:var(--brand)}
+  .opt:disabled{cursor:default;opacity:1}
+  .opt.correct{border-color:var(--good);background:var(--good-soft)}
+  .opt.correct .letter{color:var(--good)}
+  .opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+  .opt.wrong .letter{color:var(--bad)}
+  .opt.dim{opacity:.55}
+  .feedback{margin-top:14px;border-radius:10px;padding:13px 15px;font-size:14.5px;display:none}
+  .feedback.show{display:block}
+  .feedback.ok{background:var(--good-soft);color:var(--ink)}
+  .feedback.no{background:var(--bad-soft);color:var(--ink)}
+  .feedback .fb-head{font-weight:800;margin-bottom:3px}
+  .feedback.ok .fb-head{color:var(--good)} .feedback.no .fb-head{color:var(--bad)}
+  .quiz-nav{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+  .result-band{text-align:center;padding:14px 6px 4px}
+  .result-band .big{font-family:"Bricolage Grotesque",sans-serif;font-size:44px;font-weight:800;line-height:1}
+  .result-band p{margin-top:8px}
+  .review-list{margin-top:16px;display:grid;gap:8px}
+  .review-item{border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:14px;background:var(--surface)}
+  .review-item .rq{font-weight:600;color:var(--ink)}
+  .review-item .ra{color:var(--muted);margin-top:2px}
+  .review-item .ra strong{color:var(--good)}
+
+  /* reveal (model value points) */
+  .reveal-btn{margin-top:6px}
+  .reveal{display:none;margin-top:10px;background:var(--brand-soft);border-radius:10px;padding:13px 15px}
+  .reveal.show{display:block}
+  .reveal ul{margin:0}
+  .wq{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:12px;background:var(--surface-2)}
+  @media (prefers-color-scheme: dark){ .wq{background:var(--bg)} }
+  .wq .marks{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+  .wq p{margin-top:5px;color:var(--ink)}
+
+  /* answer lab */
+  .bars{display:grid;gap:10px;margin:12px 0 18px}
+  .bar-row{display:grid;grid-template-columns:170px 1fr 74px;gap:12px;align-items:center;font-size:14px}
+  .bar-row .bl{font-weight:600;color:var(--ink)}
+  .bar-track{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:99px}
+  .bar-row .bv{font-weight:800;font-family:"Bricolage Grotesque",sans-serif;text-align:right}
+  .playbook{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:12px;margin:12px 0 6px}
+  .pb{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  @media (prefers-color-scheme: dark){ .pb{background:var(--bg)} }
+  .pb h4{margin:0 0 6px;font-size:16px}
+  .pb p,.pb li{font-size:14.5px;color:var(--ink-2)}
+  .pb ul{margin:0;padding-left:18px}
+  .examcopy{border:1.5px solid var(--line-2);border-left:5px solid var(--bad);border-radius:10px;padding:20px 22px;background:var(--surface-2);margin:14px 0}
+  @media (prefers-color-scheme: dark){ .examcopy{background:var(--bg)} }
+  .examcopy .ec-q{font-weight:700;font-size:16.5px;color:var(--ink);padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:12px}
+  .model-block{display:grid;grid-template-columns:1fr 235px;gap:18px;padding:10px 0;border-bottom:1px dashed var(--line)}
+  .model-block:last-child{border-bottom:none}
+  .model-block .mb-text{color:var(--ink-2);font-size:15px}
+  .model-block .mb-text strong{color:var(--ink)}
+  .model-block .mb-text u{text-decoration-color:var(--brand);text-decoration-thickness:2px;text-underline-offset:3px}
+  .margin-note{font-size:12.5px;color:var(--gold);font-weight:600;border-left:3px solid var(--gold);padding-left:10px;align-self:start}
+  .margin-note .mn-marks{display:block;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:13px;color:var(--ink)}
+
+  /* flashcards */
+  .flash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px;margin-top:14px}
+  .flash{perspective:900px;background:none;border:none;padding:0;height:158px;width:100%;text-align:left}
+  .flash-inner{position:relative;display:block;width:100%;height:158px;transform-style:preserve-3d;transition:transform .5s}
+  .flash.flipped .flash-inner{transform:rotateY(180deg)}
+  .flash-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+  .flash-front{background:var(--surface-2);border:1.5px solid var(--line-2)}
+  @media (prefers-color-scheme: dark){ .flash-front{background:var(--bg)} }
+  .flash-front .ft{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:18px;color:var(--ink)}
+  .flash-front .fh{font-size:12.5px;color:var(--muted);font-weight:600}
+  .flash-back{background:var(--brand);color:var(--on-brand);transform:rotateY(180deg);font-size:14.5px;line-height:1.45}
+  .flash-back strong{font-family:"Bricolage Grotesque",sans-serif}
+  @media (prefers-reduced-motion: reduce){
+    .flash-inner{transition:none}
+    html{scroll-behavior:auto}
+    .progress i{transition:none}
+  }
+  .plan{display:grid;gap:0;margin-top:10px}
+  .plan-step{display:grid;grid-template-columns:86px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+  .plan-step:last-child{border-bottom:none}
+  .plan-step .time{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:var(--brand);font-size:15px}
+  .plan-step p{margin:0}
+
+  /* exam mode model answers */
+  u{text-decoration-color:var(--brand);text-decoration-thickness:2px;text-underline-offset:3px}
+  .mq{border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px;background:var(--surface-2)}
+  @media (prefers-color-scheme: dark){ .mq{background:var(--bg)} }
+  .mq-head{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+  .mq-head .marks{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+  .mq-head .wlimit{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line-2);padding:3px 9px;border-radius:999px}
+  .mq-head .src-tag{font-size:12px;font-weight:600;color:var(--muted)}
+  .mq-q{font-size:16.5px;font-weight:700;color:var(--ink);line-height:1.45;margin-bottom:12px}
+  .mq-a{border-left:4px solid var(--brand);background:var(--surface);border-radius:0 10px 10px 0;padding:14px 16px;font-size:15px;color:var(--ink-2)}
+  @media (prefers-color-scheme: dark){ .mq-a{background:var(--surface)} }
+  .mq-a p{margin:0 0 8px;color:var(--ink-2)}
+  .mq-a p:last-child{margin:0}
+  .mq-a ol,.mq-a ul{margin:0 0 8px;padding-left:20px}
+  .mq-a strong{color:var(--ink)}
+  .mq-a table{margin:6px 0 4px;font-size:14px}
+  .mq-a .calc{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:16px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 13px;margin:6px 0}
+  @media (prefers-color-scheme: dark){ .mq-a .calc{background:var(--surface-2)} }
+  .breakdown{margin-top:12px;background:var(--brand-soft);border-radius:10px;padding:12px 15px}
+  .breakdown .bd-title{font-weight:700;font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--brand);margin-bottom:5px}
+  .breakdown ul{margin:0;padding-left:19px;font-size:14px;color:var(--ink)}
+  .breakdown li{margin-bottom:3px}
+  .mistake{margin-top:10px;background:var(--bad-soft);border-radius:10px;padding:11px 15px;font-size:14px;color:var(--ink)}
+  .mistake strong{color:var(--bad)}
+  .mq figure.diagram{margin:12px 0 4px}
+  .checklist{list-style:none;margin:10px 0 6px;padding:0;display:grid;gap:8px}
+  .checklist li{display:flex;gap:11px;align-items:flex-start;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:14.5px;color:var(--ink-2)}
+  @media (prefers-color-scheme: dark){ .checklist li{background:var(--bg)} }
+  .checklist .tick{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--brand);color:var(--brand);display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .checklist .tick svg{width:12px;height:12px}
+  .checklist strong{color:var(--ink)}
+
+  /* sources / footer */
+  .sources{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:14px}
+  .src{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 17px}
+  .src h4{font-size:15.5px;margin-bottom:4px}
+  .src p{font-size:13.5px;color:var(--muted);margin-bottom:8px}
+  .src a{font-weight:700;font-size:14px;text-decoration:none}
+  .src a:hover{text-decoration:underline}
+  footer{padding:34px 0 46px;color:var(--muted);font-size:13.5px}
+  footer .f-line{border-top:1px solid var(--line);padding-top:16px;display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between}
+
+  @media (max-width:900px){
+    .top-grid{grid-template-columns:1fr}
+    .strip{grid-template-columns:repeat(2,1fr)}
+    .model-block{grid-template-columns:1fr;gap:6px}
+    .bar-row{grid-template-columns:120px 1fr 64px}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 14px}
+    .panel{padding:20px 16px}
+    .ws-head{padding:20px 16px 0}
+    .tabs{padding:14px 10px 0;gap:0}
+    .tab{padding:10px 11px;font-size:14.5px}
+    .search{margin-left:0;max-width:none}
+    .strip{grid-template-columns:repeat(2,1fr)}
+    table{font-size:12.4px}
+    th,td{padding:5px 4px}
+    td,th{overflow-wrap:break-word}
+    caption{font-size:13px}
+    .plan-step{grid-template-columns:70px 1fr}
+  }
+
+  /* ===== ABYSS ATLAS APP SHELL ===== */
+  .atlas-app{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);margin:14px auto 8px;max-width:1440px}
+  .atlas-topbar{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap;background:var(--surface)}
+  .atlas-logo{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em}
+  .atlas-logo span{color:var(--brand);font-weight:500}
+  .atlas-logo small{display:block;font-family:"Public Sans",sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .subj-switch{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+  .subj-switch button{min-height:36px;padding:7px 13px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--bg);font-weight:700;font-size:13.5px;color:var(--ink)}
+  .subj-switch button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .class-badge{font-size:12px;font-weight:800;letter-spacing:.08em;background:var(--brand);color:var(--on-brand);padding:7px 11px;border-radius:999px;white-space:nowrap}
+  .atlas-grid{display:grid;grid-template-columns:218px minmax(0,1fr) 330px;min-height:640px}
+  .atlas-side{border-right:1px solid var(--line);padding:16px 12px;background:var(--bg);display:flex;flex-direction:column;gap:4px}
+  .side-label{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:10px 10px 5px}
+  .side-item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:10px 10px;border:0;background:transparent;border-radius:10px;font-size:14.5px;font-weight:600;color:var(--ink-2)}
+  .side-item:hover{background:var(--surface)}
+  .side-item.active{background:var(--brand-soft);color:var(--ink)}
+  .side-item .cnt{margin-left:auto;font-size:12px;color:var(--muted);font-weight:700}
+  .side-item .dotc{width:9px;height:9px;border-radius:50%;flex:none}
+  .side-featured{margin-top:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px}
+  .side-featured .fl{font-size:10.5px;letter-spacing:.12em;font-weight:800;color:var(--brand);text-transform:uppercase}
+  .side-featured h4{font-size:16px;margin:6px 0 5px;line-height:1.25}
+  .side-featured p{font-size:13px;color:var(--muted);line-height:1.45}
+  .side-featured button{margin-top:10px;background:none;border:0;color:var(--brand);font-weight:800;padding:0;font-size:13.5px}
+  .side-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+  .side-stats .ss{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 10px}
+  .side-stats .ss b{font-family:"Bricolage Grotesque",sans-serif;font-size:18px;display:block;line-height:1}
+  .side-stats .ss span{font-size:11px;color:var(--muted);font-weight:600}
+  .atlas-stage{padding:14px 14px 10px;display:flex;flex-direction:column;min-width:0;background:var(--surface)}
+  .topic-strip{display:flex;gap:9px;overflow-x:auto;padding:2px 2px 12px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .topic-strip::-webkit-scrollbar{display:none}
+  .topic-chip{flex:0 0 118px;border:1.5px solid var(--line);background:var(--surface-2);border-radius:14px;padding:10px 8px 9px;text-align:center;color:var(--ink)}
+  @media(prefers-color-scheme:dark){.topic-chip{background:var(--bg)}}
+  .topic-chip .tic{font-size:22px;line-height:1;display:block;margin-bottom:6px}
+  .topic-chip b{display:block;font-size:13.5px;line-height:1.2}
+  .topic-chip span{display:block;font-size:11px;color:var(--muted);margin-top:2px;line-height:1.25}
+  .topic-chip[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft);box-shadow:inset 0 0 0 1px var(--brand)}
+  .stage-visual{position:relative;flex:1;border-radius:16px;overflow:hidden;background:radial-gradient(120% 100% at 50% 0%,#eef6f1 0%,#dfece4 55%,#cfe0d4 100%);border:1px solid var(--line);min-height:380px}
+  @media(prefers-color-scheme:dark){.stage-visual{background:radial-gradient(120% 100% at 50% 0%,#16241f 0%,#101a17 55%,#0b1210 100%)}}
+  #atlasCanvas{width:100%;height:100%;min-height:380px;display:block;touch-action:none;cursor:grab}
+  #atlasCanvas:active{cursor:grabbing}
+  .stage-tools{position:absolute;left:12px;top:12px;display:flex;flex-direction:column;gap:8px}
+  .stage-tools button{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+  .stage-360{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;background:var(--surface);border:1px solid var(--line-2);border-radius:999px;padding:6px 14px;font-size:12.5px;font-weight:700;color:var(--muted);display:flex;gap:10px;align-items:center}
+  .stage-state{position:absolute;right:12px;top:12px;background:var(--ink);color:var(--bg);padding:7px 12px;border-radius:999px;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:13.5px}
+  .stage-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding-top:12px}
+  .stage-controls label{font-size:13px;font-weight:700;color:var(--muted)}
+  .stage-controls input[type=range]{flex:1 1 140px;accent-color:var(--brand);height:32px}
+  .preset2{min-height:38px;padding:7px 14px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--surface);font-weight:700;font-size:13.5px;color:var(--ink)}
+  .preset2[aria-pressed="true"]{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
+  .stage-caption{text-align:center;font-style:italic;color:var(--muted);font-size:14px;padding:10px 8px 4px}
+  .atlas-detail{border-left:1px solid var(--line);padding:20px 20px 16px;background:var(--surface);overflow-y:auto}
+  .atlas-detail .eyebrow{font-size:11px;letter-spacing:.14em;font-weight:800;text-transform:uppercase;color:var(--brand)}
+  .atlas-detail h2{font-size:34px;margin:6px 0 4px;letter-spacing:-.02em}
+  .atlas-detail .sub{font-style:italic;color:var(--muted);font-size:14px;margin-bottom:10px}
+  .detail-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+  .detail-tags span{font-size:12px;font-weight:700;background:var(--bg);border:1px solid var(--line);padding:5px 9px;border-radius:999px}
+  .atlas-detail .desc{font-size:14.5px;color:var(--ink-2);line-height:1.6;margin-bottom:16px}
+  .detail-h{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;border-bottom:1px solid var(--line);padding-bottom:7px;margin:16px 0 8px}
+  .trait{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
+  .trait dt{color:var(--muted);font-weight:600}
+  .trait dd{margin:0;font-weight:700;text-align:right;color:var(--ink)}
+  .exam-tip{background:var(--gold-soft);border-radius:12px;padding:13px 14px;font-size:13.5px;line-height:1.55;margin-top:14px}
+  .exam-tip b{display:block;margin-bottom:4px}
+  .closeup{display:flex;gap:12px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:12px;align-items:flex-start}
+  .closeup .orb{width:52px;height:52px;border-radius:50%;flex:none;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:24px}
+  .closeup h5{margin:0 0 3px;font-size:14px}
+  .closeup p{font-size:12.5px;color:var(--muted);line-height:1.5;margin:0}
+  .detail-cta{width:100%;margin-top:14px;min-height:46px;border-radius:11px;border:0;background:var(--brand);color:var(--on-brand);font-weight:800;font-size:15px}
+  .bottom-nav{display:none}
+  .app-note{max-width:1180px;margin:0 auto;padding:10px 20px 0;color:var(--muted);font-size:13.5px}
+  @media(max-width:1020px){
+    .atlas-grid{grid-template-columns:190px minmax(0,1fr)}
+    .atlas-detail{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}
+  }
+  @media(max-width:640px){
+    .atlas-app{margin:8px 8px 0;border-radius:16px}
+    .atlas-grid{grid-template-columns:1fr;min-height:0}
+    .atlas-side{display:none}
+    .atlas-stage{padding:10px}
+    .stage-visual,#atlasCanvas{min-height:330px}
+    .atlas-detail{padding:18px 16px}
+    .atlas-detail h2{font-size:30px}
+    .subj-switch{margin-left:0;width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:2px}
+    .subj-switch button{flex:none}
+    .bottom-nav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--surface);border-top:1px solid var(--line-2);padding:8px 6px calc(8px + env(safe-area-inset-bottom));justify-content:space-around;box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+    .bottom-nav button{background:none;border:0;font-size:11px;font-weight:700;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:3px;min-width:56px;padding:4px 2px}
+    .bottom-nav button span{font-size:19px;line-height:1}
+    .bottom-nav button.active{color:var(--brand)}
+    body{padding-bottom:76px}
+    .class-badge{display:none}
+  }
+
+</style>
+</head>
+<body>
+
+
+<div class="wrap" style="max-width:1440px">
+<div class="atlas-app" id="atlasApp">
+  <header class="atlas-topbar">
+    <div class="atlas-logo">Study <span>Atlas</span><small>CBSE · Class 9 · Science Ch 1</small></div>
+    <nav class="subj-switch" aria-label="Switch subject">
+      <button data-subj="all" aria-pressed="true">All</button>
+      <button data-subj="maths" aria-pressed="false">Maths</button>
+      <button data-subj="science" aria-pressed="false">Science</button>
+      <button data-subj="sst" aria-pressed="false">Social Science</button>
+      <button data-subj="english" aria-pressed="false">English</button>
+      <button data-subj="hindi" aria-pressed="false">Hindi</button>
+    </nav>
+    <span class="class-badge">CLASS 9 · FREE</span>
+  </header>
+  <div class="atlas-grid">
+    <aside class="atlas-side" aria-label="Atlas navigation">
+      <button class="side-item active" data-nav="home"><span>⌂</span> Home</button>
+      <button class="side-item" data-nav="featured"><span>★</span> Featured <span class="cnt">Ch 1</span></button>
+      <div class="side-label">Subjects</div>
+      <button class="side-item" data-goto-subj="maths"><span class="dotc" style="background:var(--c-maths)"></span> Mathematics <span class="cnt">12</span></button>
+      <button class="side-item" data-goto-subj="science"><span class="dotc" style="background:var(--c-sci)"></span> Science <span class="cnt">12 ch</span></button>
+      <button class="side-item" data-goto-subj="sst"><span class="dotc" style="background:var(--c-sst)"></span> Social Science <span class="cnt">20</span></button>
+      <button class="side-item" data-goto-subj="english"><span class="dotc" style="background:var(--c-eng)"></span> English <span class="cnt">23</span></button>
+      <button class="side-item" data-goto-subj="hindi"><span class="dotc" style="background:var(--c-hin)"></span> Hindi <span class="cnt">10</span></button>
+      <div class="side-label">This chapter</div>
+      <button class="side-item" data-goto-tab="learn">📖 Learn</button>
+      <button class="side-item" data-goto-tab="practise">✎ Practise · Quiz</button>
+      <button class="side-item" data-goto-tab="exam">🏆 Exam Mode</button>
+      <button class="side-item" data-goto-tab="revise">↻ Revise</button>
+      <div class="side-stats">
+        <div class="ss"><b class="num" id="statChapters">–</b><span>chapters mapped</span></div>
+        <div class="ss"><b class="num">1</b><span>full pack ready</span></div>
+        <div class="ss"><b class="num" id="statQuiz">— / 15</b><span>best quiz · session</span></div>
+        <div class="ss"><b class="num" id="statFlash">0 / 10</b><span>flashcards flipped</span></div>
+      </div>
+      <div class="side-featured">
+        <div class="fl">Featured · Most asked</div>
+        <h4>Steam burns worse than boiling water.</h4>
+        <p>Same 100 °C — the difference is latent heat. See how a topper writes it for full 2 marks.</p>
+        <button data-goto-tab="exam">Open Exam Mode →</button>
+      </div>
+    </aside>
+    <section class="atlas-stage" aria-label="Interactive particle explorer">
+      <div class="topic-strip" role="group" aria-label="Chapter topics"><button class="topic-chip" data-topic="matter" aria-pressed="false"><span class="tic">🧪</span><b>Matter</b><span>Has mass + space</span></button><button class="topic-chip" data-topic="particles" aria-pressed="false"><span class="tic">✦</span><b>Particles</b><span>Always moving</span></button><button class="topic-chip" data-topic="solid" aria-pressed="false"><span class="tic">🧊</span><b>Solid</b><span>Ice · fixed shape</span></button><button class="topic-chip" data-topic="liquid" aria-pressed="true"><span class="tic">💧</span><b>Liquid</b><span>Water · flows</span></button><button class="topic-chip" data-topic="gas" aria-pressed="false"><span class="tic">💨</span><b>Gas</b><span>Fills container</span></button><button class="topic-chip" data-topic="latent" aria-pressed="false"><span class="tic">🔥</span><b>Latent Heat</b><span>22.5 × 10⁵ J/kg</span></button><button class="topic-chip" data-topic="evaporation" aria-pressed="false"><span class="tic">☀️</span><b>Evaporation</b><span>Surface cooling</span></button><button class="topic-chip" data-topic="sublimation" aria-pressed="false"><span class="tic">❄️</span><b>Sublimation</b><span>Solid → gas</span></button></div>
+      <div class="stage-visual">
+        <canvas id="atlasCanvas" width="900" height="520" aria-label="Interactive particle visual. Drag to rotate, use plus and minus to zoom, drag temperature to change state."></canvas>
+        <div class="stage-tools">
+          <button id="zoomIn" aria-label="Zoom in">+</button>
+          <button id="zoomOut" aria-label="Zoom out">−</button>
+          <button id="rotBtn" aria-label="Rotate view">⟳</button>
+        </div>
+        <div class="stage-state" id="atlasState">Liquid · 25 °C</div>
+        <div class="stage-360"><span>◐</span> Drag to rotate · 360° <span>◎</span></div>
+      </div>
+      <div class="stage-controls">
+        <label for="atlasTemp">Temperature</label>
+        <input type="range" id="atlasTemp" min="0" max="100" value="45">
+        <button class="preset2" data-atemp="8" aria-pressed="false">🧊 Ice</button>
+        <button class="preset2" data-atemp="45" aria-pressed="true">💧 Water</button>
+        <button class="preset2" data-atemp="78" aria-pressed="false">💨 Gas</button>
+        <button class="preset2" data-atemp="95" aria-pressed="false">♨️ Steam</button>
+      </div>
+      <p class="stage-caption" id="stageCaption">Particles slide past each other — fixed volume, no fixed shape. That is a liquid.</p>
+    </section>
+    <aside class="atlas-detail" id="detailPanel" aria-live="polite"></aside>
+  </div>
+</div>
+<p class="app-note">👆 Start here: tap a topic card on top, drag the visual, heat it with the slider. Then scroll down for Learn, the 15-question quiz, Exam Mode topper answers, Answer Lab and flashcards — all of Chapter 1, in exam order. Works on phone and Windows, no login.</p>
+</div>
+<nav class="bottom-nav" aria-label="Phone navigation">
+  <button class="active" data-nav="home"><span>⌂</span>Home</button>
+  <button data-goto-tab="learn"><span>📖</span>Learn</button>
+  <button data-goto-tab="practise"><span>✎</span>Quiz</button>
+  <button data-goto-tab="exam"><span>🏆</span>Exam</button>
+  <button data-goto-tab="revise"><span>↻</span>Revise</button>
+</nav>
+
+
+<main class="wrap">
+
+  <!-- ============ ROADMAP ============ -->
+  <section class="block" id="roadmap" aria-label="Subject roadmap">
+    <div class="sec-head"><h2>The full year, on one map</h2></div>
+    <p class="sec-sub">Chapter lists follow the rationalised NCERT editions used for 2025–26. <strong>Exam focus</strong> tags show where marks concentrate — High-focus chapters deserve first revision, not just first reading. The <strong>marks weightage</strong> line under each subject is CBSE's own published unit split for the 80-mark paper. Every chapter will get the same pack as Science Ch 1; the roadmap below is the build order.</p>
+    <p class="sec-sub">Edition check: 2026–27 is a transition year — if your school has already moved to the new NCERT editions (Exploration Science, Kaveri English), a few chapter names and order differ. The pilot chapter, Matter in Our Surroundings, sits at the start of both.</p>
+
+    <div class="filterbar">
+      <div class="filter-row" role="group" aria-label="Filter chapters by subject">
+        <button class="chip" data-filter="all" aria-pressed="true">All subjects</button>
+        <button class="chip" data-filter="maths" aria-pressed="false">Mathematics</button>
+        <button class="chip" data-filter="science" aria-pressed="false">Science</button>
+        <button class="chip" data-filter="sst" aria-pressed="false">Social Science</button>
+        <button class="chip" data-filter="english" aria-pressed="false">English</button>
+        <button class="chip" data-filter="hindi" aria-pressed="false">Hindi</button>
+        <input class="search" id="chapterSearch" type="search" placeholder="Search a chapter… e.g. Triangles" aria-label="Search chapters by name" />
+      </div>
+      <div class="showing num" id="showingCount"></div>
+    </div>
+
+    <div id="roadmapList"></div>
+    <div class="empty-note" id="noResults" hidden>No chapter matches that search. Try a shorter word — “Motion”, “Climate”, “Kathmandu”.</div>
+  </section>
+
+  <!-- ============ WORKSPACE ============ -->
+  <section class="workspace" id="workspace" aria-label="Chapter workspace: Matter in Our Surroundings">
+    <div class="ws-head">
+      <div class="ws-tags">
+        <span class="ws-tag">Science · Chemistry</span>
+        <span class="ws-tag plain">NCERT Class 9 Science · Chapter 1</span>
+        <span class="ws-tag plain">Rationalised edition</span>
+      </div>
+      <h2>Matter in Our Surroundings</h2>
+      <p class="why">Why this chapter first: it opens the Science book, it is short, and it is deceptive. The concepts look easy, so students under-prepare — then lose marks on conversions, latent-heat reasoning and “give reason” questions. This pack is ordered the way marks are actually won: understand it, see it, answer it, then copy how a topper writes it.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Chapter pack sections">
+      <button class="tab" role="tab" id="tab-learn" aria-controls="panel-learn" aria-selected="true" data-tab="learn">Learn</button>
+      <button class="tab" role="tab" id="tab-watch" aria-controls="panel-watch" aria-selected="false" data-tab="watch">Watch</button>
+      <button class="tab" role="tab" id="tab-practise" aria-controls="panel-practise" aria-selected="false" data-tab="practise">Practise</button>
+      <button class="tab" role="tab" id="tab-exam" aria-controls="panel-exam" aria-selected="false" data-tab="exam">Exam Mode</button>
+      <button class="tab" role="tab" id="tab-answerlab" aria-controls="panel-answerlab" aria-selected="false" data-tab="answerlab">Answer Lab</button>
+      <button class="tab" role="tab" id="tab-revise" aria-controls="panel-revise" aria-selected="false" data-tab="revise">Revise</button>
+    </div>
+
+    <!-- ===== LEARN ===== -->
+    <div class="panel active" id="panel-learn" role="tabpanel" aria-labelledby="tab-learn">
+
+      <h3>1 · Everything is made of tiny particles</h3>
+      <p><strong>Matter</strong> is anything that has mass and occupies space (has volume). A book, air, water, your body — all matter. Light and heat are <em>not</em> matter: they have no mass and occupy no space. The big idea of this chapter is that matter is <strong>particulate</strong> — made of extremely small particles (atoms and molecules) — and almost everything in the chapter follows from three properties of those particles.</p>
+      <p>NCERT proves each property with an activity. These activities are favourite exam material, so learn what each one <em>proves</em>, not just what happens:</p>
+      <ul>
+        <li><strong>Activity 1.1 — the dilution that never ends.</strong> Dissolve 2–3 crystals of potassium permanganate in 100 mL of water. Take out 10 mL, dilute it to 100 mL again, and repeat 8–10 times. The water stays faintly coloured every single time. <strong>Proves:</strong> a few crystals contain millions of tiny particles, which keep dividing into smaller and smaller numbers — particles of matter are very, very small.</li>
+        <li><strong>Activity 1.2 — the incense stick.</strong> An unlit incense stick can be smelled only up close. Light it, and the smell reaches the far corner of the room. <strong>Proves:</strong> particles of matter are continuously moving — they spread and mix with air on their own (this mixing is called <strong>diffusion</strong>).</li>
+        <li><strong>Activity 1.3 — salt that vanishes without a trace.</strong> Mark the water level in a beaker, dissolve salt or sugar in it with stirring. The level does <em>not</em> rise. <strong>Proves:</strong> there are spaces between the particles of water, and the salt particles slip into those spaces.</li>
+      </ul>
+      <div class="keybox">
+        <div class="kb-title">The three properties — memorise this frame</div>
+        <p>Particles of matter (1) have <strong>space between them</strong>, (2) are <strong>continuously moving</strong>, and (3) <strong>attract each other</strong>. With temperature, the movement (kinetic energy) increases. Nearly every “give reason” question in this chapter is answered by pointing at one of these three.</p>
+      </div>
+      <p>Two more everyday proofs of movement: a drop of ink spreads through a whole glass of water, and the smell of cooking reaches another room. Diffusion happens fastest in gases, slower in liquids, and slowest in solids — two metal blocks pressed together for years join only slightly. And the force of attraction is not equal everywhere: it is strongest in solids (a nail holds its shape), weaker in liquids, and weakest in gases — which is exactly why the three states behave so differently.</p>
+
+      <h3>2 · The three states of matter</h3>
+      <div class="twrap">
+      <table>
+        <caption>Same particles, three arrangements — this table is asked directly and inside case-based questions</caption>
+        <thead><tr><th>Property</th><th>Solid</th><th>Liquid</th><th>Gas</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Particle arrangement</strong></td><td>Tightly packed, in a regular order</td><td>Close, but can slide past each other</td><td>Far apart, completely free</td></tr>
+          <tr><td><strong>Interparticle space</strong></td><td>Least</td><td>More than solids</td><td>Maximum</td></tr>
+          <tr><td><strong>Force of attraction</strong></td><td>Strongest</td><td>Weaker</td><td>Weakest (negligible)</td></tr>
+          <tr><td><strong>Kinetic energy</strong></td><td>Least — particles only vibrate</td><td>More</td><td>Maximum — rapid, random motion</td></tr>
+          <tr><td><strong>Shape &amp; volume</strong></td><td>Definite shape <em>and</em> volume</td><td>Definite volume, takes the container's shape</td><td>No definite shape or volume — fills the whole container</td></tr>
+          <tr><td><strong>Density</strong></td><td>Highest (general order)</td><td>Lower</td><td>Lowest</td></tr>
+          <tr><td><strong>Compressibility</strong></td><td>Negligible</td><td>Very low</td><td>Very high — LPG and CNG exist because of this</td></tr>
+          <tr><td><strong>Fluidity (can it flow?)</strong></td><td>No — rigid</td><td>Yes</td><td>Yes — flows in all directions</td></tr>
+          <tr><td><strong>Examples</strong></td><td>Ice, iron, wood, sugar crystals</td><td>Water, milk, petrol</td><td>Air, steam, oxygen</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="trapbox">
+        <div class="kb-title">Exam traps hidden in this table</div>
+        <p><strong>Sugar and salt take the shape of the jar — but they are solids.</strong> Each individual crystal keeps its own definite shape; only the heap changes shape. Same logic: a rubber band changes shape under force but it is a solid, and a sponge can be compressed only because its pores hold trapped air.</p>
+        <p><strong>Why does a gas fill the whole vessel?</strong> Its particles move rapidly in all directions and the attraction between them is negligible — so nothing holds them in one part of the container. <strong>Why does a gas press on the walls?</strong> The moving particles collide with the walls; that bombardment is pressure.</p>
+      </div>
+
+      <div class="lab" id="particleLab">
+        <div class="lab-head">
+          <h4>Particle Lab — heat it, freeze it, watch the state change</h4>
+          <div class="lab-state" id="labState">Liquid</div>
+        </div>
+        <canvas id="labCanvas" width="860" height="250" aria-label="Simulation of particles in a container. Drag the temperature slider to change the state of matter."></canvas>
+        <div class="lab-controls">
+          <label for="tempRange">Temperature</label>
+          <input type="range" id="tempRange" min="0" max="100" value="45" />
+          <button class="preset" data-temp="8" aria-pressed="false">Ice · Solid</button>
+          <button class="preset" data-temp="45" aria-pressed="true">Water · Liquid</button>
+          <button class="preset" data-temp="92" aria-pressed="false">Steam · Gas</button>
+          <button class="preset" id="labPause" aria-pressed="false">Pause</button>
+        </div>
+        <p class="lab-read" id="labRead"></p>
+      </div>
+
+      <h3>3 · Changing state — heat breaks the arrangement, not the particles</h3>
+      <p>Heat a solid and its particles vibrate harder until they overcome the force of attraction holding them in place — the solid melts. Keep heating the liquid and particles gain enough energy to break free completely — it vaporises. Every change has a name, and the <em>reverse</em> change has its own name. Exams test both directions:</p>
+      <figure class="diagram">
+        <svg viewBox="0 0 660 250" role="img" aria-label="Interconversion of states diagram: solid melts to liquid, liquid vaporises to gas, with freezing, condensation, sublimation and deposition as the reverse paths">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--brand)"/></marker>
+            <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--gold)"/></marker>
+          </defs>
+          <path d="M150 38 C 260 6, 400 6, 510 38" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr2)"/>
+          <text x="330" y="18" text-anchor="middle" font-size="14" font-weight="700" fill="var(--gold)">Sublimation →</text>
+          <path d="M510 196 C 400 228, 260 228, 150 196" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arr2)"/>
+          <text x="330" y="242" text-anchor="middle" font-size="14" font-weight="700" fill="var(--gold)">← Deposition</text>
+          <rect x="30" y="82" width="130" height="66" rx="10" fill="var(--brand-soft)" stroke="var(--brand)" stroke-width="1.5"/>
+          <text x="95" y="112" text-anchor="middle" font-size="17" font-weight="800" fill="var(--ink)">SOLID</text>
+          <text x="95" y="133" text-anchor="middle" font-size="12.5" fill="var(--muted)">ice · iron · wax</text>
+          <rect x="265" y="82" width="130" height="66" rx="10" fill="var(--brand-soft)" stroke="var(--brand)" stroke-width="1.5"/>
+          <text x="330" y="112" text-anchor="middle" font-size="17" font-weight="800" fill="var(--ink)">LIQUID</text>
+          <text x="330" y="133" text-anchor="middle" font-size="12.5" fill="var(--muted)">water · milk · oil</text>
+          <rect x="500" y="82" width="130" height="66" rx="10" fill="var(--brand-soft)" stroke="var(--brand)" stroke-width="1.5"/>
+          <text x="565" y="112" text-anchor="middle" font-size="17" font-weight="800" fill="var(--ink)">GAS</text>
+          <text x="565" y="133" text-anchor="middle" font-size="12.5" fill="var(--muted)">steam · air · LPG</text>
+          <line x1="164" y1="98" x2="261" y2="98" stroke="var(--brand)" stroke-width="2.4" marker-end="url(#arr)"/>
+          <text x="212" y="88" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)">Fusion / Melting</text>
+          <line x1="399" y1="98" x2="496" y2="98" stroke="var(--brand)" stroke-width="2.4" marker-end="url(#arr)"/>
+          <text x="447" y="88" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)">Vaporisation</text>
+          <line x1="261" y1="134" x2="164" y2="134" stroke="var(--brand)" stroke-width="2.4" marker-end="url(#arr)"/>
+          <text x="212" y="166" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)">Freezing</text>
+          <line x1="496" y1="134" x2="399" y2="134" stroke="var(--brand)" stroke-width="2.4" marker-end="url(#arr)"/>
+          <text x="447" y="166" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)">Condensation</text>
+        </svg>
+        <figcaption>Forward changes (top arrows) absorb heat. Reverse changes release it. <strong>Sublimation</strong> skips the liquid state entirely — camphor, naphthalene balls and dry ice do this. <strong>Dry ice</strong> is solid carbon dioxide, stored under high pressure; at normal pressure it turns straight into gas, which is why it “smokes” on stage.</figcaption>
+      </figure>
+      <p><strong>Melting point</strong> — the temperature at which a solid melts at atmospheric pressure. For ice it is 0 °C = 273.15 K. <strong>Boiling point</strong> of water is 100 °C = 373 K. While a change of state is happening, the temperature stays <em>constant</em> even though heat is still being supplied — that hidden heat has a name:</p>
+      <div class="keybox">
+        <div class="kb-title">Latent heat — the two numbers to know cold</div>
+        <p><strong>Latent heat</strong> is the heat absorbed (or released) during a change of state <em>without any change in temperature</em> — it is spent breaking (or forming) interparticle attractions. <strong>Latent heat of fusion of ice = 3.34 × 10⁵ J/kg.</strong> <strong>Latent heat of vaporisation of water = 22.5 × 10⁵ J/kg.</strong> That second, huge number is why steam causes far worse burns than boiling water: steam delivers its latent heat to your skin first, then the hot water's heat on top. It is also why water particles at 0 °C carry more energy than ice particles at 0 °C — the water has already absorbed the latent heat of fusion.</p>
+      </div>
+      <h4>Temperature: the Kelvin scale</h4>
+      <p>The SI unit of temperature is the <strong>kelvin (K)</strong>. The scales are linked by one line — and at least one conversion question appears in almost every paper:</p>
+      <div class="formula">Temperature in K = Temperature in °C + 273</div>
+      <ul>
+        <li>25 °C → 25 + 273 = <strong>298 K</strong></li>
+        <li>300 K → 300 − 273 = <strong>27 °C</strong></li>
+        <li>Which is hotter, 45 °C or 300 K? 45 °C = 318 K — so <strong>45 °C is hotter</strong>. Always convert to one scale before comparing.</li>
+      </ul>
+      <p>Pressure changes state too: increasing pressure and decreasing temperature can liquefy gases — that is how gases are stored as liquids in cylinders. Two more states exist beyond the familiar three: <strong>plasma</strong> — superheated, ionised gas found in the sun, stars, fluorescent tubes and neon sign tubes; and the <strong>Bose–Einstein condensate (BEC)</strong> — formed by cooling a gas of extremely low density to super-low temperatures, based on the work of Satyendra Nath Bose and Albert Einstein.</p>
+
+      <h3>4 · Evaporation — the slow escape that cools everything it leaves</h3>
+      <p>In any liquid, particles have a range of energies. A few at the <strong>surface</strong> have enough kinetic energy to break free — at <em>any</em> temperature. That is <strong>evaporation</strong>: a surface phenomenon. Boiling is different: it happens throughout the liquid, at one fixed temperature. This comparison is a guaranteed 2- or 3-marker:</p>
+      <div class="twrap">
+      <table>
+        <thead><tr><th></th><th>Evaporation</th><th>Boiling</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Where it happens</strong></td><td>Only at the surface</td><td>Throughout the liquid (bulk phenomenon)</td></tr>
+          <tr><td><strong>Temperature</strong></td><td>At all temperatures</td><td>Only at the fixed boiling point</td></tr>
+          <tr><td><strong>Speed</strong></td><td>Slow and silent</td><td>Fast, with bubbling</td></tr>
+          <tr><td><strong>Effect on the liquid</strong></td><td>Causes cooling</td><td>Temperature stays at the boiling point</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p><strong>Four factors control the rate of evaporation</strong> — write them as a set, exams pick one and ask “why”:</p>
+      <ol>
+        <li><strong>Surface area</strong> — more surface, more escaping particles. A saucer dries faster than a cup; spread clothes dry faster than folded ones.</li>
+        <li><strong>Temperature</strong> — hotter liquid, more high-energy particles, faster evaporation.</li>
+        <li><strong>Humidity</strong> — if the air already holds a lot of water vapour, evaporation slows down. Clothes dry slowly in the monsoon.</li>
+        <li><strong>Wind speed</strong> — wind carries vapour away, so evaporation speeds up. Clothes dry faster on a windy day.</li>
+      </ol>
+      <div class="keybox">
+        <div class="kb-title">Why evaporation cools — the single most-asked reasoning in this chapter</div>
+        <p>The particles that escape are the ones with the <strong>highest</strong> kinetic energy. So the average kinetic energy of the particles left behind falls — and temperature is a measure of that average energy. The liquid (and whatever it touches) becomes cooler. This one mechanism explains: water staying cool in an earthen pot (water seeps through the pores and evaporates from the outer surface), a desert cooler working best on a hot, dry day, acetone or perfume feeling colder than water on your palm (they evaporate faster), sprinkling water on a hot roof, and why cotton clothes suit summer — they absorb sweat and expose it to air so it can evaporate and cool you.</p>
+      </div>
+      <p><strong>Chapter checklist before you move on:</strong> the three particle properties · the states table with its traps · all six change-of-state names · both latent-heat values with units · K = °C + 273 in both directions · evaporation vs boiling · the four factors · the cooling mechanism in your own words. If any one of these is shaky, re-read that section — the Practise tab will find it.</p>
+    </div>
+
+    <!-- ===== WATCH ===== -->
+    <div class="panel" id="panel-watch" role="tabpanel" aria-labelledby="tab-watch">
+      <h3>Watch it explained — free, in this order</h3>
+      <p>Start with one full-chapter video, then use the short topic videos for the exact spots you got wrong. Every link below is free to watch. The chapter on DIKSHA and the NCERT PDF are the official versions — if any video ever disagrees with NCERT, NCERT wins.</p>
+      <div class="watch-grid">
+        <a class="vid" href="https://www.youtube.com/watch?v=hmSMAqVXyoA" target="_blank" rel="noopener">
+          <div class="playrow"><span class="play-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span><span class="chan">Magnet Brains · One shot</span></div>
+          <h4>Matter in Our Surroundings — full chapter in one sitting</h4>
+          <p><strong>Best for:</strong> your first pass through the chapter. Covers classification of matter, particle characteristics, states, and evaporation end to end.</p>
+          <p class="open">Watch on YouTube →</p>
+        </a>
+        <a class="vid" href="https://www.youtube.com/watch?v=iAklm6Bpszs" target="_blank" rel="noopener">
+          <div class="playrow"><span class="play-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span><span class="chan">LearnoHub (ExamFear) · One shot</span></div>
+          <h4>Matter in Our Surroundings — complete chapter, NCERT covered</h4>
+          <p><strong>Best for:</strong> a second explanation when the first one didn't click, and for NCERT exercise questions worked on screen.</p>
+          <p class="open">Watch on YouTube →</p>
+        </a>
+        <a class="vid" href="https://www.youtube.com/watch?v=DNephB-3kL4" target="_blank" rel="noopener">
+          <div class="playrow"><span class="play-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span><span class="chan">Magnet Brains · Topic video</span></div>
+          <h4>Evaporation — the topic this chapter is examined on most</h4>
+          <p><strong>Best for:</strong> the cooling mechanism, the four factors, and the daily-life examples examiners love.</p>
+          <div class="stamps">Jump in: 00:00 Introduction · 02:44 Evaporation explained</div>
+          <p class="open">Watch on YouTube →</p>
+        </a>
+        <a class="vid" href="https://www.youtube.com/watch?v=oGxKzshrLKA" target="_blank" rel="noopener">
+          <div class="playrow"><span class="play-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span><span class="chan">Magnet Brains · Topic video</span></div>
+          <h4>Common and SI unit of temperature — Celsius to Kelvin</h4>
+          <p><strong>Best for:</strong> conversions, the one-mark questions students throw away by writing 273 wrong or forgetting to convert before comparing.</p>
+          <div class="stamps">Jump in: 00:00 Introduction · 02:58 The two scales and how to convert</div>
+          <p class="open">Watch on YouTube →</p>
+        </a>
+        <a class="vid" href="https://www.youtube.com/watch?v=Rh8BtlwciSs" target="_blank" rel="noopener">
+          <div class="playrow"><span class="play-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span><span class="chan">BYJU'S Class 9 &amp; 10 · Part 1</span></div>
+          <h4>Matter in Our Surroundings (Part 1) — what matter is, and its physical nature</h4>
+          <p><strong>Best for:</strong> a visual, animated take on the particulate nature of matter and the states of matter.</p>
+          <p class="open">Watch on YouTube →</p>
+        </a>
+        <a class="vid" href="https://phet.colorado.edu/en/simulations/states-of-matter" target="_blank" rel="noopener">
+          <div class="playrow"><span class="play-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span><span class="chan">PhET · University of Colorado · Interactive</span></div>
+          <h4>States of Matter — the simulation behind the Particle Lab</h4>
+          <p><strong>Best for:</strong> heating and cooling water, oxygen and argon yourself and watching particles rearrange. Runs free in the browser, on phone too.</p>
+          <p class="open">Open the simulation →</p>
+        </a>
+        <a class="vid" href="https://diksha.gov.in/" target="_blank" rel="noopener">
+          <div class="playrow"><span class="play-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span><span class="chan">DIKSHA · Ministry of Education · Official</span></div>
+          <h4>This chapter on DIKSHA — NCERT's own videos and e-content</h4>
+          <p><strong>Best for:</strong> the official version of the chapter. Search “Matter in Our Surroundings Class 9” inside DIKSHA after signing in (free).</p>
+          <p class="open">Open DIKSHA →</p>
+        </a>
+        <a class="vid" href="https://ncert.nic.in/ncerts/l/iesc101.pdf" target="_blank" rel="noopener">
+          <div class="playrow"><span class="play-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg></span><span class="chan">NCERT · Official PDF</span></div>
+          <h4>The chapter itself — NCERT Science, Chapter 1 (PDF)</h4>
+          <p><strong>Best for:</strong> reading the source. Every definition, activity and exercise question in your exam traces back to these pages.</p>
+          <p class="open">Read the NCERT chapter →</p>
+        </a>
+      </div>
+      <div class="trapbox">
+        <div class="kb-title">A note on forwarded notes and PDFs</div>
+        <p>WhatsApp and Telegram forwards are fine for <em>finding</em> material, but treat every forwarded note, answer key and “important questions” PDF as unverified until it matches the NCERT chapter. Old-syllabus chapters and wrong answers circulate for years. The check takes two minutes: open the NCERT PDF above and compare.</p>
+      </div>
+    </div>
+
+    <!-- ===== PRACTISE ===== -->
+    <div class="panel" id="panel-practise" role="tabpanel" aria-labelledby="tab-practise">
+      <h3>The 15-question test — built like the real paper</h3>
+      <p>Same mix as a CBSE-pattern paper: <strong>8 MCQs, 3 assertion–reason questions, and a 4-question case study</strong>. Answer, get instant feedback with the reason, and note the ones you miss — those topics go into tonight's revision. One mark each, no negative marking.</p>
+
+      <div class="quiz" id="quiz">
+        <div class="quiz-top">
+          <span class="q-type" id="qType">MCQ</span>
+          <span class="q-count num" id="qCount">Question 1 of 15</span>
+          <span class="q-score num" id="qScore">Score 0</span>
+        </div>
+        <div class="progress" aria-hidden="true"><i id="qProgress"></i></div>
+        <div id="quizBody"></div>
+        <div class="feedback" id="qFeedback" role="status"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-brand btn-sm" id="qNext" hidden>Next question</button>
+          <button class="btn btn-ghost btn-sm" id="qRestart" hidden>Restart the test</button>
+        </div>
+        <div id="quizResult"></div>
+      </div>
+
+      <h3>Now write — the questions that carry the chapter's marks</h3>
+      <p>Objective questions are only part of the paper. Practise these three written questions on paper, then open the value points and mark yourself the way an examiner would: one tick per value point.</p>
+
+      <div class="wq">
+        <span class="marks">3 marks · “Give reason” set</span>
+        <p>Give reasons: (a) A gas fills completely the vessel in which it is kept. (b) A gas exerts pressure on the walls of its container. (c) The smell of perfume reaches us even when we are sitting several metres away.</p>
+        <button class="btn btn-ghost btn-sm reveal-btn" data-reveal="vp1" aria-expanded="false">Show the value points</button>
+        <div class="reveal" id="vp1">
+          <ul>
+            <li>(a) Gas particles move rapidly in all directions and interparticle attraction is negligible, so they spread to fill the whole available space — 1 mark.</li>
+            <li>(b) Particles move randomly at high speed and collide with the container walls; these collisions exert pressure — 1 mark.</li>
+            <li>(c) Perfume particles are continuously moving and diffuse into air, spreading in all directions until they reach us — 1 mark. Key word the examiner looks for: <strong>diffusion</strong>.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="wq">
+        <span class="marks">2 marks · Numerical</span>
+        <p>(a) Convert 573 K into Celsius. (b) Convert 35 °C into Kelvin. (c) Which is hotter — 300 K or 45 °C?</p>
+        <button class="btn btn-ghost btn-sm reveal-btn" data-reveal="vp2" aria-expanded="false">Show the value points</button>
+        <div class="reveal" id="vp2">
+          <ul>
+            <li>(a) 573 − 273 = <strong>300 °C</strong> — ½ mark for the formula/substitution, ½ for the answer with unit.</li>
+            <li>(b) 35 + 273 = <strong>308 K</strong>.</li>
+            <li>(c) Convert first: 45 °C = 318 K, which is more than 300 K — so <strong>45 °C is hotter</strong>. The conversion step itself earns the mark; a bare guess earns nothing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="wq">
+        <span class="marks">3 marks · HOTS</span>
+        <p>Why does our palm feel cold when we put a few drops of acetone (nail-polish remover) on it, colder than it feels with water?</p>
+        <button class="btn btn-ghost btn-sm reveal-btn" data-reveal="vp3" aria-expanded="false">Show the value points</button>
+        <div class="reveal" id="vp3">
+          <ul>
+            <li>Acetone evaporates much faster than water — 1 mark.</li>
+            <li>To evaporate, its particles take the needed energy (latent heat) from the palm — 1 mark.</li>
+            <li>The palm loses heat and its temperature falls, so it feels cold — 1 mark. Chain your answer in exactly this order: evaporation → energy taken from palm → temperature falls.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== EXAM MODE ===== -->
+    <div class="panel" id="panel-exam" role="tabpanel" aria-labelledby="tab-exam">
+      <h3>Exam Mode — the chapter's important questions, answered like a topper</h3>
+      <p>Every question below is written the way CBSE and NCERT actually ask it. Under each one: the answer exactly as a topper writes it — <u>keywords underlined</u>, value points in order — then how each mark is earned, and the mistake that loses it. Copy the <em>shape</em> of these answers, not just their words.</p>
+      <div class="keybox">
+        <div class="kb-title">Word limits — marks decide length, not effort</div>
+        <p><strong>2 marks</strong> → about 30–40 words: 2 value points, 2–4 lines. <strong>3 marks</strong> → about 50–70 words: 3 value points, or a 3-row difference table. <strong>5 marks</strong> → about 100–120 words: a definition line, then 4–5 numbered points, a table, or a labelled diagram — whichever the question rewards. Writing double earns nothing extra and steals time from other questions.</p>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">3 marks</span><span class="wlimit">≈ 50 words · 3 value points</span><span class="src-tag">NCERT-based · asked as “Define matter. Name the states…”</span></div>
+        <p class="mq-q">Q1. Define matter. In which three states does it exist around us? Give one example of each.</p>
+        <div class="mq-a">
+          <p><strong>Matter</strong> is anything that has <u>mass</u> and occupies <u>space</u> (that is, has volume).</p>
+          <p>Matter around us exists in three states:</p>
+          <ol>
+            <li><strong>Solid</strong> — has a definite shape and definite volume. Example: wood, ice.</li>
+            <li><strong>Liquid</strong> — has a definite volume but no definite shape; it takes the shape of its container. Example: water, milk.</li>
+            <li><strong>Gas</strong> — has neither definite shape nor definite volume; it fills the whole container. Example: air, steam.</li>
+          </ol>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark</strong> — the definition, and only if <em>both</em> conditions appear: mass <em>and</em> occupies space.</li>
+          <li><strong>2 marks</strong> — the three states with a correct property or example for each (roughly ½ mark per state, ½ for the examples set).</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> defining matter as “anything we can see or touch.” Air is invisible and is still matter — and light fails the test completely because it has no mass. If your definition would include light, it is wrong.</div>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">5 marks</span><span class="wlimit">≈ 110 words · 3 characteristics + activity proof</span><span class="src-tag">NCERT Activities 1.1–1.3 · the chapter's most repeated long question</span></div>
+        <p class="mq-q">Q2. State the three characteristics of particles of matter. Describe an activity to support each characteristic.</p>
+        <div class="mq-a">
+          <p><strong>(1) Particles of matter have space between them.</strong> <em>Activity:</em> Take a beaker, fill it with water and mark the level. Dissolve salt in it with stirring. The salt disappears but the <u>water level does not rise</u> — the salt particles occupy the spaces between the water particles.</p>
+          <p><strong>(2) Particles of matter are continuously moving.</strong> <em>Activity:</em> Light an incense stick in a corner of the room. Its fragrance reaches every part of the room within minutes, because its particles <u>diffuse</u> and mix with the moving particles of air.</p>
+          <p><strong>(3) Particles of matter attract each other.</strong> <em>Evidence:</em> the force of attraction is strongest in solids — an iron nail keeps its shape and is hard to break; it is weaker in liquids and weakest in gases, which is why gases spread out freely.</p>
+          <p><strong>Supporting activity (particles are very small):</strong> dissolve 2–3 crystals of potassium permanganate in 100 mL of water and dilute it repeatedly, 8–10 times. The solution remains coloured, showing that a few crystals contain <u>millions of tiny particles</u>.</p>
+          <figure class="diagram">
+            <svg viewBox="0 0 560 200" role="img" aria-label="Labelled diagram of the potassium permanganate dilution activity: four beakers, the purple colour getting lighter at each dilution, yet still visible after many dilutions">
+              <g font-size="12.5" fill="var(--muted)">
+                <rect x="25" y="55" width="95" height="85" fill="none" stroke="var(--line-2)" stroke-width="2"/>
+                <rect x="29" y="75" width="87" height="61" fill="#7B2D8B" opacity="0.85"/>
+                <rect x="160" y="55" width="95" height="85" fill="none" stroke="var(--line-2)" stroke-width="2"/>
+                <rect x="164" y="75" width="87" height="61" fill="#7B2D8B" opacity="0.5"/>
+                <rect x="295" y="55" width="95" height="85" fill="none" stroke="var(--line-2)" stroke-width="2"/>
+                <rect x="299" y="75" width="87" height="61" fill="#7B2D8B" opacity="0.27"/>
+                <rect x="430" y="55" width="95" height="85" fill="none" stroke="var(--line-2)" stroke-width="2"/>
+                <rect x="434" y="75" width="87" height="61" fill="#7B2D8B" opacity="0.12"/>
+                <text x="72" y="162" text-anchor="middle">2–3 crystals</text>
+                <text x="72" y="179" text-anchor="middle">in 100 mL water</text>
+                <text x="207" y="162" text-anchor="middle">Take 10 mL,</text>
+                <text x="207" y="179" text-anchor="middle">dilute to 100 mL</text>
+                <text x="342" y="162" text-anchor="middle">Repeat the</text>
+                <text x="342" y="179" text-anchor="middle">dilution</text>
+                <text x="477" y="162" text-anchor="middle">Still coloured after</text>
+                <text x="477" y="179" text-anchor="middle">8–10 dilutions</text>
+                <text x="140" y="102" text-anchor="middle" font-size="17" fill="var(--ink)">→</text>
+                <text x="275" y="102" text-anchor="middle" font-size="17" fill="var(--ink)">→</text>
+                <text x="410" y="102" text-anchor="middle" font-size="17" fill="var(--ink)">→</text>
+                <text x="280" y="30" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink)">Activity 1.1 — potassium permanganate dilution</text>
+              </g>
+            </svg>
+            <figcaption>A labelled diagram like this is what turns a description into full marks on activity questions: apparatus, steps in order, and the observation written under the result.</figcaption>
+          </figure>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark</strong> — all three characteristics named correctly.</li>
+          <li><strong>3 marks</strong> — one valid activity or evidence per characteristic (1 each).</li>
+          <li><strong>1 mark</strong> — each activity ends by stating what it <em>proves</em>; the inference is a separate value point from the description.</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> describing the activity beautifully and never writing the conclusion. Examiners tick “proves particles have space between them” — not the stirring. Always finish an activity answer with “…this shows that…”.</div>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">5 marks</span><span class="wlimit">Table · any 5 differences</span><span class="src-tag">Asked in almost every school paper from this chapter</span></div>
+        <p class="mq-q">Q3. Differentiate between solids, liquids and gases on the basis of (i) shape and volume, (ii) interparticle space, (iii) interparticle force of attraction, (iv) compressibility, and (v) density.</p>
+        <div class="mq-a">
+          <table>
+            <thead><tr><th>Basis</th><th>Solid</th><th>Liquid</th><th>Gas</th></tr></thead>
+            <tbody>
+              <tr><td>Shape &amp; volume</td><td>Definite shape and volume</td><td>Definite volume, no definite shape</td><td>No definite shape or volume</td></tr>
+              <tr><td>Interparticle space</td><td>Very small</td><td>More than solids</td><td>Very large</td></tr>
+              <tr><td>Interparticle force</td><td>Very strong</td><td>Weaker than solids</td><td>Negligible</td></tr>
+              <tr><td>Compressibility</td><td>Negligible</td><td>Very low</td><td>Highly compressible</td></tr>
+              <tr><td>Density</td><td>Highest</td><td>Less than solids</td><td>Lowest</td></tr>
+            </tbody>
+          </table>
+          <p>All differences follow from one cause: how tightly the particles are packed and how strongly they attract each other.</p>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark per correct row</strong> — all three columns must be right to earn the row's mark.</li>
+          <li>The closing cause line is insurance: if one cell slips, it shows the examiner the concept is understood.</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> writing the answer as a paragraph. Five differences buried in prose get skimmed and rows get missed. A difference question is <em>always</em> a table — and never write “liquids have a definite shape.” They take the container's shape; only their volume is fixed.</div>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">3 marks</span><span class="wlimit">≈ 60 words · diagram earns a mark</span><span class="src-tag">Competency favourite · also asked as “why does the temperature not rise…”</span></div>
+        <p class="mq-q">Q4. The temperature of ice kept in a beaker stays at 0 °C for some time even though it is being heated continuously. Explain why, with the help of a heating curve.</p>
+        <div class="mq-a">
+          <p>While ice is melting, all the heat supplied is used to <u>overcome the force of attraction</u> between the particles — it changes the state instead of raising the kinetic energy of the particles. This heat, taken up without any rise in temperature, is the <u>latent heat of fusion</u>. Since temperature depends on the kinetic energy of the particles, the thermometer stays at <u>0 °C (273 K)</u> until every bit of ice has melted. Only then does the temperature start rising again.</p>
+          <figure class="diagram">
+            <svg viewBox="0 0 560 300" role="img" aria-label="Heating curve: temperature rises, stays constant at 0 degrees during melting, rises again, then stays constant at 100 degrees during boiling">
+              <g font-size="12.5" fill="var(--muted)">
+                <line x1="60" y1="255" x2="535" y2="255" stroke="var(--line-2)" stroke-width="2"/>
+                <line x1="60" y1="255" x2="60" y2="30" stroke="var(--line-2)" stroke-width="2"/>
+                <text x="520" y="278" text-anchor="end">Time →</text>
+                <text x="22" y="150" transform="rotate(-90 22 150)" text-anchor="middle">Temperature (°C)</text>
+                <line x1="55" y1="190" x2="65" y2="190" stroke="var(--line-2)"/>
+                <text x="48" y="194" text-anchor="end">0</text>
+                <line x1="55" y1="80" x2="65" y2="80" stroke="var(--line-2)"/>
+                <text x="48" y="84" text-anchor="end">100</text>
+                <polyline points="70,225 165,190 300,190 425,80 520,80" fill="none" stroke="var(--brand)" stroke-width="3"/>
+                <line x1="165" y1="190" x2="300" y2="190" stroke="var(--gold)" stroke-width="5" opacity="0.55"/>
+                <line x1="425" y1="80" x2="520" y2="80" stroke="var(--gold)" stroke-width="5" opacity="0.55"/>
+                <text x="232" y="172" text-anchor="middle" font-weight="700" fill="var(--ink)">Melting — temp. constant</text>
+                <text x="232" y="212" text-anchor="middle">(latent heat of fusion)</text>
+                <text x="472" y="62" text-anchor="middle" font-weight="700" fill="var(--ink)">Boiling — temp. constant</text>
+                <text x="472" y="102" text-anchor="middle">(latent heat of vaporisation)</text>
+                <text x="118" y="196" text-anchor="middle">ice warming</text>
+                <text x="362" y="120" text-anchor="middle">water warming</text>
+              </g>
+            </svg>
+            <figcaption>The two flat stretches are the whole answer in picture form: heat is flowing in, temperature is not moving. Label both plateaus — an unlabelled graph earns half.</figcaption>
+          </figure>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark</strong> — heat is used to overcome interparticle attraction (change of state).</li>
+          <li><strong>1 mark</strong> — naming it: latent heat; kinetic energy unchanged, so temperature unchanged.</li>
+          <li><strong>1 mark</strong> — the labelled heating curve with the plateau marked.</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> “The heat is lost” or “the thermometer takes time.” Heat is never lost here — it is <em>stored</em> as latent heat, which is exactly why the melted water at 0 °C has more energy than the ice did.</div>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">3 marks</span><span class="wlimit">≈ 50 words · definition + 2 values</span><span class="src-tag">Values asked directly as 1-markers too</span></div>
+        <p class="mq-q">Q5. What is meant by latent heat? State the latent heat of fusion of ice and the latent heat of vaporisation of water.</p>
+        <div class="mq-a">
+          <p><strong>Latent heat</strong> is the amount of heat energy required to change the state of 1 kg of a substance <u>without any change in its temperature</u>. It is called “latent” (hidden) because the temperature does not rise while it is being absorbed.</p>
+          <p>Latent heat of <strong>fusion</strong> of ice = <u>3.34 × 10⁵ J/kg</u> — the heat needed to convert 1 kg of ice at 0 °C into water at 0 °C.</p>
+          <p>Latent heat of <strong>vaporisation</strong> of water = <u>22.5 × 10⁵ J/kg</u> — the heat needed to convert 1 kg of water at 100 °C into steam at 100 °C.</p>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark</strong> — definition carrying both key phrases: “1 kg” and “without change in temperature.”</li>
+          <li><strong>1 mark each</strong> — each value <em>with its unit, J/kg</em>. A value without a unit is an incomplete answer.</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> swapping the two values, or writing them per gram. Vaporisation (22.5 × 10⁵) is far bigger than fusion (3.34 × 10⁵) — breaking particles completely free takes much more energy than just loosening them. Remember it by logic, not by rote.</div>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">2 marks</span><span class="wlimit">≈ 35 words · 2 value points</span><span class="src-tag">NCERT Exercise · one of the most repeated questions from this chapter</span></div>
+        <p class="mq-q">Q6. Why does steam cause more severe burns than boiling water, though both are at 100 °C?</p>
+        <div class="mq-a">
+          <p>Steam contains <u>extra energy</u> in the form of the <u>latent heat of vaporisation</u> (22.5 × 10⁵ J/kg), which boiling water does not have. When steam touches the skin, it first condenses and releases this extra heat, and then the heat of the hot water formed acts on the skin as well. So steam delivers more heat to the skin than the same amount of boiling water, and the burns are more severe.</p>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark</strong> — steam carries latent heat of vaporisation in addition to its heat at 100 °C.</li>
+          <li><strong>1 mark</strong> — on contact it condenses, releasing that extra heat onto the skin.</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> “Steam is hotter than boiling water.” At the same pressure both are at 100 °C — the difference is not temperature, it is stored latent heat. Writing “hotter” loses the first mark immediately.</div>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">2 marks</span><span class="wlimit">≈ 35 words · 2 value points</span><span class="src-tag">NCERT in-text style · tests Q5 and Q6's logic together</span></div>
+        <p class="mq-q">Q7. Ice at 273 K is more effective in cooling a drink than water at 273 K. Why?</p>
+        <div class="mq-a">
+          <p>Both are at the same temperature, but ice can absorb <u>extra heat</u> from the drink as the <u>latent heat of fusion</u> (3.34 × 10⁵ J/kg) to convert itself into water at 273 K. Water at 273 K can only take heat by warming up. So ice removes more heat from the drink and cools it more effectively.</p>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark</strong> — ice absorbs latent heat of fusion from the surroundings (the drink) in order to melt.</li>
+          <li><strong>1 mark</strong> — water at the same temperature has no such extra heat absorption, so it cools less.</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> “Ice is colder than water.” Both are at 273 K — identical temperature. The examiner is testing whether you reach for latent heat instead of the word “colder.”</div>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">5 marks</span><span class="wlimit">≈ 110 words · 1 intro + 4 factors</span><span class="src-tag">Also set as a 3-marker — then write any three factors</span></div>
+        <p class="mq-q">Q8. What is evaporation? State and explain the factors which affect the rate of evaporation.</p>
+        <div class="mq-a">
+          <p><strong>Evaporation</strong> is the change of a liquid into its vapour from its <u>surface</u>, taking place at <u>all temperatures</u>. Its rate depends on four factors:</p>
+          <ol>
+            <li><strong>Surface area</strong> — evaporation is a surface phenomenon, so a larger exposed surface lets more particles escape. Water dries faster in a plate than in a bottle.</li>
+            <li><strong>Temperature</strong> — at higher temperature, more particles have enough kinetic energy to escape, so evaporation increases. Clothes dry faster in the sun.</li>
+            <li><strong>Humidity</strong> — if the air already contains a large amount of water vapour, it can hold less more, so the rate of evaporation decreases. Clothes dry slowly on a humid day.</li>
+            <li><strong>Wind speed</strong> — wind carries the vapour particles away from the surface, so evaporation increases. Clothes dry faster on a windy day.</li>
+          </ol>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark</strong> — definition with both key phrases: “from the surface” and “at all temperatures.”</li>
+          <li><strong>1 mark per factor</strong> — the factor named <em>and</em> the direction of its effect explained; an everyday example is the safest way to show the direction.</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> listing the four factors with no explanation — that earns half marks at best. And for humidity, the direction is the trap: <em>more humidity → slower evaporation</em>, not faster.</div>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">3 marks</span><span class="wlimit">Table · any 3 differences</span><span class="src-tag">Guaranteed appearance — as 2 or 3 marks</span></div>
+        <p class="mq-q">Q9. Give three differences between evaporation and boiling.</p>
+        <div class="mq-a">
+          <table>
+            <thead><tr><th>Evaporation</th><th>Boiling</th></tr></thead>
+            <tbody>
+              <tr><td>Takes place only at the surface of the liquid</td><td>Takes place throughout the liquid (bulk phenomenon)</td></tr>
+              <tr><td>Takes place at all temperatures</td><td>Takes place only at a fixed temperature — the boiling point</td></tr>
+              <tr><td>Slow and silent process</td><td>Fast process, with bubbling</td></tr>
+              <tr><td>Causes cooling of the liquid</td><td>Temperature remains at the boiling point; no cooling of the liquid</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark per correct pair</strong> — each row must contrast the <em>same</em> basis on both sides (surface↔bulk, temperature↔temperature).</li>
+          <li>Four rows written for a 3-marker costs seconds and insures against one row being judged wrong.</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> writing “evaporation is slow, boiling is fast” as the only difference, three ways. One basis repeated is one mark, not three. Also: boiling needs a fixed temperature — saying “boiling happens at high temperature” is too vague to tick.</div>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">2 marks</span><span class="wlimit">≈ 40 words · mechanism chain</span><span class="src-tag">NCERT Exercise · the model for all “cooling” questions</span></div>
+        <p class="mq-q">Q10. Why does the water kept in an earthen pot (matka) become cool in summer?</p>
+        <div class="mq-a">
+          <p>An earthen pot is <u>porous</u>. Water from inside keeps seeping out through the pores to the outer surface, where it <u>evaporates</u>. For evaporation, the water takes the required <u>latent heat</u> from the water stored inside the pot. The stored water therefore loses heat, its temperature falls, and it becomes cool.</p>
+          <figure class="diagram">
+            <svg viewBox="0 0 560 215" role="img" aria-label="Labelled diagram of an earthen pot: water seeps through pores in the wall and evaporates from the outer surface, cooling the water inside">
+              <g font-size="12.5" fill="var(--muted)">
+                <path d="M215 45 L345 45 L330 175 Q280 192 230 175 Z" fill="none" stroke="var(--line-2)" stroke-width="2.5"/>
+                <path d="M224 70 L336 70 L328 168 Q280 183 232 168 Z" fill="var(--brand)" opacity="0.18"/>
+                <circle cx="222" cy="95" r="2.6" fill="var(--ink)"/><circle cx="338" cy="95" r="2.6" fill="var(--ink)"/>
+                <circle cx="228" cy="135" r="2.6" fill="var(--ink)"/><circle cx="332" cy="135" r="2.6" fill="var(--ink)"/>
+                <line x1="180" y1="95" x2="216" y2="95" stroke="var(--line-2)"/>
+                <text x="176" y="90" text-anchor="end">Pores in the</text>
+                <text x="176" y="106" text-anchor="end">earthen wall</text>
+                <line x1="150" y1="140" x2="222" y2="138" stroke="var(--line-2)"/>
+                <text x="146" y="134" text-anchor="end">Water seeps out</text>
+                <text x="146" y="150" text-anchor="end">through the pores</text>
+                <line x1="345" y1="100" x2="392" y2="88" stroke="var(--line-2)"/>
+                <text x="396" y="82">Evaporation from the</text>
+                <text x="396" y="98">outer surface</text>
+                <line x1="338" y1="150" x2="392" y2="150" stroke="var(--line-2)"/>
+                <text x="396" y="144">Takes latent heat from</text>
+                <text x="396" y="160">the water inside → it cools</text>
+                <text x="280" y="205" text-anchor="middle" font-weight="700" fill="var(--ink)">Earthen pot (matka)</text>
+              </g>
+            </svg>
+            <figcaption>Three labels, three parts of the mechanism. In a 2-marker the written chain alone earns full marks — the diagram is what you add when the question carries 3 or more.</figcaption>
+          </figure>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark</strong> — porous pot: water seeps through pores and evaporates from the outer surface.</li>
+          <li><strong>1 mark</strong> — the evaporating water takes its latent heat from the stored water, so the stored water cools.</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> “Earthen pots are bad conductors, so the water stays cool.” Conductivity is not the mechanism — a steel pot with the same water does not cool it. If your answer never says the word <em>evaporation</em>, it scores zero here.</div>
+      </div>
+
+      <div class="mq">
+        <div class="mq-head"><span class="marks">3 marks</span><span class="wlimit">Formula → substitution → answer with unit, every time</span><span class="src-tag">NCERT Exercise · step-marked numericals</span></div>
+        <p class="mq-q">Q11. (a) Convert 293 K and 470 K to the Celsius scale. (b) Convert 25 °C and 373 °C to the Kelvin scale.</p>
+        <div class="mq-a">
+          <p>The relation between the scales is:</p>
+          <div class="calc">Temperature in K = Temperature in °C + 273 &nbsp;·&nbsp; °C = K − 273</div>
+          <p><strong>(a)</strong> 293 K = 293 − 273 = <u>20 °C</u> &nbsp;·&nbsp; 470 K = 470 − 273 = <u>197 °C</u></p>
+          <p><strong>(b)</strong> 25 °C = 25 + 273 = <u>298 K</u> &nbsp;·&nbsp; 373 °C = 373 + 273 = <u>646 K</u></p>
+        </div>
+        <div class="breakdown"><div class="bd-title">How the marks are given</div>
+          <ul><li><strong>1 mark</strong> — the relation written once, correctly, before any numbers.</li>
+          <li><strong>½ mark per conversion</strong> — substitution shown, correct answer, correct unit. Kelvin answers carry <strong>no degree symbol</strong>: write 298 K, never 298 °K.</li></ul>
+        </div>
+        <div class="mistake"><strong>Common mistake:</strong> adding 273 when converting <em>from</em> kelvin. Fix it with one anchor you can never forget: kelvin numbers are always the bigger ones (0 °C = 273 K). If your kelvin answer came out smaller than the Celsius one, you went the wrong way.</div>
+      </div>
+
+      <div class="trapbox">
+        <div class="kb-title">Before you leave Exam Mode</div>
+        <p>Cover any answer above and rewrite it from memory, in the word limit. If a point from the marking breakdown is missing in your version, that point — not the whole question — is what you revise tonight. That is exactly how toppers use model answers: as marking schemes, not as essays to memorise.</p>
+      </div>
+    </div>
+
+    <!-- ===== ANSWER LAB ===== -->
+    <div class="panel" id="panel-answerlab" role="tabpanel" aria-labelledby="tab-answerlab">
+      <h3>How the paper is built — and how marks are actually given</h3>
+      <p>Class 9 papers are set by your school, but they follow CBSE's question-paper design for Science. The annual pattern this atlas trains for: <strong>80 marks, 3 hours, plus 20 marks of internal assessment</strong>. Knowing the shape of the paper tells you where your preparation time pays.</p>
+      <div class="twrap">
+      <table>
+        <caption>The 80-mark Science paper — structure</caption>
+        <thead><tr><th>Section</th><th>Question type</th><th>Questions</th><th>Marks</th></tr></thead>
+        <tbody>
+          <tr><td><strong>A</strong></td><td>Multiple choice — includes assertion–reason questions</td><td>20 × 1</td><td><strong>20</strong></td></tr>
+          <tr><td><strong>B</strong></td><td>Very short answer</td><td>6 × 2</td><td><strong>12</strong></td></tr>
+          <tr><td><strong>C</strong></td><td>Short answer</td><td>7 × 3</td><td><strong>21</strong></td></tr>
+          <tr><td><strong>D</strong></td><td>Long answer</td><td>3 × 5</td><td><strong>15</strong></td></tr>
+          <tr><td><strong>E</strong></td><td>Case-based — a passage or data set with 4 sub-questions each</td><td>3 × 4</td><td><strong>12</strong></td></tr>
+          <tr><td></td><td><strong>Total — 39 questions</strong> · about 33% of questions carry an internal choice</td><td></td><td><strong>80</strong></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Half the paper is <strong>competency-based</strong> — questions that put a concept inside a situation (a cooler, a matka, a pressure cooker) instead of asking for a definition. The typologies CBSE designs for:</p>
+      <div class="bars" role="img" aria-label="Competency weightage: Remembering 30 percent, Understanding 25 percent, Applying 20 percent, Analysing and Evaluating 15 percent, Creating 10 percent">
+        <div class="bar-row"><span class="bl">Remembering</span><span class="bar-track"><span class="bar-fill" style="display:block;width:30%;background:var(--c-sci)"></span></span><span class="bv num">30% · 24</span></div>
+        <div class="bar-row"><span class="bl">Understanding</span><span class="bar-track"><span class="bar-fill" style="display:block;width:25%;background:var(--c-maths)"></span></span><span class="bv num">25% · 20</span></div>
+        <div class="bar-row"><span class="bl">Applying</span><span class="bar-track"><span class="bar-fill" style="display:block;width:20%;background:var(--c-sst)"></span></span><span class="bv num">20% · 16</span></div>
+        <div class="bar-row"><span class="bl">Analysing &amp; Evaluating</span><span class="bar-track"><span class="bar-fill" style="display:block;width:15%;background:var(--c-eng)"></span></span><span class="bv num">15% · 12</span></div>
+        <div class="bar-row"><span class="bl">Creating</span><span class="bar-track"><span class="bar-fill" style="display:block;width:10%;background:var(--c-hin)"></span></span><span class="bv num">10% · 8</span></div>
+      </div>
+      <p>Read that split carefully: only 30% of the paper pays for memorised facts. <strong>70% pays for understanding and using them.</strong> That is why this pack spends as much time on reasons, situations and answer-writing as on definitions.</p>
+
+      <h3>The playbook for each question type</h3>
+      <div class="playbook">
+        <div class="pb"><h4>MCQ (1 mark)</h4><ul><li>Eliminate the impossible options first — most questions fall to two.</li><li>Watch units and scale traps: 300 K is <em>not</em> hotter than 45 °C.</li><li>Never leave one blank — there is no negative marking.</li></ul></div>
+        <div class="pb"><h4>Assertion–Reason (1 mark)</h4><ul><li>Judge A alone. Judge R alone. Only then ask: does R <em>explain</em> A?</li><li>The trap option is “both true” when R is true but explains nothing.</li><li>Say the link word in your head: “A happens <em>because</em> R.” If the sentence sounds wrong, R is not the explanation.</li></ul></div>
+        <div class="pb"><h4>Case-based (4 marks)</h4><ul><li>Read the questions <em>before</em> the passage — you will spot the answers as you read.</li><li>Most sub-answers sit inside the passage; the last one usually applies the chapter concept to it.</li><li>Answer in the passage's own terms, then add the concept word (diffusion, evaporation…).</li></ul></div>
+        <div class="pb"><h4>Short answer (2–3 marks)</h4><ul><li>Marks = value points. A 3-marker needs 3 distinct points, not one point written three ways.</li><li>One point per line or sentence — examiners tick what they can see.</li><li>For “give reason”: state the observation, then the particle-level cause.</li></ul></div>
+        <div class="pb"><h4>Long answer (5 marks)</h4><ul><li>Open with the definition or principle. Then 4–5 headed or numbered points. Close with an example or a labelled diagram where it fits.</li><li>A comparison is always a table, never a paragraph.</li><li>Underline key terms. In numericals: formula → substitution → answer <em>with unit</em>, each step on its own line — step marking pays even if the final number slips.</li></ul></div>
+        <div class="pb"><h4>Whole-paper habits</h4><ul><li>Attempt in section order, but park any question that stalls you — 80 marks in 180 minutes is roughly 2 minutes per mark.</li><li>Keep the last 10 minutes for units, conversions and un-attempted 1-markers.</li><li>Neat, spaced answers get read fully. Cramped ones get skimmed — and skimmed answers lose value points the examiner never saw.</li></ul></div>
+      </div>
+
+      <h3>A model 5-mark answer — written the way it should look in the copy</h3>
+      <p>Read it twice: once for the science, once for the <em>shape</em>. The notes on the right are what the examiner is ticking.</p>
+      <div class="examcopy">
+        <div class="ec-q">Q. “We are advised to wear cotton clothes in summer.” Justify this statement by explaining the cooling caused by evaporation. Give two more examples of evaporation causing cooling in daily life. (5 marks)</div>
+        <div class="model-block">
+          <div class="mb-text"><strong>Evaporation and cooling:</strong> Evaporation is the change of a liquid into vapour from its surface at all temperatures. The particles at the surface that escape are those with the <u>highest kinetic energy</u>, so the average kinetic energy of the particles left behind decreases. As a result, the temperature of the liquid falls — <u>evaporation causes cooling</u>.</div>
+          <div class="margin-note"><span class="mn-marks">1 mark</span>Definition + the mechanism. Both halves needed: naming the process alone earns nothing here.</div>
+        </div>
+        <div class="model-block">
+          <div class="mb-text"><strong>Why cotton in summer:</strong> In summer our body produces more sweat. Cotton is a good absorber of water — it soaks up the sweat and exposes it to the atmosphere over a large surface area. The sweat then <u>evaporates easily</u>, taking the required latent heat from our body, and we feel cool and comfortable.</div>
+          <div class="margin-note"><span class="mn-marks">2 marks</span>Applies the mechanism to the exact situation asked: absorb → expose → evaporate → body loses heat. One mark for the chain, one for linking it back to the statement.</div>
+        </div>
+        <div class="model-block">
+          <div class="mb-text"><strong>Two more examples:</strong> (1) Water kept in an earthen pot (matka) stays cool, because water seeps through its pores and evaporates from the outer surface. (2) A desert cooler cools a room on a hot, dry day, because the water in its pads evaporates continuously and takes heat from the air passing through.</div>
+          <div class="margin-note"><span class="mn-marks">2 marks</span>One mark per example — and each example still names the mechanism instead of just naming the object.</div>
+        </div>
+      </div>
+      <p>Notice what is <em>not</em> in that answer: no introduction paragraph, no conclusion, no repeated definition. Five marks, five tickable points, key terms underlined, done. Length was never the goal — visible value points are.</p>
+
+      <h3>Mistakes that quietly cost marks in this chapter</h3>
+      <ul>
+        <li><strong>“Liquids have a fixed shape.”</strong> They don't — fixed <em>volume</em>, shape of the container. This exact confusion is a favourite MCQ and case-study trap.</li>
+        <li><strong>Treating evaporation and boiling as the same thing.</strong> Surface vs bulk, all temperatures vs one fixed temperature — if a question says “at all temperatures”, it is evaporation.</li>
+        <li><strong>Forgetting to convert before comparing</strong> temperatures, and dropping units (J/kg, K) from latent-heat and conversion answers.</li>
+        <li><strong>Calling sugar “not a solid”</strong> because the heap takes the jar's shape. Judge the single crystal, not the heap.</li>
+        <li><strong>Writing that temperature rises during melting.</strong> During a change of state, supplied heat becomes latent heat — the thermometer does not move.</li>
+        <li><strong>Assertion–reason:</strong> picking “R is the correct explanation” just because both statements are true. Test the “because” link.</li>
+      </ul>
+    </div>
+
+    <!-- ===== REVISE ===== -->
+    <div class="panel" id="panel-revise" role="tabpanel" aria-labelledby="tab-revise">
+      <h3>Flashcards — tap a card to flip it</h3>
+      <p>The ten facts this chapter is examined on most. Flip them all, then say the ones you hesitated on out loud — that is the set to redo tomorrow.</p>
+      <div class="flash-grid" id="flashGrid"></div>
+
+      <h3>The one-page summary</h3>
+      <div class="twrap">
+      <table>
+        <caption>Every number in this chapter, on one table</caption>
+        <thead><tr><th>Quantity</th><th>Value</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Melting point of ice</td><td><strong>0 °C = 273.15 K</strong></td><td>Conversion questions; temperature stays fixed while ice melts</td></tr>
+          <tr><td>Boiling point of water</td><td><strong>100 °C = 373 K</strong></td><td>Boiling happens only at this fixed temperature</td></tr>
+          <tr><td>Latent heat of fusion (ice)</td><td><strong>3.34 × 10⁵ J/kg</strong></td><td>Why ice at 0 °C cools a drink more than cold water does</td></tr>
+          <tr><td>Latent heat of vaporisation (water)</td><td><strong>22.5 × 10⁵ J/kg</strong></td><td>Why steam burns are worse than boiling-water burns</td></tr>
+          <tr><td>Kelvin conversion</td><td><strong>K = °C + 273</strong></td><td>Used in both directions — and before any comparison</td></tr>
+          <tr><td>Dry ice</td><td><strong>Solid CO₂</strong></td><td>Sublimes straight to gas at atmospheric pressure</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <ul>
+        <li><strong>Particles:</strong> have space between them · are continuously moving · attract each other. Movement increases with temperature.</li>
+        <li><strong>Order to remember:</strong> interparticle force and density go solid &gt; liquid &gt; gas; interparticle space and kinetic energy go the opposite way.</li>
+        <li><strong>Six changes:</strong> fusion (melting), vaporisation, condensation, freezing (solidification), sublimation, deposition.</li>
+        <li><strong>Evaporation:</strong> surface-only, all temperatures, causes cooling; faster with more surface area, more heat, less humidity, more wind.</li>
+      </ul>
+
+      <h3>The night-before checklist</h3>
+      <p>Work down this list the evening before a test on this chapter. Each line is something you should be able to say or write <em>without looking</em> — if one sticks, that is your last revision topic, in this order:</p>
+      <ul class="checklist">
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span><strong>The 3 particle characteristics</strong> — space between them, continuously moving, attract each other — each with its activity proof (KMnO<sub>4</sub> dilution, incense stick, salt in water).</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span><strong>The states table</strong> — all five bases of difference, and the sugar-crystal trap: a heap changes shape, each crystal does not.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span><strong>All six changes of state named both ways</strong> — fusion, vaporisation, condensation, freezing, sublimation, deposition — and what dry ice is.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span><strong>Both latent-heat values with units</strong> — fusion 3.34 × 10⁵ J/kg, vaporisation 22.5 × 10⁵ J/kg — and why the temperature stays constant while they are absorbed.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span><strong>Both burn/cooling reasons</strong> — steam burns worse than boiling water; ice at 273 K cools better than water at 273 K. Same trick, latent heat, two directions.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span><strong>Evaporation, complete</strong> — definition, the 4 factors with directions, evaporation vs boiling table, and the matka / desert cooler / cotton-clothes cooling chain.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span><strong>Conversions both ways</strong> — K = °C + 273, done on 0 °C, 25 °C, 100 °C and back from 273 K and 373 K, units written, no degree symbol on kelvin.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5 9.5 18 20 6.5"/></svg></span><span><strong>One heating curve drawn from memory</strong> — both plateaus labelled, because that single diagram answers Q4 and half of every case study on this chapter.</span></li>
+      </ul>
+
+      <h3>Tonight's 20-minute revision plan</h3>
+      <div class="plan">
+        <div class="plan-step"><div class="time num">0–5 min</div><p><strong>States table from memory.</strong> Close the Learn tab and write the solid–liquid–gas table on paper. Open it, tick what you missed in another colour — those cells are your weak spots.</p></div>
+        <div class="plan-step"><div class="time num">5–10 min</div><p><strong>Numbers drill.</strong> Convert 0 °C, 37 °C and 100 °C to kelvin, and 250 K and 400 K back to Celsius. Say both latent-heat values with their units, out loud.</p></div>
+        <div class="plan-step"><div class="time num">10–15 min</div><p><strong>Flashcards.</strong> Flip all ten above. Any card you could not answer before flipping gets said out loud three times.</p></div>
+        <div class="plan-step"><div class="time num">15–20 min</div><p><strong>Five fresh MCQs.</strong> Restart the Practise test and answer only until you hit five questions — then check: did today's missed topics appear again? If yes, they lead tomorrow's session.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOURCES ============ -->
+  <section class="block" aria-label="Sources">
+    <div class="sec-head"><h2>Where everything here comes from</h2></div>
+    <p class="sec-sub">Ground truth first — NCERT and CBSE — then India's official learning platforms, then vetted free channels. Nothing in this atlas needs a paid course.</p>
+    <div class="sources">
+      <div class="src"><h4>NCERT</h4><p>The textbook itself. Chapter 1, Science Class 9 — definitions, activities and exercises are the syllabus.</p><a href="https://ncert.nic.in/ncerts/l/iesc101.pdf" target="_blank" rel="noopener">Chapter 1 PDF →</a></div>
+      <div class="src"><h4>CBSE Academic</h4><p>Curriculum documents, question-paper design and assessment framework the blueprint in the Answer Lab follows.</p><a href="https://cbseacademic.nic.in" target="_blank" rel="noopener">cbseacademic.nic.in →</a></div>
+      <div class="src"><h4>DIKSHA</h4><p>Ministry of Education platform built around the CBSE curriculum — official videos, e-content and practice for every chapter.</p><a href="https://diksha.gov.in/" target="_blank" rel="noopener">diksha.gov.in →</a></div>
+      <div class="src"><h4>ePathshala</h4><p>NCERT's own portal — textbooks, audiobooks and videos straight from the publisher, free.</p><a href="https://epathshala.nic.in" target="_blank" rel="noopener">epathshala.nic.in →</a></div>
+      <div class="src"><h4>PhET Simulations</h4><p>University of Colorado's free interactive science simulations — the States of Matter sim powers this chapter's lab idea.</p><a href="https://phet.colorado.edu/en/simulations/states-of-matter" target="_blank" rel="noopener">States of Matter sim →</a></div>
+      <div class="src"><h4>Free video channels</h4><p>Magnet Brains, LearnoHub and BYJU'S Class 9 &amp; 10 — full CBSE courses on YouTube, free. Used for explanations only; answers are always checked against NCERT.</p><a href="https://www.youtube.com/watch?v=hmSMAqVXyoA" target="_blank" rel="noopener">Start with the one shot →</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-line">
+      <span>Class 9 Study Atlas · CBSE · NCERT rationalised syllabus 2025–26</span>
+      <span>Class 10 gets the same atlas, chapter pack by chapter pack.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================= ROADMAP ================= */
+var SUBJECTS = [
+  { id:"maths", name:"Mathematics", color:"var(--c-maths)", meta:"NCERT Mathematics · one book, 12 chapters", weight:"CBSE unit split for the 80-mark paper — Number Systems 10 · Algebra 20 · Coordinate Geometry 4 · Geometry 27 · Mensuration 13 · Statistics 6. Geometry alone is a third of the paper.", chapters:[
+    [1,"Number Systems","Mathematics","High"],[2,"Polynomials","Mathematics","High"],[3,"Coordinate Geometry","Mathematics","Med"],
+    [4,"Linear Equations in Two Variables","Mathematics","Med"],[5,"Introduction to Euclid's Geometry","Mathematics","Low"],
+    [6,"Lines and Angles","Mathematics","High"],[7,"Triangles","Mathematics","High"],[8,"Quadrilaterals","Mathematics","High"],
+    [9,"Circles","Mathematics","High"],[10,"Heron's Formula","Mathematics","Med"],[11,"Surface Areas and Volumes","Mathematics","High"],
+    [12,"Statistics","Mathematics","Med"]
+  ]},
+  { id:"science", name:"Science", color:"var(--c-sci)", meta:"NCERT Science · Chemistry, Biology and Physics strands", weight:"CBSE unit split for the 80-mark paper — Matter: Its Nature and Behaviour (Ch 1–4) 25 · Organisation in the Living World (Ch 5–6) 22 · Motion, Force and Work (Ch 7–11) 27 · Food Production (Ch 12) 6.", chapters:[
+    [1,"Matter in Our Surroundings","Science · Chemistry","Med",1],[2,"Is Matter Around Us Pure?","Science · Chemistry","High"],
+    [3,"Atoms and Molecules","Science · Chemistry","High"],[4,"Structure of the Atom","Science · Chemistry","High"],
+    [5,"The Fundamental Unit of Life","Science · Biology","High"],[6,"Tissues","Science · Biology","Med"],
+    [7,"Motion","Science · Physics","High"],[8,"Force and Laws of Motion","Science · Physics","High"],
+    [9,"Gravitation","Science · Physics","Med"],[10,"Work and Energy","Science · Physics","High"],
+    [11,"Sound","Science · Physics","Med"],[12,"Improvement in Food Resources","Science · Biology","Low"]
+  ]},
+  { id:"sst", name:"Social Science", color:"var(--c-sst)", meta:"Four NCERT books · History, Geography, Political Science, Economics", weight:"CBSE split for the 80-mark paper — History 20 · Geography 20 · Political Science 20 · Economics 20, with the 5-mark map question sitting inside History (2) and Geography (3). No book can be skipped.", chapters:[
+    [1,"The French Revolution","History","High"],[2,"Socialism in Europe and the Russian Revolution","History","Med"],
+    [3,"Nazism and the Rise of Hitler","History","High"],[4,"Forest Society and Colonialism","History","Low"],
+    [5,"Pastoralists in the Modern World","History","Low"],
+    [1,"India — Size and Location","Geography","Med"],[2,"Physical Features of India","Geography","High"],
+    [3,"Drainage","Geography","High"],[4,"Climate","Geography","High"],[5,"Natural Vegetation and Wildlife","Geography","Med"],
+    [6,"Population","Geography","Med"],
+    [1,"What is Democracy? Why Democracy?","Political Science","High"],[2,"Constitutional Design","Political Science","High"],
+    [3,"Electoral Politics","Political Science","Med"],[4,"Working of Institutions","Political Science","High"],
+    [5,"Democratic Rights","Political Science","Med"],
+    [1,"The Story of Village Palampur","Economics","Low"],[2,"People as Resource","Economics","Med"],
+    [3,"Poverty as a Challenge","Economics","High"],[4,"Food Security in India","Economics","High"]
+  ]},
+  { id:"english", name:"English", color:"var(--c-eng)", meta:"Beehive (prose + poem in each unit) · Moments · Writing skills", weight:"CBSE paper split — Reading Skills 20 · Writing Skills and Grammar 20 · Literature (Beehive + Moments) 40. Half the paper is literature, but the writing-skills 20 is the most trainable part.", chapters:[
+    [1,"The Fun They Had","Beehive","Med","Poem: The Road Not Taken"],[2,"The Sound of Music","Beehive","High","Poem: Wind"],
+    [3,"The Little Girl","Beehive","High","Poem: Rain on the Roof"],[4,"A Truly Beautiful Mind","Beehive","Med","Poem: The Lake Isle of Innisfree"],
+    [5,"The Snake and the Mirror","Beehive","Med","Poem: A Legend of the Northland"],[6,"My Childhood","Beehive","High","Poem: No Men Are Foreign"],
+    [7,"Reach for the Top","Beehive","High","Poem: On Killing a Tree"],[8,"Kathmandu","Beehive","Med","Poem: The Snake Trying"],
+    [9,"If I Were You","Beehive","Low","Poem: A Slumber Did My Spirit Seal"],
+    [1,"The Lost Child","Moments","High"],[2,"The Adventures of Toto","Moments","Med"],[3,"Iswaran the Storyteller","Moments","Low"],
+    [4,"In the Kingdom of Fools","Moments","Med"],[5,"The Happy Prince","Moments","High"],[6,"Weathering the Storm in Ersama","Moments","Low"],
+    [7,"The Last Leaf","Moments","High"],[8,"A House Is Not a Home","Moments","Med"],[9,"The Beggar","Moments","Low"],
+    [1,"Notice Writing","Writing Skills","Med"],[2,"Diary Entry","Writing Skills","Med"],[3,"Descriptive Paragraph","Writing Skills","High"],
+    [4,"Story Writing","Writing Skills","High"],[5,"Article Writing","Writing Skills","Med"]
+  ]},
+  { id:"hindi", name:"Hindi", color:"var(--c-hin)", meta:"Course B · Sparsh (prose) + Sanchayan", weight:"Course B paper: Sparsh and Sanchayan literature carries the largest share of the 80 marks; unseen passages (अपठित बोध), grammar (व्याकरण) and writing (लेखन) make up the rest — the exact section split follows your school's Course B blueprint.", note:"Shown as Hindi Course B (Sparsh + Sanchayan). If your school follows Course A (Kshitij + Kritika), the atlas keeps the same shape — only the titles swap.", chapters:[
+    [1,"दुःख का अधिकार","Sparsh · गद्य (Prose)","High"],[2,"एवरेस्ट: मेरी शिखर यात्रा","Sparsh · गद्य (Prose)","High"],
+    [3,"तुम कब जाओगे अतिथि","Sparsh · गद्य (Prose)","Med"],[4,"वैज्ञानिक चेतना के वाहक — चंद्रशेखर वेंकट रामन","Sparsh · गद्य (Prose)","Med"],
+    [5,"कीचड़ का काव्य","Sparsh · गद्य (Prose)","Low"],
+    [1,"गिल्लू","Sanchayan","High"],[2,"स्मृति","Sanchayan","Med"],[3,"कल्लू कुम्हार की उनाकोटी","Sanchayan","Low"],
+    [4,"मेरा छोटा-सा निजी पुस्तकालय","Sanchayan","Med"],[5,"हामिद खाँ","Sanchayan","Med"]
+  ]}
+];
+var totalChapters = 0;
+SUBJECTS.forEach(function(s){ totalChapters += s.chapters.length; });
+document.getElementById("statChapters").textContent = totalChapters;
+
+var roadmapList = document.getElementById("roadmapList");
+var showingCount = document.getElementById("showingCount");
+var noResults = document.getElementById("noResults");
+var activeFilter = "all", activeQuery = "";
+
+function chapterCard(s, c){
+  var ready = c[4] === 1;
+  var focusClass = c[3] === "High" ? "high" : (c[3] === "Med" ? "med" : "low");
+  var html = '<article class="ch' + (ready ? " ch-ready" : "") + '">';
+  html += '<div class="ch-top"><span class="ch-num">CH ' + c[0] + '</span><span class="focus ' + focusClass + '">' + c[3] + ' focus</span></div>';
+  html += '<h4>' + c[1] + '</h4>';
+  if (c[5]) html += '<div class="poem">' + c[5] + '</div>';
+  html += '<div class="book">' + c[2] + '</div>';
+  if (ready) {
+    html += '<span class="ready-badge"><span class="dot"></span>Full chapter pack ready</span>';
+    html += '<a class="btn btn-brand btn-sm go" href="#workspace">Open the chapter pack</a>';
+  } else {
+    html += '<span class="road-badge">On the roadmap</span>';
+  }
+  html += '</article>';
+  return html;
+}
+function renderRoadmap(){
+  var visibleTotal = 0, html = "";
+  SUBJECTS.forEach(function(s){
+    if (activeFilter !== "all" && activeFilter !== s.id) return;
+    var cards = "";
+    s.chapters.forEach(function(c){
+      var hay = (c[1] + " " + c[2]).toLowerCase();
+      if (activeQuery && hay.indexOf(activeQuery) === -1) return;
+      cards += chapterCard(s, c); visibleTotal++;
+    });
+    if (!cards) return;
+    html += '<div class="subject"><div class="subject-head"><span class="bar" style="background:' + s.color + '"></span><h3>' + s.name + '</h3><span class="meta">' + s.meta + '</span><span class="count num">' + s.chapters.length + ' items</span></div>';
+    if (s.weight) html += '<p class="weight-line"><strong>Marks weightage:</strong> ' + s.weight + '</p>';
+    if (s.note) html += '<p class="subject-note">' + s.note + '</p>';
+    html += '<div class="chapters">' + cards + '</div></div>';
+  });
+  roadmapList.innerHTML = html;
+  noResults.hidden = visibleTotal !== 0;
+  showingCount.textContent = "Showing " + visibleTotal + " of " + totalChapters + " chapters";
+}
+renderRoadmap();
+
+document.querySelectorAll(".chip[data-filter]").forEach(function(chip){
+  chip.addEventListener("click", function(){
+    document.querySelectorAll(".chip[data-filter]").forEach(function(x){ x.setAttribute("aria-pressed","false"); });
+    chip.setAttribute("aria-pressed","true");
+    activeFilter = chip.getAttribute("data-filter");
+    renderRoadmap();
+  });
+});
+document.getElementById("chapterSearch").addEventListener("input", function(e){
+  activeQuery = e.target.value.trim().toLowerCase();
+  renderRoadmap();
+});
+
+/* ================= TABS ================= */
+var tabs = document.querySelectorAll(".tab");
+tabs.forEach(function(tab){
+  tab.addEventListener("click", function(){
+    tabs.forEach(function(t){ t.setAttribute("aria-selected","false"); });
+    tab.setAttribute("aria-selected","true");
+    document.querySelectorAll(".panel").forEach(function(p){ p.classList.remove("active"); });
+    document.getElementById("panel-" + tab.getAttribute("data-tab")).classList.add("active");
+  });
+});
+
+/* ================= REVEAL BUTTONS ================= */
+document.querySelectorAll(".reveal-btn").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    var target = document.getElementById(btn.getAttribute("data-reveal"));
+    var open = target.classList.toggle("show");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    btn.textContent = open ? "Hide the value points" : "Show the value points";
+  });
+});
+
+/* ================= PARTICLE LAB ================= */
+(function(){
+  var canvas = document.getElementById("labCanvas");
+  var ctx = canvas.getContext("2d");
+  var W = canvas.width, H = canvas.height;
+  var slider = document.getElementById("tempRange");
+  var stateEl = document.getElementById("labState");
+  var readEl = document.getElementById("labRead");
+  var COLS = 12, ROWS = 7, N = COLS * ROWS;
+  var parts = [];
+  var startX = (W - (COLS - 1) * 17) / 2, startY = H - 16 - (ROWS - 1) * 17;
+  for (var i = 0; i < N; i++){
+    var hx = startX + (i % COLS) * 17, hy = startY + Math.floor(i / COLS) * 17;
+    parts.push({ hx:hx, hy:hy, x:hx, y:hy, vx:0, vy:0, ph: Math.random() * 6.28 });
+  }
+  var mode = "", running = true, visible = true;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) running = false;
+  var pauseBtn = document.getElementById("labPause");
+  pauseBtn.textContent = running ? "Pause" : "Play";
+  pauseBtn.setAttribute("aria-pressed", running ? "false" : "true");
+
+  function currentMode(){ var t = +slider.value; return t < 30 ? "solid" : (t < 68 ? "liquid" : "gas"); }
+  function tempC(){ return Math.round(-20 + (+slider.value) * 1.6); }
+  function setMode(m){
+    if (m === mode) return;
+    mode = m;
+    parts.forEach(function(p){
+      if (m === "liquid"){ p.x = p.hx; p.y = p.hy; p.vx = (Math.random()-0.5)*1.1; p.vy = (Math.random()-0.5)*0.7; }
+      if (m === "gas"){ p.vx = (Math.random()<0.5?-1:1)*(1.4+Math.random()*1.8); p.vy = (Math.random()<0.5?-1:1)*(1.2+Math.random()*1.6); }
+    });
+    updateReadout();
+  }
+  function updateReadout(){
+    var t = +slider.value, c = tempC(), k = c + 273;
+    var label = mode === "solid" ? "Solid" : (mode === "liquid" ? "Liquid" : "Gas");
+    stateEl.textContent = label + " · ≈ " + c + " °C (" + k + " K)";
+    if (mode === "solid") readEl.innerHTML = "<strong>Solid:</strong> particles are locked in a regular arrangement and only <strong>vibrate about fixed positions</strong>. Interparticle attraction is at its strongest and the spaces are the smallest — that is why a solid keeps its own shape and volume.";
+    if (mode === "liquid") readEl.innerHTML = "<strong>Liquid:</strong> particles have enough energy to <strong>slide past each other</strong>, so the liquid flows and takes the container's shape — but the particles stay close, so the <strong>volume stays fixed</strong>.";
+    if (mode === "gas") readEl.innerHTML = "<strong>Gas:</strong> particles move <strong>rapidly and randomly in all directions</strong> and fill the whole container. Attraction between them is negligible — which is why a gas has no fixed shape or volume, and compresses so easily.";
+  }
+  function step(now){
+    var t = +slider.value;
+    setMode(currentMode());
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--brand") || "#0B6B57";
+    parts.forEach(function(p){
+      if (mode === "solid"){
+        var amp = 0.7 + t * 0.05;
+        p.x = p.hx + Math.sin(now * 0.004 + p.ph) * amp;
+        p.y = p.hy + Math.cos(now * 0.005 + p.ph * 1.3) * amp * 0.7;
+      } else {
+        if (mode === "liquid"){
+          p.vy += 0.035;
+          if (p.y < H * 0.42) p.vy += 0.05;
+          p.vx *= 0.995; p.vy *= 0.995;
+        }
+        p.x += p.vx; p.y += p.vy;
+        var r = 5.5;
+        if (p.x < r + 2){ p.x = r + 2; p.vx = Math.abs(p.vx); }
+        if (p.x > W - r - 2){ p.x = W - r - 2; p.vx = -Math.abs(p.vx); }
+        if (p.y < r + 2){ p.y = r + 2; p.vy = Math.abs(p.vy); }
+        if (p.y > H - r - 2){ p.y = H - r - 2; p.vy = -Math.abs(p.vy) * (mode === "liquid" ? 0.5 : 1); if (mode === "liquid" && Math.abs(p.vy) < 0.25) p.vy = 0; }
+      }
+      ctx.beginPath(); ctx.arc(p.x, p.y, 5.5, 0, 6.283); ctx.globalAlpha = 0.88; ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
+  var lastNow = 0;
+  function loop(now){
+    lastNow = now;
+    if (running && visible) step(now);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(function(entries){ visible = entries[0].isIntersecting; }, { threshold: 0.05 }).observe(canvas);
+  }
+  function syncPresets(){
+    document.querySelectorAll(".preset[data-temp]").forEach(function(b){
+      b.setAttribute("aria-pressed", (+b.getAttribute("data-temp") === +slider.value) ? "true" : "false");
+    });
+    updateReadout();
+  }
+  slider.addEventListener("input", syncPresets);
+  document.querySelectorAll(".preset[data-temp]").forEach(function(b){
+    b.addEventListener("click", function(){
+      slider.value = b.getAttribute("data-temp");
+      if (!running){ running = true; pauseBtn.textContent = "Pause"; pauseBtn.setAttribute("aria-pressed","false"); }
+      syncPresets();
+    });
+  });
+  pauseBtn.addEventListener("click", function(){
+    running = !running;
+    pauseBtn.textContent = running ? "Pause" : "Play";
+    pauseBtn.setAttribute("aria-pressed", running ? "false" : "true");
+    if (running) step(lastNow);
+  });
+  setMode(currentMode()); updateReadout();
+})();
+
+/* ================= QUIZ ================= */
+var AR_OPTS = [
+  "Both A and R are true, and R is the correct explanation of A",
+  "Both A and R are true, but R is NOT the correct explanation of A",
+  "A is true, but R is false",
+  "A is false, but R is true"
+];
+var CASE_PASSAGE = "Ritu dries three identical wet towels in three ways on the same morning: towel 1 is spread out on the sunny terrace, towel 2 is spread out in a shaded room, and towel 3 is kept folded in the same shaded room. Towel 1 dries first, towel 2 takes longer, and towel 3 is still damp at the end of the day.";
+var QUIZ = [
+  { type:"MCQ", q:"Which of the following is NOT matter?", opts:["Air","Water vapour","Light","Dust particles"], ans:2,
+    why:"Matter must have mass and occupy space. Air, water vapour and dust all do. Light has neither mass nor volume, so it is not matter." },
+  { type:"MCQ", q:"In the potassium permanganate activity, a few crystals are dissolved and the solution is diluted again and again — yet it stays faintly coloured even after 8–10 dilutions. This shows that particles of matter are:", opts:["Always at rest","Very small in size","Very far apart","Strongly attracted to each other"], ans:1,
+    why:"A few crystals keep colouring litre after litre of water because they contain an enormous number of extremely tiny particles, which get divided further at every dilution." },
+  { type:"MCQ", q:"The smell of perfume sprayed in one corner reaches the whole room. The process responsible is:", opts:["Evaporation","Sublimation","Diffusion","Condensation"], ans:2,
+    why:"Particles of matter are continuously moving. Perfume particles mix and spread into the air on their own — that intermixing of particles of two different substances is diffusion." },
+  { type:"MCQ", q:"The interparticle force of attraction is in the order:", opts:["Gas > Liquid > Solid","Liquid > Solid > Gas","Solid > Liquid > Gas","Solid = Liquid = Gas"], ans:2,
+    why:"Solids hold their own shape because their particles attract the strongest; liquids attract less; in gases the attraction is negligible, which is why gases escape and fill any container." },
+  { type:"MCQ", q:"300 K expressed on the Celsius scale is:", opts:["0 °C","27 °C","300 °C","573 °C"], ans:1,
+    why:"°C = K − 273 = 300 − 273 = 27 °C. Kelvin values are always the larger numbers — if your Celsius answer came out bigger, you added instead of subtracting." },
+  { type:"MCQ", q:"Ice and water are both at 0 °C. Compared to the particles of ice, the particles of water at the same temperature have:", opts:["Less energy","Exactly the same energy","More energy","No energy at all"], ans:2,
+    why:"To melt, ice absorbed the latent heat of fusion. That stored energy is why water at 0 °C carries more energy than ice at 0 °C — and why ice cools a drink better than cold water does." },
+  { type:"MCQ", q:"The latent heat of vaporisation of water is:", opts:["3.34 × 10⁵ J/kg","22.5 × 10⁵ J/kg","2.25 × 10³ J/kg","100 J/kg"], ans:1,
+    why:"22.5 × 10⁵ J/kg — the heat to convert 1 kg of water at 100 °C into steam at 100 °C. The smaller value, 3.34 × 10⁵ J/kg, is the latent heat of fusion of ice." },
+  { type:"MCQ", q:"The rate of evaporation of a liquid increases when:", opts:["Humidity of the air increases","Temperature of the liquid decreases","Surface area of the liquid increases","Wind over the surface stops"], ans:2,
+    why:"Evaporation happens only at the surface, so a larger surface lets more particles escape at once. Higher humidity, lower temperature and still air all slow evaporation down." },
+  { type:"Assertion–Reason", q:"Assertion (A): Naphthalene balls disappear with time without leaving any solid behind. Reason (R): Naphthalene undergoes sublimation.", opts:AR_OPTS, ans:0,
+    why:"Both statements are true, and sublimation — changing directly from solid to vapour — is exactly why the balls shrink and vanish with no liquid or solid residue. R explains A." },
+  { type:"Assertion–Reason", q:"Assertion (A): The smell of a lit incense stick spreads throughout the room. Reason (R): Particles of matter attract each other.", opts:AR_OPTS, ans:1,
+    why:"Both statements are true — particles do attract each other. But attraction does not explain the spreading; the particles' continuous movement (diffusion) does. So R is true but is not the explanation of A. This is the classic assertion–reason trap." },
+  { type:"Assertion–Reason", q:"Assertion (A): The temperature of melting ice remains constant at 0 °C even though heat is being supplied. Reason (R): The heat supplied is used to overcome the force of attraction between the particles, without increasing their kinetic energy.", opts:AR_OPTS, ans:0,
+    why:"Both are true, and R is precisely the explanation: the supplied heat becomes latent heat of fusion. Temperature measures kinetic energy, and since that does not change, the thermometer does not move." },
+  { type:"Case-based", passage:CASE_PASSAGE, q:"The process by which all three towels dry is:", opts:["Boiling","Evaporation","Condensation","Sublimation"], ans:1,
+    why:"Water leaves the towels as vapour from the surface, at room temperature — that is evaporation, a surface phenomenon that happens at all temperatures." },
+  { type:"Case-based", passage:CASE_PASSAGE, q:"Towel 2 dries faster than towel 3 (both in the shaded room) mainly because towel 2 has:", opts:["More water in it","A larger surface area exposed to air","A higher temperature","Lower humidity around it"], ans:1,
+    why:"Same room, same temperature and humidity — the only difference is spreading. A larger exposed surface lets more water particles escape at the same time, so evaporation is faster." },
+  { type:"Case-based", passage:CASE_PASSAGE, q:"Towel 1 dries the fastest mainly because on the sunny terrace:", opts:["Humidity is the highest","The temperature is higher, so more particles have enough energy to escape","There is no air movement","The towel is folded better"], ans:1,
+    why:"Sunlight raises the temperature of the water in the towel. More particles then have enough kinetic energy to break free from the surface, so the rate of evaporation rises." },
+  { type:"Case-based", passage:CASE_PASSAGE, q:"If the same experiment were done on a very humid day, towel 1 would dry:", opts:["Faster than before","At the same speed","Slower than before","Instantly"], ans:2,
+    why:"When the air already holds a lot of water vapour, it accepts more vapour only slowly — the rate of evaporation falls as humidity rises. That is why clothes take so long to dry in the monsoon." }
+];
+var qi = 0, qScore = 0, qAnswered = false, qBest = 0, qReview = [];
+var qBody = document.getElementById("quizBody"), qType = document.getElementById("qType"),
+    qCount = document.getElementById("qCount"), qScoreEl = document.getElementById("qScore"),
+    qProgress = document.getElementById("qProgress"), qFeedback = document.getElementById("qFeedback"),
+    qNext = document.getElementById("qNext"), qRestart = document.getElementById("qRestart"),
+    qResult = document.getElementById("quizResult");
+var LETTERS = ["A","B","C","D"];
+
+function renderQuestion(){
+  qAnswered = false;
+  var item = QUIZ[qi];
+  qType.textContent = item.type;
+  qCount.textContent = "Question " + (qi + 1) + " of " + QUIZ.length;
+  qScoreEl.textContent = "Score " + qScore;
+  qProgress.style.width = (qi / QUIZ.length * 100) + "%";
+  qFeedback.className = "feedback"; qFeedback.innerHTML = "";
+  qNext.hidden = true; qRestart.hidden = true; qResult.innerHTML = "";
+  var html = "";
+  if (item.passage) html += '<div class="passage"><div class="p-title">Case study · read and answer</div>' + item.passage + '</div>';
+  html += '<div class="q-text">' + item.q + '</div><div class="opts">';
+  item.opts.forEach(function(opt, i){
+    html += '<button class="opt" data-i="' + i + '"><span class="letter">' + LETTERS[i] + '</span><span>' + opt + '</span></button>';
+  });
+  html += '</div>';
+  qBody.innerHTML = html;
+  qBody.querySelectorAll(".opt").forEach(function(btn){
+    btn.addEventListener("click", function(){ answerQuestion(+btn.getAttribute("data-i"), btn); });
+  });
+}
+function answerQuestion(chosen, btn){
+  if (qAnswered) return;
+  qAnswered = true;
+  var item = QUIZ[qi];
+  var correct = chosen === item.ans;
+  if (correct) qScore++;
+  qReview.push({ q: item.q, chosen: item.opts[chosen], correct: item.opts[item.ans], ok: correct });
+  qBody.querySelectorAll(".opt").forEach(function(b){
+    var i = +b.getAttribute("data-i");
+    b.disabled = true;
+    if (i === item.ans) b.classList.add("correct");
+    else if (i === chosen) b.classList.add("wrong");
+    else b.classList.add("dim");
+  });
+  qFeedback.className = "feedback show " + (correct ? "ok" : "no");
+  qFeedback.innerHTML = '<div class="fb-head">' + (correct ? "Correct — 1 mark." : "Not quite — the answer is " + LETTERS[item.ans] + ".") + '</div>' + item.why;
+  qScoreEl.textContent = "Score " + qScore;
+  qProgress.style.width = ((qi + 1) / QUIZ.length * 100) + "%";
+  qNext.hidden = false;
+  qNext.textContent = qi === QUIZ.length - 1 ? "See my result" : "Next question";
+}
+function showResult(){
+  qBody.innerHTML = ""; qFeedback.className = "feedback";
+  qNext.hidden = true; qRestart.hidden = false;
+  qType.textContent = "Result"; qCount.textContent = "Test complete";
+  if (qScore > qBest) qBest = qScore;
+  document.getElementById("statQuiz").textContent = qBest + " / " + QUIZ.length;
+  var msg;
+  if (qScore >= 13) msg = "Exam-ready. You are answering like the paper wants — reasons, not just facts. Keep this chapter on light revision and move to the next one.";
+  else if (qScore >= 10) msg = "Strong. A couple of topics are still leaking marks — find them in the review below and re-read just those sections in Learn.";
+  else if (qScore >= 7) msg = "Getting there. The pattern in your misses matters more than the score: re-read those Learn sections, then retake the test tomorrow.";
+  else msg = "This is exactly what the test is for — it found the gaps before the exam did. Work through the Learn tab once more, use the Particle Lab, and retake.";
+  var html = '<div class="result-band"><div class="big num">' + qScore + ' / ' + QUIZ.length + '</div><p>' + msg + '</p></div><div class="review-list">';
+  qReview.forEach(function(r, i){
+    html += '<div class="review-item"><div class="rq">' + (i + 1) + '. ' + r.q + '</div><div class="ra">Your answer: ' + r.chosen + (r.ok ? ' — <strong>correct</strong>' : ' · Correct answer: <strong>' + r.correct + '</strong>') + '</div></div>';
+  });
+  html += '</div>';
+  qResult.innerHTML = html;
+}
+qNext.addEventListener("click", function(){
+  if (qi === QUIZ.length - 1) showResult();
+  else { qi++; renderQuestion(); }
+});
+qRestart.addEventListener("click", function(){
+  qi = 0; qScore = 0; qReview = [];
+  renderQuestion();
+});
+renderQuestion();
+
+/* ================= FLASHCARDS ================= */
+var FLASH = [
+  ["Diffusion","Definition","The intermixing of particles of two different substances on their own — perfume spreading, ink in water. Fastest in gases, slowest in solids."],
+  ["Latent heat of fusion","Value + meaning","3.34 × 10⁵ J/kg — heat needed to melt 1 kg of ice at 0 °C into water at 0 °C, with no change in temperature."],
+  ["Latent heat of vaporisation","Value + meaning","22.5 × 10⁵ J/kg — heat needed to convert 1 kg of water at 100 °C into steam at 100 °C. This extra store of heat is why steam burns are so severe."],
+  ["Evaporation","Definition","Change of a liquid into vapour from its surface, at all temperatures. It causes cooling, because the highest-energy particles are the ones that escape."],
+  ["Sublimation","Definition + examples","Direct change from solid to gas without passing through the liquid state. Camphor, naphthalene balls, dry ice. The reverse is deposition."],
+  ["The Kelvin scale","The one rule","K = °C + 273. So 0 °C = 273 K and 100 °C = 373 K. Kelvin takes no degree symbol — write 298 K, not 298 °K."],
+  ["Plasma","The fourth state","Superheated, ionised gas — particles exist as free electrons and ions. Found in the sun and stars, and inside fluorescent tubes and neon sign tubes."],
+  ["Bose–Einstein condensate","The fifth state","Formed by cooling a gas of extremely low density to super-low temperatures. Based on the work of Satyendra Nath Bose with Albert Einstein."],
+  ["Dry ice","What it is","Solid carbon dioxide, stored under high pressure. At atmospheric pressure it sublimes straight into gas — never becoming liquid."],
+  ["Humidity","Exam meaning","The amount of water vapour already present in air. Higher humidity → slower evaporation. It is why sweat does not dry — and does not cool — on a muggy day."]
+];
+var flashGrid = document.getElementById("flashGrid");
+var flippedSet = {};
+FLASH.forEach(function(card, i){
+  var btn = document.createElement("button");
+  btn.className = "flash";
+  btn.setAttribute("aria-label", "Flashcard: " + card[0] + ". Activate to flip.");
+  btn.innerHTML = '<span class="flash-inner"><span class="flash-face flash-front"><span class="ft">' + card[0] + '</span><span class="fh">' + card[1] + ' · tap to flip</span></span><span class="flash-face flash-back">' + card[2] + '</span></span>';
+  btn.addEventListener("click", function(){
+    btn.classList.toggle("flipped");
+    if (btn.classList.contains("flipped") && !flippedSet[i]){
+      flippedSet[i] = true;
+      document.getElementById("statFlash").textContent = Object.keys(flippedSet).length + " / " + FLASH.length;
+    }
+  });
+  flashGrid.appendChild(btn);
+});
+</script>
+
+<script>
+(function(){
+  var TOPICS = {
+    matter:{eyebrow:"CHAPTER 1 · OVERVIEW",title:"Matter",sub:"Anything with mass that occupies space",tags:["Start here","3 states","NCERT p.1"],mode:"liquid",temp:45,caption:"Everything around you — book, air, water — is matter. Light is not: no mass, no volume.",desc:"Matter is anything that has mass and occupies space (has volume). Around us it exists in three states — solid, liquid and gas — and the whole chapter is really one story: what its tiny particles are doing.",traits:[["Definition","Mass + volume"],["States","Solid · Liquid · Gas"],["Not matter","Light, heat"],["Particle size","Extremely small"]],marks:"Foundation for Q1 (3 marks). The definition only scores if BOTH mass and occupies space appear.",closeT:"Close-up: the dilution proof",close:"2–3 crystals of potassium permanganate keep colouring water through 8–10 dilutions — proof that a few crystals hold millions of tiny particles."},
+    particles:{eyebrow:"THE BIG IDEA",title:"Particles",sub:"Particulate nature of matter",tags:["3 properties","Activities 1.1–1.3","5-mark favourite"],mode:"liquid",temp:50,caption:"Particles have space between them, never sit still, and pull on each other.",desc:"Three properties explain almost every 'give reason' question: particles (1) have space between them, (2) are continuously moving, and (3) attract each other. Raise the temperature and the movement — their kinetic energy — increases.",traits:[["Space between","Yes — salt in water"],["Movement","Continuous · diffusion"],["Attraction","Solid > Liquid > Gas"],["With heat","Movement increases"]],marks:"Q2 is the chapter's most repeated 5-marker: 3 characteristics + one activity proof each. Always end with '…this shows that…'.",closeT:"Close-up: diffusion",close:"A lit incense stick perfumes the whole room because its particles diffuse and mix with air on their own. Fastest in gases, slowest in solids."},
+    solid:{eyebrow:"STATE 1 OF 3",title:"Solid",sub:"Ice · iron · wood · sugar crystal",tags:["Definite shape","Definite volume","Strongest attraction"],mode:"solid",temp:8,caption:"Locked in place, only vibrating. A solid keeps its own shape and volume.",desc:"Particles are tightly packed in a regular order with the least space between them and the strongest attraction. They only vibrate about fixed positions — which is why a solid is rigid and cannot be compressed.",traits:[["Shape & volume","Both definite"],["Particle space","Least"],["Attraction","Strongest"],["Compressibility","Negligible"],["Density","Highest"]],marks:"Trap: sugar takes the jar's shape but IS a solid — judge the single crystal, not the heap. Same for a rubber band and a sponge.",closeT:"Close-up: ice",close:"Ice melts at 0 °C (273.15 K). While it melts the temperature does not rise — the heat is being spent as latent heat of fusion."},
+    liquid:{eyebrow:"STATE 2 OF 3",title:"Liquid",sub:"Water · milk · petrol",tags:["Definite volume","Takes container's shape","Flows"],mode:"liquid",temp:45,caption:"Particles slide past each other — fixed volume, no fixed shape. That is a liquid.",desc:"Particles stay close but can slide past each other, so a liquid flows and takes the shape of its container while its volume stays fixed. Attraction is weaker than in a solid, stronger than in a gas.",traits:[["Shape","Container's shape"],["Volume","Definite"],["Particle space","More than solid"],["Attraction","Weaker than solid"],["Fluidity","Flows"]],marks:"Never write 'liquids have a fixed shape.' Fixed VOLUME, container's shape — this exact confusion is a favourite MCQ trap.",closeT:"Close-up: water at 0 °C",close:"Water at 0 °C carries MORE energy than ice at 0 °C — it has already absorbed the latent heat of fusion. That is why ice cools a drink better."},
+    gas:{eyebrow:"STATE 3 OF 3",title:"Gas",sub:"Air · steam · oxygen · LPG",tags:["No fixed shape","No fixed volume","Highly compressible"],mode:"gas",temp:78,caption:"Free, fast and far apart — a gas fills every corner of its container.",desc:"Particles are far apart, move rapidly and randomly in all directions, and barely attract each other. So a gas fills the whole vessel, presses on its walls (those collisions are pressure), and compresses easily — which is why LPG and CNG exist.",traits:[["Shape & volume","Neither definite"],["Particle space","Maximum"],["Attraction","Negligible"],["Compressibility","Very high"],["Density","Lowest"]],marks:"Two 1-mark reasons live here: 'gas fills the vessel' (rapid motion + negligible attraction) and 'gas exerts pressure' (particles collide with the walls).",closeT:"Close-up: why LPG works",close:"Squeeze a gas and its particles come closer with ease. Liquefied under pressure, a small cylinder holds a huge amount of fuel."},
+    latent:{eyebrow:"HIDDEN HEAT",title:"Latent Heat",sub:"Heat that changes state, not temperature",tags:["Fusion 3.34 × 10⁵ J/kg","Vaporisation 22.5 × 10⁵ J/kg","Must write the unit"],mode:"gas",temp:88,caption:"While state changes, heat hides — the thermometer refuses to move.",desc:"Latent heat is the heat absorbed or released during a change of state with NO change in temperature. It is spent breaking (or forming) the attraction between particles, not speeding them up.",traits:[["Of fusion (ice)","3.34 × 10⁵ J/kg"],["Of vaporisation","22.5 × 10⁵ J/kg"],["Temperature","Stays constant"],["SI unit","J/kg — always write it"]],marks:"Q5 (3 marks): definition needs '1 kg' AND 'without change in temperature'. Each value scores only WITH its unit, J/kg.",closeT:"Close-up: steam burns",close:"Steam at 100 °C carries latent heat that boiling water does not. On skin it condenses, dumps that extra heat, then the hot water acts too — far worse burns."},
+    evaporation:{eyebrow:"SURFACE PHENOMENON",title:"Evaporation",sub:"The slow escape that cools",tags:["All temperatures","Surface only","4 factors"],mode:"liquid",temp:62,caption:"The fastest surface particles escape — what is left behind is cooler.",desc:"A few surface particles have enough kinetic energy to break free at any temperature. That is evaporation. The ones that leave are the highest-energy particles, so the average energy left behind falls — evaporation causes cooling.",traits:[["Where","Surface only"],["Temperature","All temperatures"],["Speed","Slow, silent"],["Factors","Area ↑ · Temp ↑ · Humidity ↓ · Wind ↑"]],marks:"Q8 (5 marks): definition + 4 factors, each with its direction. Humidity is the trap — MORE humidity means SLOWER evaporation.",closeT:"Close-up: the matka",close:"Water seeps through the pores of an earthen pot and evaporates outside, taking its latent heat from the water inside. Inside stays cool."},
+    sublimation:{eyebrow:"SKIPS THE LIQUID",title:"Sublimation",sub:"Solid → gas, directly",tags:["Camphor","Naphthalene","Dry ice = solid CO₂"],mode:"gas",temp:70,caption:"Some solids never melt. They jump straight into vapour.",desc:"Sublimation is the direct change from solid to gas without passing through the liquid state. Camphor, naphthalene balls and dry ice do this. The reverse — gas straight to solid — is deposition.",traits:[["Change","Solid → gas directly"],["Examples","Camphor, naphthalene"],["Dry ice","Solid CO₂"],["Reverse","Deposition"]],marks:"Naphthalene balls vanishing with no residue is the standard assertion–reason question here — sublimation IS the explanation.",closeT:"Close-up: dry ice",close:"Solid carbon dioxide, stored under high pressure. At normal pressure it sublimes straight to gas — the 'smoke' on stage is that cold CO₂ mist."}
+  };
+  var detail = document.getElementById("detailPanel");
+  var caption = document.getElementById("stageCaption");
+  var stateEl = document.getElementById("atlasState");
+  var slider = document.getElementById("atlasTemp");
+  var canvas = document.getElementById("atlasCanvas");
+  var cur = TOPICS.liquid, curKey = "liquid";
+  function renderDetail(){
+    var traits = cur.traits.map(function(t){return '<div class="trait"><dt>'+t[0]+'</dt><dd>'+t[1]+'</dd></div>';}).join("");
+    var tags = cur.tags.map(function(t){return '<span>'+t+'</span>';}).join("");
+    detail.innerHTML = '<div class="eyebrow">'+cur.eyebrow+'</div><h2>'+cur.title+'</h2><div class="sub">'+cur.sub+'</div><div class="detail-tags">'+tags+'</div><p class="desc">'+cur.desc+'</p><div class="detail-h">Key Traits</div><dl style="margin:0">'+traits+'</dl><div class="exam-tip"><b>🏆 Exam focus · how the marks come</b>'+cur.marks+'</div><div class="closeup"><div class="orb">🔍</div><div><h5>'+cur.closeT+'</h5><p>'+cur.close+'</p></div></div><button class="detail-cta" id="detailCta">Study this in Learn ↓</button>';
+    document.getElementById("detailCta").addEventListener("click",function(){ gotoTab("learn"); });
+    caption.textContent = cur.caption;
+  }
+  function modeFromTemp(t){ return t<30?"solid":(t<68?"liquid":(t<90?"gas":"steam")); }
+  function syncState(){
+    var t=+slider.value, m=modeFromTemp(t), c=Math.round(-20+t*1.6);
+    var label = m==="solid"?"Solid":m==="liquid"?"Liquid":m==="gas"?"Gas":"Steam";
+    stateEl.textContent = label+" · "+c+" °C ("+(c+273)+" K)";
+    document.querySelectorAll(".preset2").forEach(function(b){ b.setAttribute("aria-pressed", (+b.getAttribute("data-atemp")===t)?"true":"false"); });
+    return m;
+  }
+  function selectTopic(key, keepTemp){
+    curKey=key; cur=TOPICS[key];
+    document.querySelectorAll(".topic-chip").forEach(function(ch){ ch.setAttribute("aria-pressed", ch.getAttribute("data-topic")===key?"true":"false"); });
+    if(!keepTemp){ slider.value = cur.temp; }
+    syncState(); renderDetail();
+  }
+  document.querySelectorAll(".topic-chip").forEach(function(ch){ ch.addEventListener("click",function(){ selectTopic(ch.getAttribute("data-topic")); }); });
+  document.querySelectorAll(".preset2").forEach(function(b){ b.addEventListener("click",function(){ slider.value=b.getAttribute("data-atemp"); syncState(); }); });
+  slider.addEventListener("input", syncState);
+  // subject switching -> roadmap filter
+  function gotoSubject(id){
+    document.querySelectorAll(".subj-switch button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-subj")===id?"true":"false"); });
+    var chip=document.querySelector('.chip[data-filter="'+id+'"]'); if(chip) chip.click();
+    var r=document.getElementById("roadmap"); if(r) r.scrollIntoView({behavior:"smooth"});
+  }
+  document.querySelectorAll(".subj-switch button").forEach(function(b){ b.addEventListener("click",function(){ gotoSubject(b.getAttribute("data-subj")); }); });
+  document.querySelectorAll("[data-goto-subj]").forEach(function(b){ b.addEventListener("click",function(){ gotoSubject(b.getAttribute("data-goto-subj")); }); });
+  function gotoTab(name){
+    var t=document.querySelector('.tab[data-tab="'+name+'"]'); if(t) t.click();
+    var w=document.getElementById("workspace"); if(w) w.scrollIntoView({behavior:"smooth"});
+  }
+  window.__gotoTab = gotoTab;
+  document.querySelectorAll("[data-goto-tab]").forEach(function(b){ b.addEventListener("click",function(){ gotoTab(b.getAttribute("data-goto-tab")); }); });
+  document.querySelectorAll("[data-nav]").forEach(function(b){ b.addEventListener("click",function(){
+    if(b.getAttribute("data-nav")==="home"){ window.scrollTo({top:0,behavior:"smooth"}); }
+    else { gotoTab("exam"); }
+  }); });
+  // ---- particle stage: drag to rotate, zoom, temperature ----
+  var ctx = canvas.getContext("2d"), W=canvas.width, H=canvas.height;
+  var COLS=13, ROWS=8, N=COLS*ROWS, parts=[];
+  for(var i=0;i<N;i++){ var hx=110+(i%COLS)*56, hy=120+Math.floor(i/COLS)*46; parts.push({hx:hx,hy:hy,x:hx,y:hy,vx:(Math.random()-.5)*2,vy:(Math.random()-.5)*2,ph:Math.random()*6.28,d:Math.random()}); }
+  var rot=0, zoom=1, dragging=false, lastX=0, autoRot=true;
+  document.getElementById("zoomIn").addEventListener("click",function(){ zoom=Math.min(1.7,zoom+0.15); });
+  document.getElementById("zoomOut").addEventListener("click",function(){ zoom=Math.max(0.6,zoom-0.15); });
+  document.getElementById("rotBtn").addEventListener("click",function(){ autoRot=!autoRot; });
+  function ptrX(e){ return (e.touches?e.touches[0].clientX:e.clientX); }
+  canvas.addEventListener("pointerdown",function(e){ dragging=true; lastX=e.clientX; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener("pointermove",function(e){ if(!dragging) return; rot += (e.clientX-lastX)*0.008; lastX=e.clientX; });
+  canvas.addEventListener("pointerup",function(){ dragging=false; });
+  canvas.addEventListener("pointercancel",function(){ dragging=false; });
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function draw(now){
+    var m = syncStateMode();
+    ctx.clearRect(0,0,W,H);
+    if(autoRot && !dragging && !reduce) rot += 0.0016;
+    var cos=Math.cos(rot), cx=W/2, cy=H/2;
+    parts.forEach(function(p){
+      var x,y;
+      if(m==="solid"){ var amp=1+(+slider.value)*0.05; x=p.hx+Math.sin(now*0.004+p.ph)*amp; y=p.hy+Math.cos(now*0.005+p.ph)*amp*0.7; }
+      else{
+        if(m==="liquid"){ p.vy+=0.03; if(p.y<H*0.38) p.vy+=0.05; p.vx*=0.995; p.vy*=0.995; }
+        if(m==="steam"){ p.vy-=0.012; }
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<14){p.x=14;p.vx=Math.abs(p.vx);} if(p.x>W-14){p.x=W-14;p.vx=-Math.abs(p.vx);}
+        if(p.y<14){p.y=14;p.vy=Math.abs(p.vy);} if(p.y>H-14){p.y=H-14;p.vy=-Math.abs(p.vy)*(m==="liquid"?0.5:1);}
+        x=p.x; y=p.y;
+      }
+      // pseudo-3D rotate around centre + zoom
+      var dx=(x-cx)*cos, sc=0.72+0.28*((p.d+0.5));
+      var px=cx+dx*zoom, py=cy+(y-cy)*zoom;
+      var r=(m==="solid"?7:6)*zoom*sc+2;
+      ctx.beginPath(); ctx.arc(px,py,r,0,6.283);
+      ctx.fillStyle = m==="solid" ? "#2f7fd0" : m==="liquid" ? "#0B7A55" : "#8a5cf6";
+      if(m==="steam") ctx.fillStyle="#d35450";
+      ctx.globalAlpha=0.55+0.4*sc; ctx.fill(); ctx.globalAlpha=1;
+    });
+    requestAnimationFrame(draw);
+  }
+  var _modeCache="liquid";
+  function syncStateMode(){ return modeFromTemp(+slider.value); }
+  selectTopic("liquid"); syncState();
+  requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>
