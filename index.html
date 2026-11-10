@@ -697,6 +697,39 @@
   .pp-next{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;color:var(--muted)}
   @media(max-width:640px){ .paperpage{padding-left:48px} .paperpage:before{left:36px} .pp-margin{left:4px;font-size:13px} }
 
+  /* ===== ATLAS CHAPTER LANDING · tab row + stage extras ===== */
+  .atlas-tabrow{display:flex;gap:6px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none;background:var(--bg)}
+  .atlas-tabrow::-webkit-scrollbar{display:none}
+  .atr-label{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);flex:none}
+  .atlas-tabbtn{flex:none;min-height:34px;padding:6px 12px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--surface);color:var(--ink);font-weight:700;font-size:13px}
+  .atlas-tabbtn:hover{border-color:var(--brand);color:var(--brand)}
+  .atlas-navbtn{min-height:36px;padding:7px 13px;border-radius:999px;border:1.5px solid var(--line-2);background:var(--bg);font-weight:700;font-size:13.5px;color:var(--ink)}
+  .atlas-navbtn:hover{border-color:var(--brand)}
+  .temp-read{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:14.5px;color:var(--ink);white-space:nowrap}
+  .side-item .cnt{white-space:nowrap}
+  @media(max-width:640px){
+    .atlas-tabrow{padding:8px 10px}
+    .atr-label{display:none}
+    .temp-read{font-size:12.5px}
+  }
+
+  /* ===== CENTRE STAGE · everything presents in the centre ===== */
+  .centre-visual{display:flex;flex-direction:column;flex:1 1 auto;min-height:0}
+  .centre-visual .stage-visual{flex:1 1 auto}
+  .centre-desk{display:none;flex:1 1 auto;min-height:0;flex-direction:column}
+  .atlas-app.centre-desk .centre-desk{display:flex}
+  .atlas-app.centre-desk .centre-visual{display:none}
+  .atlas-app.centre-desk .topic-strip{display:none}
+  .centre-desk .desk{flex:1 1 auto;min-height:0;border-radius:14px}
+  .centre-desk .desk .stepmenu{display:none}
+  .atlas-tabbtn[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:var(--on-brand)}
+  .side-item .cnt{font-size:11px}
+  .side-item[disabled]{opacity:.55;cursor:default}
+  @media(max-width:640px){
+    .centre-desk{min-height:58dvh}
+    .centre-desk .desk{border-radius:12px}
+  }
+
   body.measuring .view-desk{display:flex !important;position:fixed;inset:0;visibility:hidden;z-index:-1;pointer-events:none}
 </style>
 </head>
@@ -721,6 +754,98 @@
   </div>
 </div>
 
+<main class="wrap view-atlas" style="max-width:1440px">
+<div class="atlas-app centre-visual" id="atlasApp">
+  <div class="atlas-topbar">
+    <div class="atlas-logo">Matter <span>Atlas</span><small>Class 9 · Science · Chapter 1</small></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-left:auto">
+      <button class="atlas-navbtn" id="atlasToScience" type="button">Science chapters</button>
+      <button class="atlas-navbtn" id="atlasToHome" type="button">⌂ All subjects</button>
+    </div>
+    <span class="class-badge">NCERT · CHAPTER 1</span>
+  </div>
+  <div class="atlas-tabrow" role="navigation" aria-label="Chapter 1 — choose what the centre stage shows">
+    <span class="atr-label">Centre stage</span>
+    <button class="atlas-tabbtn" data-atlas-tab="visual" aria-pressed="true">◉ Visual</button>
+    <button class="atlas-tabbtn" data-atlas-tab="textbook" aria-pressed="false">1 · Textbook</button>
+    <button class="atlas-tabbtn" data-atlas-tab="explain" aria-pressed="false">2 · Explanation</button>
+    <button class="atlas-tabbtn" data-atlas-tab="qa" aria-pressed="false">3 · Questions &amp; Answers</button>
+    <button class="atlas-tabbtn" data-atlas-tab="mcq" aria-pressed="false">4 · MCQ Lab</button>
+    <button class="atlas-tabbtn" data-atlas-tab="written" aria-pressed="false">5 · Written Answers</button>
+    <button class="atlas-tabbtn" data-atlas-tab="revise" aria-pressed="false">6 · Revise</button>
+  </div>
+  <div class="atlas-grid">
+    <aside class="atlas-side" aria-label="Pick a subject, a chapter, a part">
+      <div class="side-label">Pick a subject</div>
+      <div id="sideSubjects"></div>
+      <div class="side-label">Science · chapters</div>
+      <div id="sideChapters"></div>
+      <div class="side-label">This chapter · parts</div>
+      <div id="sideParts"></div>
+      <div class="side-stats">
+        <div class="ss"><b class="num">26</b><span>textbook questions</span></div>
+        <div class="ss"><b class="num">42</b><span>MCQs in the lab</span></div>
+        <div class="ss"><b class="num">11</b><span>model answers</span></div>
+        <div class="ss"><b class="num">5</b><span>parts · 1.1 to 1.5</span></div>
+      </div>
+      <div class="side-featured">
+        <div class="fl">Start here</div>
+        <h4>Read the textbook first</h4>
+        <p>Exact NCERT wording, 1.1 to 1.5, activities 1.1 to 1.14 — shown in the centre stage.</p>
+        <button data-atlas-tab="textbook" type="button">Open Textbook →</button>
+      </div>
+    </aside>
+    <section class="atlas-stage" aria-label="Centre stage">
+      <div class="topic-strip" id="topicStrip" aria-label="Pick a topic">
+        <button class="topic-chip" data-topic="matter" aria-pressed="true"><span class="tic">◉</span><b>Matter</b><span>Has mass, takes space</span></button>
+        <button class="topic-chip" data-topic="particles" aria-pressed="false"><span class="tic">⁘</span><b>Particles</b><span>Tiny, moving, pulling</span></button>
+        <button class="topic-chip" data-topic="solid" aria-pressed="false"><span class="tic">🧊</span><b>Solid</b><span>Fixed shape</span></button>
+        <button class="topic-chip" data-topic="liquid" aria-pressed="false"><span class="tic">💧</span><b>Liquid</b><span>Fixed volume</span></button>
+        <button class="topic-chip" data-topic="gas" aria-pressed="false"><span class="tic">💨</span><b>Gas</b><span>Fills its container</span></button>
+        <button class="topic-chip" data-topic="latent" aria-pressed="false"><span class="tic">🌡️</span><b>Latent Heat</b><span>Hidden heat</span></button>
+        <button class="topic-chip" data-topic="evaporation" aria-pressed="false"><span class="tic">♨️</span><b>Evaporation</b><span>Drying at the surface</span></button>
+        <button class="topic-chip" data-topic="sublimation" aria-pressed="false"><span class="tic">✦</span><b>Sublimation</b><span>Solid to vapour</span></button>
+      </div>
+      <div class="centre-visual" id="centreVisual">
+        <div class="stage-visual">
+          <canvas id="atlasCanvas" aria-label="Interactive particle visual for the topic you pick. Drag to turn it, use the plus and minus buttons to zoom."></canvas>
+          <div class="stage-tools">
+            <button id="zoomIn" type="button" aria-label="Zoom in">+</button>
+            <button id="zoomOut" type="button" aria-label="Zoom out">−</button>
+            <button id="rotReset" type="button" aria-label="Reset the view">⟲</button>
+          </div>
+          <div class="stage-state" id="stageState">Particles · 25 °C</div>
+          <div class="stage-360"><span>⟲ Drag to rotate</span><span>+ / − to zoom</span></div>
+        </div>
+        <div class="stage-controls">
+          <label for="tempRange">Temperature</label>
+          <button class="preset2" data-preset="ice" aria-pressed="false">Ice</button>
+          <button class="preset2" data-preset="water" aria-pressed="true">Water</button>
+          <button class="preset2" data-preset="gas" aria-pressed="false">Gas</button>
+          <button class="preset2" data-preset="steam" aria-pressed="false">Steam</button>
+          <input type="range" id="tempRange" min="-20" max="150" step="1" value="25" aria-label="Temperature in degrees Celsius" />
+          <span class="temp-read num" id="tempRead">25 °C · 298 K</span>
+        </div>
+        <p class="stage-caption" id="stageCaption">Everything around us is matter — it has mass and occupies space, and it is made of tiny particles.</p>
+      </div>
+      <div class="centre-desk" id="centreDesk"></div>
+    </section>
+    <aside class="atlas-detail" id="atlasDetail" aria-label="Key facts for what is in the centre">
+      <p class="eyebrow" id="dEyebrow">Chapter 1 · Topic 1 of 8</p>
+      <h2 id="dTitle">Matter</h2>
+      <p class="sub" id="dSub">Everything that has mass and occupies space</p>
+      <div class="detail-tags" id="dTags"></div>
+      <p class="desc" id="dDesc"></p>
+      <h3 class="detail-h">Key Traits</h3>
+      <dl id="dTraits"></dl>
+      <div class="exam-tip"><b>Exam Focus</b><span id="dExamText"></span></div>
+      <div class="closeup"><div class="orb" id="dOrb">◉</div><div><h5>Close-up Detail</h5><p id="dCloseText"></p></div></div>
+      <button class="detail-cta" id="openDeskBtn" type="button">Open the Study Desk →</button>
+    </aside>
+  </div>
+</div>
+</main>
+
 <nav class="bottom-nav" aria-label="Phone navigation">
   <button class="active" data-mnav="home"><span>⌂</span>Home</button>
   <button data-mnav="science"><span>🧪</span>Science</button>
@@ -730,7 +855,7 @@
 <main class="wrap view-desk" style="max-width:1440px">
 <section class="desk" id="desk" aria-label="Chapter 1 Study Desk — step-based screens">
   <div class="desk-head">
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"><button class="btn btn-ghost btn-sm" id="backAtlas" type="button">← Science · all chapters</button><button class="btn btn-ghost btn-sm" id="backHome2" type="button">⌂ Home</button></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px"><button class="btn btn-ghost btn-sm" id="backAtlas" type="button">← Chapter 1 · visual</button><button class="btn btn-ghost btn-sm" id="backHome2" type="button">⌂ Home</button></div>
     <span class="pg-tag">Science · Chemistry · NCERT Class 9 · Chapter 1</span>
     <h2>Matter in Our Surroundings — learn it part by part</h2>
     <p class="desk-sub">This chapter has six tabs, in order — one tab at a time. <strong>1 · Textbook:</strong> the NCERT chapter as it is, 1.1 to 1.5, nothing added. <strong>2 · Explanation:</strong> each part explained in plain words, with its own picture you can touch. <strong>3 · Questions &amp; Answers:</strong> every textbook question, with how to write the answer. <strong>4 · MCQ Lab:</strong> 42 MCQs. <strong>5 · Written Answers:</strong> 11 model answers, laid out the way to write them on paper. <strong>6 · Revise:</strong> summary, flashcards and a timed test. Tap a tab above, then move inside it with Next and Previous.</p>
@@ -2408,7 +2533,9 @@ FLASH.forEach(function(card, i){
   prev.addEventListener("click", function(){ show(cur - 1, true); });
   next.addEventListener("click", function(){ show(cur + 1, true); });
   document.addEventListener("keydown", function(e){
-    if (document.body.getAttribute("data-view") !== "desk") return;
+    var dv = document.body.getAttribute("data-view");
+    var appEl = document.getElementById("atlasApp");
+    if (dv !== "desk" && !(dv === "chapter" && appEl && appEl.classList.contains("centre-desk"))) return;
     var t = e.target;
     if (t && t.closest && t.closest("input, textarea, select, [contenteditable], .opts")) return;
     if (e.key === "ArrowRight") show(cur + 1, false);
@@ -2721,7 +2848,9 @@ var MCQLAB = [{"g": "A · Particles & Diffusion", "f": "Direct MCQ", "q": "A few
   }); });
   evRender();
   if (stage && !reduce) setInterval(function(){
-    if (document.body.getAttribute("data-view") !== "desk") return;
+    var dv2 = document.body.getAttribute("data-view");
+    var appEl2 = document.getElementById("atlasApp");
+    if (dv2 !== "desk" && !(dv2 === "chapter" && appEl2 && appEl2.classList.contains("centre-desk"))) return;
     var n = Math.round(evScore());
     for (var i = 0; i < n; i++){
       var d = document.createElement("div"); d.className = "evap-drop";
@@ -2777,18 +2906,18 @@ var MCQLAB = [{"g": "A · Particles & Diffusion", "f": "Direct MCQ", "q": "A few
   var bodyEl = document.body;
   function setView(v){ bodyEl.setAttribute("data-view", v); markNav(v); }
   function markNav(v){
-    var map = { home:"home", subject:"", chapter:"chapter", desk:"desk" };
+    var map = { home:"home", subject:"", chapter:"science", desk:"science" };
     document.querySelectorAll("[data-mnav]").forEach(function(b){
       b.classList.toggle("active", b.getAttribute("data-mnav") === map[v]);
     });
   }
   window.__showHome = function(){ setView("home"); };
   function showHome(){ setView("home"); }
-  /* Chapter 1 IS the Study Desk now: the old Atlas hero view (hero,
-     topic pills, particle canvas, fact card) has been removed, so
-     opening Chapter 1 goes straight to the desk, Textbook tab first.
-     Any older caller of __enterAtlas lands here too. */
-  function openChapter(){ openDeskTab("learn"); }
+  /* Chapter 1 opens its Atlas page: the centre stage shows the
+     chapter visual first. The Study Desk lives inside that same
+     centre stage (moved there by the Atlas script), so opening a
+     desk tab never leaves the chapter page. */
+  function openChapter(){ setView("chapter"); if (window.__atlasMode) window.__atlasMode("visual"); }
   function openDeskTab(name){
     if (window.__deskGoto) window.__deskGoto(name);
     if (window.__enterDesk) window.__enterDesk();
@@ -2908,14 +3037,13 @@ var MCQLAB = [{"g": "A · Particles & Diffusion", "f": "Direct MCQ", "q": "A few
   function bind(id, fn){ var el = document.getElementById(id); if (el) el.addEventListener("click", fn); }
   bind("subjBackHome", showHome);
   bind("backHome2", showHome);
-  /* The desk's back button returns to the Science chapter list.
-     Clone it first so the older handler (which opened the removed
-     Atlas view) is gone. */
+  /* The desk's back button returns to the chapter visual in the
+     centre stage. Clone it first so the older handler is gone. */
   var backAtlasEl = document.getElementById("backAtlas");
   if (backAtlasEl){
     var baClone = backAtlasEl.cloneNode(true);
     backAtlasEl.parentNode.replaceChild(baClone, backAtlasEl);
-    baClone.addEventListener("click", function(){ showSubject("science"); });
+    baClone.addEventListener("click", function(){ openChapter(); });
   }
 
   setView("home");
@@ -3022,6 +3150,443 @@ var MCQLAB = [{"g": "A · Particles & Diffusion", "f": "Direct MCQ", "q": "A few
   });
 
   render();
+})();
+</script>
+
+<script>
+/* ================= ATLAS CENTRE STAGE =================
+   The centre stage is the classroom. The left side only picks a
+   subject, a chapter and a part; the top only picks a topic and a
+   tab; the right panel only shows key facts for whatever is in
+   the centre right now. The Study Desk (Textbook, Explanation,
+   Questions & Answers, MCQ Lab, Written Answers, Revise) is moved
+   into the centre stage, so its content is presented in the centre
+   too — never on Home, never on another chapter. */
+(function(){
+  var bodyEl = document.body;
+  var app = document.getElementById("atlasApp");
+  var centreDesk = document.getElementById("centreDesk");
+  var deskSection = document.getElementById("desk");
+  if (app && centreDesk && deskSection) centreDesk.appendChild(deskSection);
+
+  var tabBtns = Array.prototype.slice.call(document.querySelectorAll("[data-atlas-tab]"));
+  function pressedTab(){
+    var b = document.querySelector('.tabbtn[aria-pressed="true"]');
+    return b ? b.getAttribute("data-tab") : "textbook";
+  }
+  function setCentre(mode){
+    bodyEl.setAttribute("data-view", "chapter");
+    var isDesk = mode === "desk";
+    app.classList.toggle("centre-desk", isDesk);
+    app.classList.toggle("centre-visual", !isDesk);
+    tabBtns.forEach(function(b){
+      var t = b.getAttribute("data-atlas-tab");
+      b.setAttribute("aria-pressed", isDesk ? (t === pressedTab() ? "true" : "false") : (t === "visual" ? "true" : "false"));
+    });
+    if (!isDesk) renderDetail(currentTopic);
+    else updateDeskPanel(true);
+  }
+  window.__atlasMode = function(m){ setCentre(m === "visual" ? "visual" : "desk"); };
+  window.__enterDesk = function(){ setCentre("desk"); };
+  window.__enterAtlas = function(){ if (window.__openChapter) window.__openChapter(); else setCentre("visual"); };
+
+  tabBtns.forEach(function(b){
+    b.addEventListener("click", function(){
+      var t = b.getAttribute("data-atlas-tab");
+      if (t === "visual"){ setCentre("visual"); return; }
+      if (window.__deskShowTab) window.__deskShowTab(t);
+      setCentre("desk");
+    });
+  });
+  var cta = document.getElementById("openDeskBtn");
+  if (cta) cta.addEventListener("click", function(){ if (window.__deskShowTab) window.__deskShowTab("textbook"); setCentre("desk"); });
+  var toSci = document.getElementById("atlasToScience");
+  if (toSci) toSci.addEventListener("click", function(){ if (window.__showSubject) window.__showSubject("science"); });
+  var toHome = document.getElementById("atlasToHome");
+  if (toHome) toHome.addEventListener("click", function(){ if (window.__showHome) window.__showHome(); });
+  var backB = document.getElementById("backAtlas");
+  if (backB) backB.addEventListener("click", function(){ setCentre("visual"); });
+
+  /* ---- Left side · pickers only (subjects, chapters, parts) ---- */
+  var sideSubj = document.getElementById("sideSubjects");
+  if (sideSubj && typeof SUBJECTS !== "undefined"){
+    sideSubj.innerHTML = SUBJECTS.map(function(s){
+      return '<button class="side-item' + (s.id === "science" ? " active" : "") + '" data-side-subj="' + s.id + '" type="button"><span class="dotc" style="background:' + s.color + '"></span>' + s.name + '<span class="cnt num">' + s.chapters.length + '</span></button>';
+    }).join("");
+    sideSubj.querySelectorAll("[data-side-subj]").forEach(function(b){
+      b.addEventListener("click", function(){ if (window.__showSubject) window.__showSubject(b.getAttribute("data-side-subj")); });
+    });
+    var sci = null;
+    SUBJECTS.forEach(function(s){ if (s.id === "science") sci = s; });
+    var sideCh = document.getElementById("sideChapters");
+    if (sideCh && sci){
+      sideCh.innerHTML = sci.chapters.map(function(c){
+        var ready = c[4] === 1;
+        return '<button class="side-item' + (ready ? " active" : "") + '" data-side-ch="' + (ready ? "1" : "0") + '" type="button">' + c[1] + '<span class="cnt num">Ch ' + c[0] + '</span></button>';
+      }).join("");
+      sideCh.querySelectorAll("[data-side-ch]").forEach(function(b){
+        b.addEventListener("click", function(){
+          if (b.getAttribute("data-side-ch") === "1"){ if (window.__openChapter) window.__openChapter(); setCentre("visual"); }
+          else if (window.__showSubject) window.__showSubject("science");
+        });
+      });
+    }
+  }
+  var sideParts = document.getElementById("sideParts");
+  if (sideParts){
+    var PARTS = [["s-ex11","1.1 · Physical Nature of Matter"],["s-ex12","1.2 · Characteristics of Particles"],["s-ex13","1.3 · States of Matter"],["s-ex14","1.4 · Can Matter Change its State?"],["s-ex15","1.5 · Evaporation"]];
+    sideParts.innerHTML = PARTS.map(function(p){
+      return '<button class="side-item" data-side-part="' + p[0] + '" type="button">' + p[1] + '</button>';
+    }).join("");
+    sideParts.querySelectorAll("[data-side-part]").forEach(function(b){
+      b.addEventListener("click", function(){ if (window.__deskShow) window.__deskShow(b.getAttribute("data-side-part")); setCentre("desk"); });
+    });
+  }
+
+  /* ---- Topic data for the centre visual + right panel ---- */
+  var TOPICS = {
+    matter: { n:1, title:"Matter", sub:"Everything that has mass and occupies space", orb:"◉",
+      tags:["Has mass","Occupies space","Made of particles"],
+      desc:"The air we breathe, food we eat, stones, clouds, stars, plants and animals, even a drop of water or a particle of sand — everything is matter. All of it occupies space and has mass: it has both mass and volume.",
+      traits:[["Made up of","Tiny particles"],["Mass","Measured in kilogram (kg)"],["Volume","Measured in cubic metre (m³)"],["Early idea","Panch Tatva — air, earth, fire, sky, water"],["In this chapter","Matter by its physical properties"]],
+      exam:"Write the meaning first, with both words in it: matter has mass and occupies space (volume). That one line is what the answer is marked on.",
+      close:"One spoon of red food colour turns a whole jug of water pink. The colour does not melt away — its particles spread through all the water.",
+      mode:"mix", cols:["#0B7A55","#2B50C8"], temp:25, phase:"Particles",
+      caption:"Everything around us is matter — it has mass and occupies space, and it is made of tiny particles." },
+    particles: { n:2, title:"Particles of Matter", sub:"Tiny, always moving, pulling each other", orb:"⁘",
+      tags:["Space between them","Continuously moving","Attract each other"],
+      desc:"Particles of matter have space between them, they are continuously moving, and they attract each other. These three points answer almost every give-a-reason question in this chapter.",
+      traits:[["How small","Millions in one crystal of potassium permanganate"],["Space","Salt fits into the spaces in water"],["Movement","Called diffusion when two matters mix on their own"],["Movement and heat","Kinetic energy rises with temperature"],["Pull","Force of attraction holds particles together"]],
+      exam:"Learn the three characteristics word for word — space between them · continuously moving · attract each other — and add one example with each: salt in water, incense stick, iron nail.",
+      close:"You smell dinner from another room because the food's particles move through the air on their own. Nobody carries them to you.",
+      mode:"mix", cols:["#7B2D8B","#B97E10"], temp:25, phase:"Particles",
+      caption:"Three things every particle does: it leaves space, it keeps moving, and it pulls its neighbours." },
+    solid: { n:3, title:"Solid", sub:"Definite shape, definite volume", orb:"🧊",
+      tags:["Definite shape","Definite volume","Rigid"],
+      desc:"In a solid the particles are tightly packed in a regular arrangement. They vibrate about their fixed positions but do not move from place to place, so a solid keeps its own shape and volume and is rigid.",
+      traits:[["Shape","Definite"],["Volume","Definite"],["Space between particles","Least"],["Force of attraction","Strongest"],["Can it be pressed smaller","Almost not at all"]],
+      exam:"Sugar and salt are solids because each single crystal has a definite shape — judge the crystal, not the heap poured into a jar. The same point covers the rubber band.",
+      close:"Try to break an iron nail, a piece of chalk and a rubber band (Activity 1.7). The nail will not break by hand — its particles pull each other the most strongly.",
+      mode:"solid", cols:["#2B50C8"], temp:25, phase:"Solid",
+      caption:"Solid: blue squares packed in order. They shake in place but never leave their places. Drag to turn the block." },
+    liquid: { n:4, title:"Liquid", sub:"Definite volume, no definite shape", orb:"💧",
+      tags:["Definite volume","Takes the container's shape","Flows"],
+      desc:"In a liquid the particles stay close but slide past each other. A liquid keeps a fixed volume, takes the shape of the container it is kept in, and flows — so it is not rigid, but can be called fluid.",
+      traits:[["Shape","No definite shape"],["Volume","Definite"],["Space between particles","More than in solids"],["Force of attraction","Weaker than in solids"],["Can it flow","Yes — it is fluid"]],
+      exam:"Never write that a liquid has a fixed shape. A liquid has a fixed volume and takes the shape of its container. Only a solid has both shape and volume fixed.",
+      close:"Measure 50 mL of water and pour it from container to container (Activity 1.10). The shape changes every time; the volume stays 50 mL.",
+      mode:"liquid", cols:["#0B7A55"], temp:25, phase:"Liquid",
+      caption:"Liquid: green dots stay close but slide past each other, so the liquid takes its container's shape." },
+    gas: { n:5, title:"Gas", sub:"No definite shape, no definite volume", orb:"💨",
+      tags:["Fills its container","Highly compressible","Fast particles"],
+      desc:"In a gas the particles move about randomly at high speed, with large spaces between them and almost no pull on each other. They hit each other and the walls of the container — that hitting is what makes gas pressure.",
+      traits:[["Shape","No definite shape"],["Volume","No definite volume"],["Space between particles","Maximum"],["Force of attraction","Weakest — almost none"],["Can it be pressed smaller","Very easily"]],
+      exam:"An LPG cylinder holds a huge amount of gas in a small space — only possible because gas particles have large spaces that can be squeezed. Name compressibility as the reason.",
+      close:"In Activity 1.11 the piston pushes in most easily in the syringe of air, a little in water, and not at all in chalk. Compressibility follows the space between particles.",
+      mode:"gas", cols:["#C0392B"], temp:25, phase:"Gas",
+      caption:"Gas: red particles fly in every direction and leave trails. They spread out and fill the whole space." },
+    latent: { n:6, title:"Latent Heat", sub:"The hidden heat that changes the state", orb:"🌡️",
+      tags:["Temperature stays the same","Fusion 3.34 × 10⁵ J/kg","Vaporisation 22.5 × 10⁵ J/kg"],
+      desc:"While a solid melts or a liquid boils, the temperature does not rise. The heat goes into overcoming the force of attraction between the particles — it is hidden in the change of state, so it is called latent heat. Slide the temperature and watch the centre change state.",
+      traits:[["Latent means","Hidden"],["Melting point of ice","273.15 K"],["Latent heat of fusion of ice","3.34 × 10⁵ J/kg"],["Boiling point of water","373 K (100 °C)"],["Latent heat of vaporisation of water","22.5 × 10⁵ J/kg"]],
+      exam:"Steam at 100 °C burns worse than boiling water at 100 °C because steam carries extra energy as latent heat of vaporisation, which it gives out when it condenses on the skin.",
+      close:"Particles in steam at 373 K have more energy than water at the same temperature — they have absorbed the extra latent heat of vaporisation.",
+      mode:"melt", cols:["#2B50C8"], temp:0, phase:"Ice",
+      caption:"Slide the temperature: below 0 °C the particles lock into ice, in between they flow as water, at 100 °C they fly off as steam." },
+    evaporation: { n:7, title:"Evaporation", sub:"Drying from the surface, at all temperatures", orb:"♨️",
+      tags:["Surface only","At all temperatures","Causes cooling"],
+      desc:"Evaporation is the change of a liquid into vapour from its surface, at all temperatures. The particles with the highest kinetic energy escape from the surface, so the particles left behind have less energy on average — and the liquid cools.",
+      traits:[["Where","Only from the surface"],["When","At all temperatures"],["Faster when","Surface area, temperature or wind speed rises"],["Slower when","Humidity rises"],["Result","Cooling"]],
+      exam:"Every cooling answer follows one chain: water evaporates → takes latent heat from what is left → that thing cools. Use it for the earthen pot, the desert cooler and cotton clothes.",
+      close:"Water kept in an earthen pot becomes cool in summer: water seeps through the pores and evaporates from the outer surface, taking heat from the water inside.",
+      mode:"evap", cols:["#0B7A55"], temp:35, phase:"Liquid surface",
+      caption:"Evaporation: particles escape from the surface only. The fastest ones leave, so what is left behind cools." },
+    sublimation: { n:8, title:"Sublimation", sub:"Solid changing directly into vapour", orb:"✦",
+      tags:["No liquid stage","Camphor","Naphthalene","Dry ice"],
+      desc:"Some solids change directly into vapour without passing through the liquid state. This is sublimation. Camphor, naphthalene and ammonium chloride do this, and dry ice — solid carbon dioxide — sublimes too, which is why it never wets anything.",
+      traits:[["Change","Solid → vapour, directly"],["Liquid stage","Skipped"],["Examples","Camphor, naphthalene, ammonium chloride"],["Dry ice","Solid carbon dioxide (CO₂)"],["Seen at home","Naphthalene balls shrink and vanish"]],
+      exam:"If a question asks which substances sublime, name camphor and naphthalene first, then ammonium chloride and dry ice. Wax and ghee melt — they are not examples.",
+      close:"Put camphor in a china dish under an inverted funnel (Activity 1.13): the solid vanishes from the dish and collects as vapour, with no liquid in between.",
+      mode:"sublime", cols:["#2B50C8"], temp:25, phase:"Solid surface",
+      caption:"Sublimation: particles leave the solid's surface straight into the air. No liquid appears in between." }
+  };
+  var currentTopic = "matter";
+
+  /* ---- Right panel · key facts for what is in the centre ---- */
+  var dEyebrow = document.getElementById("dEyebrow"), dTitle = document.getElementById("dTitle"),
+      dSub = document.getElementById("dSub"), dTags = document.getElementById("dTags"),
+      dDesc = document.getElementById("dDesc"), dTraits = document.getElementById("dTraits"),
+      dExam = document.getElementById("dExamText"), dOrb = document.getElementById("dOrb"),
+      dClose = document.getElementById("dCloseText");
+  function fillPanel(o, eyebrow){
+    if (!dTitle) return;
+    dEyebrow.textContent = eyebrow;
+    dTitle.textContent = o.title; dSub.textContent = o.sub;
+    dTags.innerHTML = o.tags.map(function(t){ return "<span>" + t + "</span>"; }).join("");
+    dDesc.textContent = o.desc;
+    dTraits.innerHTML = o.traits.map(function(r){ return '<div class="trait"><dt>' + r[0] + '</dt><dd>' + r[1] + "</dd></div>"; }).join("");
+    dExam.textContent = o.exam; dOrb.textContent = o.orb; dClose.textContent = o.close;
+  }
+  function renderDetail(key){
+    var t = TOPICS[key]; if (!t) return;
+    fillPanel(t, "Chapter 1 · Topic " + t.n + " of 8 · in the centre now: the visual");
+  }
+  var PARTFACTS = {
+    "1.1": { title:"1.1 Physical Nature of Matter", sub:"Matter is made up of particles", orb:"◉", tags:["Activities 1.1 and 1.2","Salt in water","Potassium permanganate"],
+      desc:"One crystal holds millions of tiny particles. That is why a few crystals of potassium permanganate can colour a large volume of water, dilution after dilution.",
+      traits:[["Matter","Has mass and occupies space"],["SI unit of mass","Kilogram (kg)"],["SI unit of volume","Cubic metre (m³)"],["1 litre","1000 mL · 1 mL = 1 cm³"],["Particles in one crystal","Millions"]],
+      exam:"Write the line from Activity 1.2: just a few crystals can colour a large volume of water, which shows particles of matter are very small and millions of them make one crystal.",
+      close:"Dissolve salt in a half-filled beaker (Activity 1.1): the salt disappears and the water level does not rise — the salt's particles fit into the spaces between water's particles." },
+    "1.2": { title:"1.2 Characteristics of Particles", sub:"Space, movement, pull", orb:"⁘", tags:["Activities 1.3 to 1.8","Diffusion","Kinetic energy"],
+      desc:"Particles of matter have space between them, are continuously moving, and attract each other. The strength of the pull changes from one kind of matter to another.",
+      traits:[["Characteristic 1","Space between them"],["Characteristic 2","Continuously moving"],["Characteristic 3","Attract each other"],["Mixing on their own","Diffusion"],["Heat does this","Raises kinetic energy, diffusion gets faster"]],
+      exam:"Three numbered points, one characteristic on each line, key words underlined. Three points, three marks — never write them in one running line.",
+      close:"Light an incense stick in a corner (Activity 1.3): its smell reaches the whole room because its particles keep moving through the air on their own." },
+    "1.3": { title:"1.3 States of Matter", sub:"Solid, liquid and gas", orb:"🧊", tags:["Activities 1.9 to 1.11","One table to learn","Fluid = liquid + gas"],
+      desc:"The same particles, three arrangements. Going from solid to gas, the spaces grow, the pull weakens and the particles move faster.",
+      traits:[["Solid","Definite shape and volume"],["Liquid","Definite volume, no definite shape"],["Gas","No definite shape or volume"],["Most compressible","Gas"],["Pressure of a gas","Particles hitting the walls"]],
+      exam:"A tabulate question is always answered as a table drawn in pencil, one row per point, the same point compared across the row. In a paragraph the points get missed.",
+      close:"An LPG cylinder holds a huge amount of gas in a small space — only possible because gas particles have large spaces that can be squeezed." },
+    "1.4": { title:"1.4 Change of State", sub:"Temperature, latent heat, sublimation", orb:"🌡️", tags:["Activities 1.12 to 1.14","273 and 373","Two latent heat values"],
+      desc:"Heat a solid and its particles vibrate faster until the pull between them is overcome: it melts. During every change of state the temperature stays the same — the heat is used as latent heat.",
+      traits:[["Melting point of ice","273.15 K"],["Boiling point of water","373 K (100 °C)"],["Latent heat of fusion of ice","3.34 × 10⁵ J/kg"],["Latent heat of vaporisation of water","22.5 × 10⁵ J/kg"],["Kelvin to Celsius","Subtract 273"]],
+      exam:"Ice at 273 K cools a drink better than water at 273 K: melting ice takes extra heat from the drink as latent heat of fusion. Same temperature — the mark is for the energy, not the coldness.",
+      close:"Dry ice is solid carbon dioxide. At ordinary pressure it sublimes straight into gas, so it never wets anything — that is why it is called dry." },
+    "1.5": { title:"1.5 Evaporation", sub:"A surface change that cools", orb:"♨️", tags:["Four factors","Cooling chain","Evaporation vs boiling"],
+      desc:"Evaporation happens only from the surface and at all temperatures. Boiling happens throughout the liquid and only at the boiling point. Learn that pair as one unit.",
+      traits:[["Surface area up","Evaporation faster"],["Temperature up","Evaporation faster"],["Wind speed up","Evaporation faster"],["Humidity up","Evaporation slower"],["Escaping particles","The ones with the highest kinetic energy"]],
+      exam:"Hot tea in a saucer can be sipped sooner than tea in a cup: the saucer's larger surface area makes evaporation faster, so the tea cools faster.",
+      close:"A desert cooler cools better on a hot, dry day: high temperature and low humidity make its pads' water evaporate faster, taking more heat from the air." }
+  };
+  var TABFACTS = {
+    mcq: { title:"MCQ Lab", sub:"42 MCQs, answered one at a time in the centre", orb:"?", tags:["Particles and diffusion","States","Latent heat","Kelvin sums","Evaporation","Gases"],
+      desc:"Every MCQ is answered in the centre stage, and each answer says why it is right and why the others are wrong. Answer first, then read the reason.",
+      traits:[["Questions","42"],["Groups","6 · A to F"],["Score","Shown as you answer"],["Wrong options","Each one explained"]],
+      exam:"Convert before you compare: a kelvin number always looks bigger. 300 K is only 27 °C, so 45 °C is hotter than 300 K.",
+      close:"The two latent heat values are often swapped in the options. Fusion of ice is 3.34 × 10⁵ J/kg; vaporisation of water is 22.5 × 10⁵ J/kg. Check which one the question asks for." },
+    written: { title:"Written Answers", sub:"11 model answers, laid out as on the answer page", orb:"✎", tags:["Question number in the margin","Points in order","Keywords underlined","Diagram in the centre"],
+      desc:"Each model answer in the centre shows how to write it, the layout on the answer page, the full answer, where each mark comes from, and what would lose a mark.",
+      traits:[["Model answers","11"],["First line","The meaning or the point, first"],["Numericals","Formula, then values put in, then the boxed answer with its unit"],["Between answers","A blank line"]],
+      exam:"Draw diagrams in pencil in the centre of the page and label every part. An unlabelled diagram earns nothing for the labels' marks.",
+      close:"For a formula answer, write the formula first, then put the values in, then box the final answer with its unit. Each of those steps is seen and marked separately." },
+    revise: { title:"Revise", sub:"Summary, flashcards and a timed test", orb:"↻", tags:["Whole chapter","Quick checks","Timed test"],
+      desc:"Revise the whole chapter in the centre: the summary first, then the flashcards, then the timed test under exam conditions.",
+      traits:[["Parts","5 · 1.1 to 1.5"],["Numbers to know","273.15 K · 373 K · 3.34 × 10⁵ · 22.5 × 10⁵"],["Tables to know","States of matter · evaporation vs boiling"]],
+      exam:"Finish with the three characteristics and the states table — between them they sit behind most of this chapter's questions.",
+      close:"Say each flashcard answer out loud before you turn the card over. Reading silently feels easier and remembers less." }
+  };
+  var lastDeskKey = "";
+  function updateDeskPanel(force){
+    var act = document.querySelector("#desk .screen.active");
+    var tab = pressedTab(), key = tab, data = null;
+    if (act && act.getAttribute("data-step")){
+      var part = { s11:"1.1", s12:"1.2", s13:"1.3", s14:"1.4", s15:"1.5" }[act.getAttribute("data-step")];
+      if (part && tab !== "mcq" && tab !== "written" && tab !== "revise"){ key = "part-" + part; data = PARTFACTS[part]; }
+    }
+    if (!data && TABFACTS[tab]){ key = "tab-" + tab; data = TABFACTS[tab]; }
+    if (!data){ var p2 = PARTFACTS["1.1"]; key = "part-1.1"; data = p2; }
+    if (!force && key === lastDeskKey) return;
+    lastDeskKey = key;
+    fillPanel(data, "Chapter 1 · in the centre now: " + (key.indexOf("part-") === 0 ? data.title : data.title + " · " + tab));
+  }
+  setInterval(function(){
+    if (app.classList.contains("centre-desk")) updateDeskPanel(false);
+  }, 500);
+
+  /* ---- Centre visual · particle engine ---- */
+  var canvas = document.getElementById("atlasCanvas");
+  var ctx = canvas.getContext("2d");
+  var stageState = document.getElementById("stageState");
+  var stageCaption = document.getElementById("stageCaption");
+  var tempRange = document.getElementById("tempRange");
+  var tempRead = document.getElementById("tempRead");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var stage = { mode:"mix", cols:["#0B7A55","#2B50C8"], temp:25, label:"Particles" };
+  var P = [], rot = 0, zoom = 1, W = 0, H = 0, t0 = Math.random() * 100;
+
+  function resize(){
+    var r = canvas.getBoundingClientRect();
+    if (r.width < 10) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    W = r.width; H = r.height;
+  }
+  function lattice(n, cx0, cx1, cy0, cy1){
+    var pts = [], cols = Math.ceil(Math.sqrt(n * (cx1 - cx0) / Math.max(0.01, (cy1 - cy0)) * 1.4)), rows = Math.ceil(n / cols);
+    for (var i = 0; i < n; i++){
+      var c = i % cols, r = Math.floor(i / cols);
+      pts.push([cx0 + (cx1 - cx0) * (cols === 1 ? 0.5 : c / (cols - 1)), cy0 + (cy1 - cy0) * (rows === 1 ? 0.5 : r / (rows - 1))]);
+    }
+    return pts;
+  }
+  function build(){
+    P = [];
+    var mode = stage.mode, i, p;
+    if (mode === "solid" || mode === "sublime"){
+      var homes = lattice(mode === "solid" ? 90 : 72, 0.24, 0.76, 0.16, 0.84);
+      homes.forEach(function(h, idx){ P.push({ hx:h[0], hy:h[1], x:h[0], y:h[1], vx:0, vy:0, ph:idx * 0.7, esc:false, col: stage.cols[idx % stage.cols.length] }); });
+      if (mode === "sublime") for (i = 0; i < 22; i++) P.push({ x:0.24 + Math.random() * 0.52, y:0.2 + Math.random() * 0.6, vx:(Math.random() - 0.5) * 0.1, vy:-(0.1 + Math.random() * 0.15), ph:Math.random() * 6, esc:true, life:Math.random(), col:"#7B2D8B" });
+    } else if (mode === "liquid" || mode === "evap"){
+      for (i = 0; i < 80; i++) P.push({ x:0.06 + Math.random() * 0.88, y:0.5 + Math.random() * 0.43, vx:(Math.random() - 0.5) * 0.05, vy:(Math.random() - 0.5) * 0.03, ph:Math.random() * 6, esc:false, col: stage.cols[i % stage.cols.length] });
+      if (mode === "evap") for (i = 0; i < 26; i++) P.push({ x:0.08 + Math.random() * 0.84, y:0.52, vx:(Math.random() - 0.5) * 0.03, vy:-(0.12 + Math.random() * 0.12), ph:Math.random() * 6, esc:true, life:Math.random(), col:"#35B493" });
+    } else if (mode === "gas"){
+      for (i = 0; i < 80; i++){ var a = Math.random() * 6.283, s = 0.14 + Math.random() * 0.16; P.push({ x:0.05 + Math.random() * 0.9, y:0.05 + Math.random() * 0.9, vx:Math.cos(a) * s, vy:Math.sin(a) * s, px:0, py:0, ph:Math.random() * 6, esc:false, col: stage.cols[i % stage.cols.length] }); }
+    } else if (mode === "melt"){
+      buildForTemp();
+      return;
+    } else { /* mix */
+      for (i = 0; i < 90; i++){ var a2 = Math.random() * 6.283, s2 = 0.03 + Math.random() * 0.05; P.push({ x:0.05 + Math.random() * 0.9, y:0.05 + Math.random() * 0.9, vx:Math.cos(a2) * s2, vy:Math.sin(a2) * s2, ph:Math.random() * 6, esc:false, col: stage.cols[i % stage.cols.length] }); }
+    }
+  }
+  var meltSub = "";
+  function buildForTemp(){
+    var sub = stage.temp < 0 ? "solid" : (stage.temp < 100 ? "liquid" : "gas");
+    if (sub === meltSub && P.length) return;
+    meltSub = sub;
+    var keep = stage.mode; stage.mode = sub; build(); stage.mode = keep;
+  }
+  function speedScale(){ return Math.max(0.3, Math.min(1.9, 0.45 + (stage.temp + 20) / 170 * 1.25)); }
+  function phaseName(){
+    if (stage.mode === "melt") return stage.temp < 0 ? "Ice (solid)" : (stage.temp < 100 ? "Water (liquid)" : "Steam (gas)");
+    return stage.label;
+  }
+  function syncStageUI(){
+    tempRead.textContent = stage.temp + " °C · " + (stage.temp + 273) + " K";
+    stageState.textContent = phaseName() + " · " + stage.temp + " °C";
+    if (document.activeElement !== tempRange) tempRange.value = stage.temp;
+  }
+  function T(x, y){
+    var ox = (x - 0.5) * W, oy = (y - 0.5) * H;
+    var c = Math.cos(rot), s = Math.sin(rot);
+    var rx = (ox * c - oy * s) * zoom, ry = (ox * s + oy * c) * 0.86 * zoom;
+    return [W / 2 + rx, H / 2 + ry];
+  }
+  function step(dt){
+    var mode = stage.mode, sp = speedScale();
+    if (mode === "melt") buildForTemp();
+    var eff = mode === "melt" ? meltSub : mode;
+    P.forEach(function(p){
+      p.px = p.x; p.py = p.y;
+      if (p.esc){
+        p.life += dt * 0.35;
+        p.x += p.vx * dt; p.y += p.vy * dt;
+        if (p.life >= 1 || p.y < 0.02){
+          p.life = 0;
+          if (stage.mode === "evap"){ p.x = 0.08 + Math.random() * 0.84; p.y = 0.52; }
+          else { p.x = 0.24 + Math.random() * 0.52; p.y = 0.2 + Math.random() * 0.6; }
+        }
+        return;
+      }
+      if (eff === "solid"){
+        p.x = p.hx + Math.sin(t0 * 3 + p.ph) * 0.004 * sp;
+        p.y = p.hy + Math.cos(t0 * 2.6 + p.ph) * 0.004 * sp;
+      } else if (eff === "liquid"){
+        p.x += p.vx * dt * sp; p.y += p.vy * dt * sp;
+        p.vx += (Math.random() - 0.5) * 0.01; p.vy += (Math.random() - 0.5) * 0.006;
+        p.vx = Math.max(-0.06, Math.min(0.06, p.vx)); p.vy = Math.max(-0.035, Math.min(0.035, p.vy));
+        if (p.x < 0.05 || p.x > 0.95) p.vx *= -1;
+        if (p.y < 0.48 || p.y > 0.94) p.vy *= -1;
+        p.x = Math.max(0.04, Math.min(0.96, p.x)); p.y = Math.max(0.47, Math.min(0.95, p.y));
+      } else if (eff === "gas"){
+        p.x += p.vx * dt * sp; p.y += p.vy * dt * sp;
+        if (p.x < 0.03 || p.x > 0.97) p.vx *= -1;
+        if (p.y < 0.03 || p.y > 0.97) p.vy *= -1;
+        p.x = Math.max(0.02, Math.min(0.98, p.x)); p.y = Math.max(0.02, Math.min(0.98, p.y));
+      } else {
+        p.x += p.vx * dt * sp; p.y += p.vy * dt * sp;
+        if (p.x < 0.03 || p.x > 0.97) p.vx *= -1;
+        if (p.y < 0.03 || p.y > 0.97) p.vy *= -1;
+        p.x = Math.max(0.02, Math.min(0.98, p.x)); p.y = Math.max(0.02, Math.min(0.98, p.y));
+      }
+    });
+  }
+  function draw(){
+    if (!W) resize();
+    if (!W) return;
+    ctx.clearRect(0, 0, W, H);
+    var eff = stage.mode === "melt" ? meltSub : stage.mode;
+    var base = Math.max(4, Math.min(9, Math.min(W, H) * 0.017)) * Math.sqrt(zoom);
+    P.forEach(function(p){
+      var pt = T(p.x, p.y);
+      var px = Math.max(base, Math.min(W - base, pt[0])), py = Math.max(base, Math.min(H - base, pt[1]));
+      var r = p.esc ? base * 0.62 : base;
+      ctx.globalAlpha = p.esc ? Math.max(0, 1 - p.life) : 0.92;
+      ctx.fillStyle = p.col;
+      if (eff === "gas" && !p.esc && p.px !== undefined){
+        var pp = T(p.px, p.py);
+        ctx.strokeStyle = p.col; ctx.globalAlpha = 0.3; ctx.lineWidth = 2;
+        ctx.beginPath(); ctx.moveTo(pp[0], pp[1]); ctx.lineTo(px, py); ctx.stroke();
+        ctx.globalAlpha = 0.92;
+      }
+      if (eff === "solid" && !p.esc){
+        ctx.beginPath(); ctx.rect(px - r, py - r, r * 2, r * 2); ctx.fill();
+      } else {
+        ctx.beginPath(); ctx.arc(px, py, r, 0, 6.283); ctx.fill();
+      }
+    });
+    ctx.globalAlpha = 1;
+  }
+  var lastTs = 0;
+  function loop(ts){
+    requestAnimationFrame(loop);
+    if (bodyEl.getAttribute("data-view") !== "chapter" || app.classList.contains("centre-desk")) return;
+    if (!lastTs) lastTs = ts;
+    var dt = Math.min(0.05, (ts - lastTs) / 1000); lastTs = ts;
+    t0 += dt;
+    if (canvas.clientWidth && Math.abs(canvas.clientWidth - W) > 2) resize();
+    step(dt); draw();
+  }
+  function setStageFromTopic(key){
+    var t = TOPICS[key]; if (!t) return;
+    stage = { mode:t.mode, cols:t.cols.slice(), temp:t.temp, label:t.phase };
+    meltSub = ""; build(); syncStageUI();
+    stageCaption.textContent = t.caption;
+    document.querySelectorAll(".preset2").forEach(function(b){ b.setAttribute("aria-pressed", "false"); });
+    if (reduce) draw();
+  }
+  function selectTopic(key, toCentre){
+    currentTopic = key;
+    document.querySelectorAll(".topic-chip").forEach(function(c){ c.setAttribute("aria-pressed", c.getAttribute("data-topic") === key ? "true" : "false"); });
+    setStageFromTopic(key);
+    renderDetail(key);
+    if (toCentre) setCentre("visual");
+  }
+  document.querySelectorAll(".topic-chip").forEach(function(c){
+    c.addEventListener("click", function(){ selectTopic(c.getAttribute("data-topic"), true); });
+  });
+  var PRESETS = { ice:{ mode:"solid", temp:0, label:"Ice", cols:["#2B50C8"] }, water:{ mode:"liquid", temp:25, label:"Water", cols:["#0B7A55"] }, gas:{ mode:"gas", temp:25, label:"Gas", cols:["#C0392B"] }, steam:{ mode:"gas", temp:120, label:"Steam", cols:["#7FA8C9"] } };
+  document.querySelectorAll(".preset2").forEach(function(b){
+    b.addEventListener("click", function(){
+      var pr = PRESETS[b.getAttribute("data-preset")]; if (!pr) return;
+      stage = { mode:pr.mode, cols:pr.cols.slice(), temp:pr.temp, label:pr.label };
+      meltSub = ""; build(); syncStageUI();
+      document.querySelectorAll(".preset2").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      setCentre("visual");
+      if (reduce) draw();
+    });
+  });
+  tempRange.addEventListener("input", function(){
+    stage.temp = parseInt(tempRange.value, 10) || 0;
+    if (stage.mode === "melt") buildForTemp();
+    syncStageUI();
+    if (reduce) draw();
+  });
+  function setZoom(z){ zoom = Math.max(0.7, Math.min(1.5, z)); if (reduce) draw(); }
+  document.getElementById("zoomIn").addEventListener("click", function(){ setZoom(zoom * 1.15); });
+  document.getElementById("zoomOut").addEventListener("click", function(){ setZoom(zoom / 1.15); });
+  document.getElementById("rotReset").addEventListener("click", function(){ rot = 0; setZoom(1); });
+  var dragX = null;
+  canvas.addEventListener("pointerdown", function(e){ dragX = e.clientX; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener("pointermove", function(e){ if (dragX === null) return; rot += (e.clientX - dragX) * 0.008; dragX = e.clientX; if (reduce) draw(); });
+  canvas.addEventListener("pointerup", function(){ dragX = null; });
+  canvas.addEventListener("pointercancel", function(){ dragX = null; });
+  canvas.addEventListener("wheel", function(e){ e.preventDefault(); setZoom(zoom * (e.deltaY < 0 ? 1.08 : 0.93)); }, { passive:false });
+  window.addEventListener("resize", function(){ resize(); if (reduce) draw(); });
+
+  selectTopic("matter", false);
+  resize();
+  if (!reduce) requestAnimationFrame(loop); else draw();
 })();
 </script>
 
